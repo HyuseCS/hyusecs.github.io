@@ -1,40 +1,30 @@
 ---
 const links = [
   { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
 ---
 
-<nav class="sticky top-0 z-50 bg-[#1e1e1e] border-b border-[#333]">
+<nav class="sticky top-0 z-50 bg-[#1e1e1e] border-b border-[#333] shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-12">
-      <div class="flex-shrink-0 flex items-center gap-2">
-        <span class="text-[#27c93f]">❯</span>
-        <a href="#" class="text-sm font-bold text-[#d4d4d4] hover:text-[#27c93f] transition-colors">HYUSE_OS v1.0.4</a>
+    <div class="flex items-center justify-between h-14">
+      <div class="flex-shrink-0 flex items-center gap-2 pr-4 sm:pr-0">
+        <span class="text-[#27c93f] font-bold">❯</span>
+        <a href="#" class="text-xs sm:text-sm font-bold text-[#d4d4d4] hover:text-[#27c93f] transition-colors whitespace-nowrap">CJ_Portfolio</a>
       </div>
-      <div class="hidden md:block">
-        <div class="ml-10 flex items-baseline space-x-6">
-          {links.map((link, index) => (
+      <div class="flex-grow overflow-x-auto no-scrollbar scroll-smooth">
+        <div class="flex justify-start sm:justify-end items-baseline space-x-4 sm:space-x-6">
+          {links.map((link) => (
             <a
               href={link.href}
-              class="text-[#888] hover:text-[#27c93f] px-2 py-1 text-xs font-medium transition-colors duration-200"
+              class="text-[#888] hover:text-[#27c93f] py-2 text-xs sm:text-sm font-medium transition-colors duration-200 whitespace-nowrap"
             >
-              <span class="text-[#555] mr-1">M-{index + 1}</span>./{link.name.toLowerCase()}
+              <span class="text-[#555]">./</span>{link.name.toLowerCase()}
             </a>
           ))}
-          <span class="text-[#555] text-[10px] border border-[#333] px-1 ml-4">? for help</span>
         </div>
-      </div>
-      <!-- Mobile menu button placeholder -->
-      <div class="-mr-2 flex md:hidden">
-        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
       </div>
     </div>
   </div>

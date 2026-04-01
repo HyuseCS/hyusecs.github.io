@@ -1,71 +1,40 @@
-<section id="skills" class="w-screen h-screen snap-center shrink-0 border-r border-[#333] bg-[#0c0c0c] flex flex-col overflow-hidden">
-  <!-- Title Bar -->
-  <div class="bg-[#1e1e1e] px-4 py-2 flex items-center gap-2 border-b border-[#333] shrink-0 h-10">
-    <div class="flex gap-1.5">
-      <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-      <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-      <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-    </div>
-    <div class="flex-grow text-center text-[10px] text-gray-500 font-medium">
-      fetch_skills.py — 80x24
-    </div>
-  </div>
+<section id="skills" class="min-h-screen snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
+  <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
+    <div class="max-w-4xl w-full">
+      <div class="flex gap-2 text-[#27c93f] mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
+        <span class="font-bold">❯</span>
+        <span class="text-[#d4d4d4] break-all">python fetch_skills.py --format=blocks</span>
+      </div>
 
-  <div class="p-8 overflow-y-auto flex-grow flex flex-col items-center">
-    <div class="terminal-history space-y-8 max-w-4xl w-full">
-      <div>
-        <h2 class="text-2xl font-bold text-[#27c93f] mb-8">Technical Arsenal</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="space-y-4">
-            <h3 class="text-[#ffbd2e] text-sm font-bold uppercase tracking-widest">Frontend</h3>
-            <div class="flex flex-wrap gap-2">
-              {['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'].map(skill => (
-                <span class="px-2 py-1 bg-[#1e1e1e] border border-[#333] text-xs text-[#d4d4d4]">{skill}</span>
-              ))}
-            </div>
+      <div class="pl-2 sm:pl-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div class="space-y-4 animate-on-scroll stagger-1">
+          <h3 class="text-[#ffbd2e] text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-[#333] pb-2">Frontend</h3>
+          <div class="flex flex-wrap gap-2 pt-2">
+            {['ReactTS', 'NextJS', 'VueJS', 'Astro', 'HTML/CSS', 'JavaScript'].map(skill => (
+              <span class="px-2 sm:px-3 py-1.5 bg-[#1e1e1e] border border-[#333] text-xs sm:text-sm text-[#d4d4d4] hover:border-[#27c93f] hover:bg-[#27c93f]/10 transition-colors cursor-default">{skill}</span>
+            ))}
           </div>
+        </div>
 
-          <div class="space-y-4">
-            <h3 class="text-[#ffbd2e] text-sm font-bold uppercase tracking-widest">Backend</h3>
-            <div class="flex flex-wrap gap-2">
-              {['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'Python'].map(skill => (
-                <span class="px-2 py-1 bg-[#1e1e1e] border border-[#333] text-xs text-[#d4d4d4]">{skill}</span>
-              ))}
-            </div>
+        <div class="space-y-4 animate-on-scroll stagger-2">
+          <h3 class="text-[#ffbd2e] text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-[#333] pb-2">Backend & Desktop</h3>
+          <div class="flex flex-wrap gap-2 pt-2">
+            {['Python', 'Java', 'C++', 'JavaFX', 'Tkinter/CustomTkinter'].map(skill => (
+              <span class="px-2 sm:px-3 py-1.5 bg-[#1e1e1e] border border-[#333] text-xs sm:text-sm text-[#d4d4d4] hover:border-[#27c93f] hover:bg-[#27c93f]/10 transition-colors cursor-default">{skill}</span>
+            ))}
           </div>
+        </div>
 
-          <div class="space-y-4">
-            <h3 class="text-[#ffbd2e] text-sm font-bold uppercase tracking-widest">Tools</h3>
-            <div class="flex flex-wrap gap-2">
-              {['Docker', 'Git', 'Neovim', 'Linux (Arch/Fedora)', 'AWS'].map(skill => (
-                <span class="px-2 py-1 bg-[#1e1e1e] border border-[#333] text-xs text-[#d4d4d4]">{skill}</span>
-              ))}
-            </div>
+        <div class="space-y-4 md:col-span-2 animate-on-scroll stagger-3">
+          <h3 class="text-[#ffbd2e] text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-[#333] pb-2">Databases & Infrastructure</h3>
+          <div class="flex flex-wrap gap-2 pt-2">
+            {['Supabase', 'MariaDB', 'MySQL', 'PostgreSQL', 'Debian/Ubuntu Server', 'Nginx', 'Cloudflare', 'Tailscale'].map(skill => (
+              <span class="px-2 sm:px-3 py-1.5 bg-[#111] border border-[#333] text-xs sm:text-sm text-[#888] hover:text-[#d4d4d4] hover:border-[#888] transition-colors cursor-default">{skill}</span>
+            ))}
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Active Input Area -->
-    <div class="max-w-4xl w-full mt-12 shrink-0">
-      <div class="flex flex-col gap-2">
-        <div class="flex gap-2 text-[#27c93f] relative">
-          <span>[user@hyuse ~]$</span>
-          <div class="flex-grow relative">
-            <input 
-              type="text" 
-              class="terminal-input bg-transparent border-none outline-none text-[#d4d4d4] font-mono w-full caret-[#27c93f] focus:ring-0 p-0 placeholder-[#333]" 
-              placeholder="type '?' for help..." 
-              autocomplete="off"
-            />
-            <div class="terminal-suggestions absolute left-0 bottom-full mb-2 bg-[#1e1e1e] border border-[#333] p-2 hidden z-20 min-w-[200px] shadow-xl">
-              <div class="text-[9px] text-[#555] mb-1 uppercase tracking-widest">Suggestions</div>
-              <div class="suggestion-list flex flex-col gap-1"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
