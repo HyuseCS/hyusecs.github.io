@@ -1,0 +1,251 @@
+<section id="activity" class="min-h-[calc(100vh-4rem)] snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
+  <div class="p-5 md:p-8 pt-4 md:pt-8 pb-32 md:pb-40 flex-grow flex flex-col justify-center items-center">
+    <div class="max-w-5xl w-full">
+      <div class="flex gap-2 text-[#27c93f] mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
+        <span class="font-bold">❯</span>
+        <span class="text-[#d4d4d4] break-all">top -u hyuseCS -d 1</span>
+      </div>
+      
+      <div class="flex flex-col gap-8 w-full animate-on-scroll stagger-1">
+        
+        <!-- Top Row: Event Log & System Daemon -->
+        <div class="flex flex-col lg:flex-row gap-6 w-full items-stretch">
+          
+          <!-- Event Log -->
+          <div class="w-full lg:w-2/3 flex flex-col">
+            <h4 class="text-[#888] text-xs font-bold uppercase tracking-widest mb-4">// Live Push Events</h4>
+            <div id="github-activity" class="flex flex-col gap-3 font-mono text-xs sm:text-sm text-[#888] flex-grow">
+              <div class="animate-pulse flex items-center gap-2 p-4 border border-[#333] bg-[#1a1a1a] rounded-sm">
+                <span class="w-2 h-2 bg-[#ffbd2e] rounded-full"></span> Fetching telemetry...
+              </div>
+            </div>
+          </div>
+
+          <!-- System Daemon & Status -->
+          <div class="w-full lg:w-1/3 flex flex-col">
+            <h4 class="text-[#888] text-xs font-bold uppercase tracking-widest mb-4">// System Daemon</h4>
+            <div class="border border-[#333] bg-[#1a1a1a] p-6 flex flex-col justify-center h-full hover:border-[#27c93f] transition-colors relative overflow-hidden group rounded-sm min-h-[160px] flex-grow">
+              <div class="absolute -right-6 -top-6 text-[#111] group-hover:text-[#181818] transition-colors duration-500 scale-150 pointer-events-none">
+                <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </div>
+              <div class="relative z-10 w-full">
+                <p class="text-[#555] font-mono text-[10px] uppercase tracking-widest mb-1">Local Time (PHT)</p>
+                <div id="local-time" class="text-3xl sm:text-4xl font-bold text-white mb-6 font-mono tracking-tighter">
+                  --:--:--
+                </div>
+                
+                <div class="flex flex-col gap-1">
+                  <div class="flex items-center gap-2">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#27c93f] opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-[#27c93f]"></span>
+                    </span>
+                    <span class="text-[#d4d4d4] text-xs sm:text-sm font-bold uppercase tracking-wide">Status: Online</span>
+                  </div>
+                  <span class="text-[#888] text-[10px] sm:text-xs font-mono pl-5">Open to opportunities</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- Bottom Row: Git Graph -->
+        <div class="w-full animate-on-scroll stagger-2">
+          <!-- Dynamic GitHub Matrix -->
+          <div class="w-full border border-[#333] bg-[#111] p-5 sm:p-6 flex flex-col rounded-sm">
+            <div class="flex justify-between items-center w-full mb-4 pb-4 border-b border-[#333]">
+              <h4 class="text-[#888] text-xs font-bold uppercase tracking-widest">// Contributions Matrix</h4>
+              <select id="year-filter" class="bg-[#1a1a1a] text-[#888] hover:text-[#27c93f] border border-[#333] hover:border-[#27c93f] focus:border-[#27c93f] text-xs py-1 px-2 rounded-sm cursor-pointer outline-none transition-colors font-mono">
+                <option value="2024">Loading...</option>
+              </select>
+            </div>
+            
+            <div class="w-full overflow-x-auto no-scrollbar pointer-events-auto flex justify-start pb-2">
+              <div id="matrix-container" class="flex gap-1 min-w-max">
+                 <div class="animate-pulse text-[#888] text-xs font-mono">Building matrix data...</div>
+              </div>
+            </div>
+            <div class="flex justify-end gap-1 mt-4 items-center">
+              <span class="text-[10px] text-[#555] font-mono mr-2">Less</span>
+              <div class="w-[10px] h-[10px] border border-[#333] bg-[#1a1a1a] rounded-[2px]" title="0"></div>
+              <div class="w-[10px] h-[10px] border border-[#333] bg-[#0e4429] rounded-[2px]" title="1"></div>
+              <div class="w-[10px] h-[10px] border border-[#333] bg-[#006d32] rounded-[2px]" title="2"></div>
+              <div class="w-[10px] h-[10px] border border-[#333] bg-[#26a641] rounded-[2px]" title="3"></div>
+              <div class="w-[10px] h-[10px] border border-[#333] bg-[#39d353] rounded-[2px]" title="4+"></div>
+              <span class="text-[10px] text-[#555] font-mono ml-2">More</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Tracking Scripts -->
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Ticking Clock Daemon
+    const timeEl = document.getElementById('local-time');
+    if(timeEl) {
+      timeEl.textContent = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Manila', hour12: false });
+      setInterval(() => {
+        const now = new Date();
+        timeEl.textContent = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Manila', hour12: false });
+      }, 1000);
+    }
+
+    // 2. Github Activity Telemetry (Live Events)
+    const eventContainer = document.getElementById('github-activity');
+    if(eventContainer) {
+      try {
+        const res = await fetch('https://api.github.com/users/hyuseCS/events/public?per_page=15');
+        if(!res.ok) throw new Error('API Error');
+        const events = await res.json();
+        
+        const pushes = events.filter(e => e.type === 'PushEvent').slice(0, 3);
+        eventContainer.innerHTML = '';
+        
+        if(pushes.length === 0){
+           eventContainer.innerHTML = '<div class="text-[#ffbd2e] flex flex-col p-4 border border-[#333] bg-[#1a1a1a] rounded-sm col-span-1 border-dashed">// No recent push events found.</div>';
+        } else {
+          pushes.forEach(push => {
+            const repo = push.repo.name;
+            const msg = (push.payload.commits && push.payload.commits.length > 0) 
+                ? push.payload.commits[0].message.split('\\n')[0] 
+                : 'Branch updated';
+            const strTime = new Date(push.created_at).toLocaleDateString(undefined, {month:'short', day:'numeric'});
+            
+            const el = document.createElement('div');
+            el.className = 'border border-[#333] bg-[#1a1a1a] p-4 flex flex-col justify-center hover:border-[#27c93f] transition-colors rounded-sm';
+            el.innerHTML = `
+              <div class="flex flex-wrap sm:flex-nowrap justify-between items-center w-full gap-2 sm:gap-0">
+                <div class="text-[#d4d4d4] font-bold truncate pr-3 text-xs sm:text-sm">git push <a href="https://github.com/${repo}" target="_blank" class="text-[#27c93f] hover:underline">${repo.replace('hyuseCS/', '')}</a></div>
+                <div class="text-[10px] text-[#555] shrink-0 whitespace-nowrap">${strTime}</div>
+              </div>
+              <div class="truncate opacity-75 text-xs text-[#888] w-full mt-1">"${msg}"</div>
+            `;
+            eventContainer.appendChild(el);
+          });
+        }
+      } catch (err) {
+        eventContainer.innerHTML = '<div class="text-[#e06c75] p-4 border border-[#333] bg-[#1a1a1a] rounded-sm">// Telemetry daemon offline (Rate limited Github REST API)</div>';
+      }
+    }
+
+    // 3. Dynamic Contribution Matrix
+    try {
+      const targetUrl = 'https://github-contributions.vercel.app/api/v1/hyuseCS';
+      const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(targetUrl);
+      const matrixRes = await fetch(proxyUrl);
+      
+      if(!matrixRes.ok) throw new Error('Failed to route through CORS proxy.');
+      const proxyData = await matrixRes.json();
+      
+      // AllOrigins nests the target payload as a string
+      const matrixData = JSON.parse(proxyData.contents);
+      
+      const years = matrixData.years.map(y => y.year);
+      const yearFilter = document.getElementById('year-filter');
+      const container = document.getElementById('matrix-container');
+      
+      // Populate select
+      yearFilter.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
+      
+      // Matrix Render Engine
+      const renderMatrix = (targetYear) => {
+        let days = matrixData.contributions.filter(c => c.date.startsWith(targetYear));
+        if (days.length === 0) {
+          container.innerHTML = '<div class="text-[#ffbd2e] text-xs font-mono">// No history logged for this year.</div>';
+          return;
+        }
+        
+        // Sort ascending strictly
+        days.sort((a,b) => new Date(a.date) - new Date(b.date));
+        
+        let firstDay = new Date(days[0].date).getDay(); // 0(Sun) - 6(Sat)
+        let htmlWeeks = [];
+        let curWeek = [];
+        
+        for(let i = 0; i < firstDay; i++) { curWeek.push(null); }
+        
+        days.forEach(day => {
+          curWeek.push(day);
+          if(curWeek.length === 7) {
+            htmlWeeks.push(curWeek);
+            curWeek = [];
+          }
+        });
+        if(curWeek.length > 0) htmlWeeks.push(curWeek);
+        
+        // Calculate Month Labels
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let monthLabelsHtml = '';
+        let lastMonth = -1;
+        
+        htmlWeeks.forEach((week, index) => {
+           const firstValidDay = week.find(d => d !== null);
+           if(firstValidDay) {
+              const month = new Date(firstValidDay.date).getMonth();
+              // If month changed and there's enough room to draw it, place a label
+              if(month !== lastMonth) {
+                 monthLabelsHtml += `<span class="absolute top-0 pointer-events-none" style="left: ${index * 16}px">${monthNames[month]}</span>`;
+                 lastMonth = month;
+              }
+           }
+        });
+        
+        // Render Columns
+        const matrixBody = htmlWeeks.map(week => `
+          <div class="flex flex-col gap-1">
+            ${week.map((day, i) => {
+               if(!day) return '<div class="w-3 h-3 bg-transparent rounded-[2px] pointer-events-none"></div>';
+               const bg = day.intensity === "0" ? "#1a1a1a" :
+                          day.intensity === "1" ? "#0e4429" :
+                          day.intensity === "2" ? "#006d32" :
+                          day.intensity === "3" ? "#26a641" : "#39d353";
+               const countTxt = day.count > 0 ? `${day.count} contributions` : "No contributions";
+               return `<div class="w-3 h-3 rounded-[2px] border border-white/5 hover:border-[#27c93f] transform hover:scale-[1.35] transition-all cursor-crosshair relative group" style="background-color: ${bg};" title="${countTxt} on ${day.date}"></div>`;
+            }).join('')}
+          </div>
+        `).join('');
+        
+        container.innerHTML = `
+          <div class="flex flex-col gap-1 min-w-max px-2">
+            <!-- X-axis: Months -->
+            <div class="relative h-4 text-[9px] text-[#555] font-mono ml-7 w-full leading-none">
+              ${monthLabelsHtml}
+            </div>
+            
+            <div class="flex gap-2">
+              <!-- Y-axis: Days -->
+              <div class="relative w-5 h-[108px] text-[9px] text-[#555] font-mono text-right pointer-events-none">
+                 <span class="absolute right-0" style="top: 15px; line-height: 12px">Mon</span>
+                 <span class="absolute right-0" style="top: 47px; line-height: 12px">Wed</span>
+                 <span class="absolute right-0" style="top: 79px; line-height: 12px">Fri</span>
+              </div>
+              
+              <!-- Core Grid -->
+              <div class="flex gap-1 select-none pointer-events-auto pb-2">
+                ${matrixBody}
+              </div>
+            </div>
+          </div>
+        `;
+      };
+      
+      // Default to most recent year natively
+      renderMatrix(years[0]);
+      
+      // Attach change listener
+      yearFilter.addEventListener('change', (e) => {
+        renderMatrix(e.target.value);
+      });
+      
+    } catch (e) {
+      document.getElementById('matrix-container').innerHTML = '<div class="text-[#e06c75] text-xs font-mono">// Matrix datalink severed (CORS block/API failure)</div>';
+    }
+  });
+</script>
