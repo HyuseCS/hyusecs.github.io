@@ -31,18 +31,7 @@
   }
 }
 
-/* CRT Scanline Overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    transparent 0px, transparent 2px,
-    rgba(0, 0, 0, 0.035) 2px, rgba(0, 0, 0, 0.035) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
-}
+
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
