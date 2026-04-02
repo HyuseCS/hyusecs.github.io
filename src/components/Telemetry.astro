@@ -255,7 +255,7 @@ try {
                           day.intensity === "1" ? "#0e4429" :
                           day.intensity === "2" ? "#006d32" :
                           day.intensity === "3" ? "#26a641" : "#39d353";
-               const countTxt = day.count > 0 ? `${day.count} contributions` : "No contributions";
+               const countTxt = day.intensity !== "0" ? `Contributions` : "No contributions";
                return `<div class="w-3 h-3 rounded-[2px] border border-white/5 hover:border-[#27c93f] transform hover:scale-[1.35] transition-all cursor-crosshair" style="background-color: ${bg};" title="${countTxt} on ${day.date}" aria-label="${countTxt} on ${day.date}"></div>`;
             }).join('')}
           </div>
