@@ -11,7 +11,7 @@ try {
 }
 ---
 
-<section id="activity" class="min-h-[calc(100vh-4rem)] snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
+<section id="activity" class="min-h-[calc(100vh-4rem)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
   <div class="p-5 md:p-8 pt-4 md:pt-8 pb-32 md:pb-40 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-5xl w-full">
       <div class="flex gap-2 text-[#27c93f] mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
@@ -27,7 +27,7 @@ try {
           <!-- Event Log -->
           <div class="w-full lg:w-2/3 flex flex-col">
             <h4 class="text-[#888] text-xs font-bold uppercase tracking-widest mb-4">// Live Push Events</h4>
-            <div id="github-activity" class="flex flex-col gap-3 font-mono text-xs sm:text-sm text-[#888] flex-grow">
+            <div id="github-activity" class="flex flex-col gap-3 font-mono text-xs sm:text-sm text-[#888] max-h-[160px] overflow-y-auto no-scrollbar">
               <div class="animate-pulse flex items-center gap-2 p-4 border border-[#333] bg-[#1a1a1a] rounded-sm">
                 <span class="w-2 h-2 bg-[#ffbd2e] rounded-full"></span> Fetching telemetry...
               </div>
@@ -118,7 +118,7 @@ try {
         if(!res.ok) throw new Error('API Error');
         const events = await res.json();
         
-        const pushes = events.filter(e => e.type === 'PushEvent').slice(0, 3);
+        const pushes = events.filter(e => e.type === 'PushEvent').slice(0, 8);
         eventContainer.innerHTML = '';
         
         if(pushes.length === 0){
