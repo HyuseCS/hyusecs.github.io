@@ -1,3 +1,16 @@
+---
+let fallbackMatrixData = null;
+try {
+  // Build-time static fetch directly from the secure API (Bypasses all CORS/AdBlockers)
+  const staticRes = await fetch('https://github-contributions.vercel.app/api/v1/hyuseCS');
+  if (staticRes.ok) {
+    fallbackMatrixData = await staticRes.json();
+  }
+} catch (e) {
+  console.log("Telemetry build-time fetch failed.");
+}
+---
+
 <section id="activity" class="min-h-[calc(100vh-4rem)] snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
   <div class="p-5 md:p-8 pt-4 md:pt-8 pb-32 md:pb-40 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-5xl w-full">
@@ -85,7 +98,7 @@
 </section>
 
 <!-- Tracking Scripts -->
-<script>
+<script define:vars={{ fallbackMatrixData }}>
   document.addEventListener('DOMContentLoaded', async () => {
     // 1. Ticking Clock Daemon
     const timeEl = document.getElementById('local-time');
@@ -137,24 +150,32 @@
 
     // 3. Dynamic Contribution Matrix
     try {
-      const targetUrl = 'https://github-contributions.vercel.app/api/v1/hyuseCS';
-      const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(targetUrl);
-      const matrixRes = await fetch(proxyUrl);
-      
-      if(!matrixRes.ok) throw new Error('Failed to route through CORS proxy.');
-      const proxyData = await matrixRes.json();
-      
-      // AllOrigins nests the target payload as a string
-      const matrixData = JSON.parse(proxyData.contents);
+      let matrixData = null;
+      try {
+        // Attempt live proxy update universally
+        const targetUrl = 'https://github-contributions.vercel.app/api/v1/hyuseCS';
+        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(targetUrl);
+        const matrixRes = await fetch(proxyUrl);
+        
+        if(!matrixRes.ok) throw new Error('Proxy blocked.');
+        const proxyData = await matrixRes.json();
+        matrixData = JSON.parse(proxyData.contents);
+      } catch (proxyError) {
+        // If strict PC adblockers or corporate networks block the proxy domain, fallback gracefully to SSR data!
+        if (fallbackMatrixData) {
+          matrixData = fallbackMatrixData;
+          console.log("Telemetry Engine: Proxy severed. Falling back to cached Astro SSR dataset.");
+        } else {
+          throw new Error("Fatal: Proxy failure and SSR cache missing.");
+        }
+      }
       
       const years = matrixData.years.map(y => y.year);
       const yearFilter = document.getElementById('year-filter');
       const container = document.getElementById('matrix-container');
       
-      // Populate select
       yearFilter.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
       
-      // Matrix Render Engine
       const renderMatrix = (targetYear) => {
         let days = matrixData.contributions.filter(c => c.date.startsWith(targetYear));
         if (days.length === 0) {
@@ -162,10 +183,9 @@
           return;
         }
         
-        // Sort ascending strictly
         days.sort((a,b) => new Date(a.date) - new Date(b.date));
         
-        let firstDay = new Date(days[0].date).getDay(); // 0(Sun) - 6(Sat)
+        let firstDay = new Date(days[0].date).getDay();
         let htmlWeeks = [];
         let curWeek = [];
         
@@ -180,7 +200,6 @@
         });
         if(curWeek.length > 0) htmlWeeks.push(curWeek);
         
-        // Calculate Month Labels
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         let monthLabelsHtml = '';
         let lastMonth = -1;
@@ -189,7 +208,6 @@
            const firstValidDay = week.find(d => d !== null);
            if(firstValidDay) {
               const month = new Date(firstValidDay.date).getMonth();
-              // If month changed and there's enough room to draw it, place a label
               if(month !== lastMonth) {
                  monthLabelsHtml += `<span class="absolute top-0 pointer-events-none" style="left: ${index * 16}px">${monthNames[month]}</span>`;
                  lastMonth = month;
@@ -197,7 +215,6 @@
            }
         });
         
-        // Render Columns
         const matrixBody = htmlWeeks.map(week => `
           <div class="flex flex-col gap-1">
             ${week.map((day, i) => {
@@ -214,20 +231,16 @@
         
         container.innerHTML = `
           <div class="flex flex-col gap-1 min-w-max px-2">
-            <!-- X-axis: Months -->
             <div class="relative h-4 text-[9px] text-[#555] font-mono ml-7 w-full leading-none">
               ${monthLabelsHtml}
             </div>
             
             <div class="flex gap-2">
-              <!-- Y-axis: Days -->
               <div class="relative w-5 h-[108px] text-[9px] text-[#555] font-mono text-right pointer-events-none">
                  <span class="absolute right-0" style="top: 15px; line-height: 12px">Mon</span>
                  <span class="absolute right-0" style="top: 47px; line-height: 12px">Wed</span>
                  <span class="absolute right-0" style="top: 79px; line-height: 12px">Fri</span>
               </div>
-              
-              <!-- Core Grid -->
               <div class="flex gap-1 select-none pointer-events-auto pb-2">
                 ${matrixBody}
               </div>
@@ -236,16 +249,14 @@
         `;
       };
       
-      // Default to most recent year natively
       renderMatrix(years[0]);
       
-      // Attach change listener
       yearFilter.addEventListener('change', (e) => {
         renderMatrix(e.target.value);
       });
       
     } catch (e) {
-      document.getElementById('matrix-container').innerHTML = '<div class="text-[#e06c75] text-xs font-mono">// Matrix datalink severed (CORS block/API failure)</div>';
+      document.getElementById('matrix-container').innerHTML = '<div class="text-[#e06c75] text-xs font-mono">// Matrix datalink severed (Global Network Integrity Failure)</div>';
     }
   });
 </script>
