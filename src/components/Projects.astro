@@ -9,6 +9,7 @@ const projects = [
     tags: ["NextJS", "Supabase", "Vercel"],
     repoUrl: "https://github.com/seodowa/JRJC",
     liveUrl: "https://jrjc.vercel.app/",
+    hasLiveUrl: true,
     className: "",
     staggerClass: "stagger-1"
   },
@@ -19,6 +20,7 @@ const projects = [
     tags: ["React", "Django REST"],
     repoUrl: "https://github.com/Aguynamedkent7/Happsay_frontend",
     liveUrl: "https://happsay-frontend.vercel.app",
+    hasLiveUrl: true,
     className: "",
     staggerClass: "stagger-2"
   },
@@ -29,19 +31,22 @@ const projects = [
     tags: ["Java", "PostgreSQL"],
     repoUrl: "https://github.com/Aguynamedkent7/Library_Management_System",
     liveUrl: "#",
+    hasLiveUrl: false,
     className: "md:col-span-2 max-w-2xl w-full mx-auto",
     staggerClass: "stagger-3"
   }
 ];
 ---
 
-<section id="projects" class="min-h-[calc(100vh-4rem)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
+<section id="projects" class="min-h-[calc(100vh-4rem-30px)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
   <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-4xl w-full">
       <div class="flex gap-2 text-[#27c93f] mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
-        <span class="font-bold">❯</span>
+        <span class="font-bold" aria-hidden="true">❯</span>
         <span class="text-[#d4d4d4] break-all">ls -la /opt/deployed_projects</span>
       </div>
+      
+      <h2 class="sr-only">Projects</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pl-0 sm:pl-4">
         {projects.map((p) => (
@@ -52,6 +57,7 @@ const projects = [
             tags={p.tags}
             repoUrl={p.repoUrl}
             liveUrl={p.liveUrl}
+            hasLiveUrl={p.hasLiveUrl}
             className={p.className}
             staggerClass={p.staggerClass}
           />

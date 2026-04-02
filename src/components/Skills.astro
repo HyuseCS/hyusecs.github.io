@@ -1,17 +1,56 @@
-<section id="skills" class="min-h-[calc(100vh-4rem)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
+---
+const frontendSkills = [
+  { name: 'ReactTS', level: 'primary' },
+  { name: 'NextJS', level: 'primary' },
+  { name: 'VueJS', level: 'familiar' },
+  { name: 'Astro', level: 'familiar' },
+  { name: 'HTML/CSS', level: 'primary' },
+  { name: 'JavaScript', level: 'primary' },
+];
+
+const backendSkills = [
+  { name: 'Python', level: 'primary' },
+  { name: 'Java', level: 'primary' },
+  { name: 'C++', level: 'familiar' },
+  { name: 'JavaFX', level: 'familiar' },
+  { name: 'Tkinter/CustomTkinter', level: 'familiar' },
+];
+
+const infraSkills = [
+  { name: 'Supabase', level: 'primary' },
+  { name: 'MariaDB', level: 'familiar' },
+  { name: 'MySQL', level: 'primary' },
+  { name: 'PostgreSQL', level: 'primary' },
+  { name: 'Debian/Ubuntu Server', level: 'familiar' },
+  { name: 'Nginx', level: 'familiar' },
+  { name: 'Cloudflare', level: 'familiar' },
+  { name: 'Tailscale', level: 'familiar' },
+];
+
+function getProficiencyBar(level: string) {
+  return level === 'primary' ? '████░' : '███░░';
+}
+---
+
+<section id="skills" class="min-h-[calc(100vh-4rem-30px)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
   <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-4xl w-full">
       <div class="flex gap-2 text-[#27c93f] mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
-        <span class="font-bold">❯</span>
+        <span class="font-bold" aria-hidden="true">❯</span>
         <span class="text-[#d4d4d4] break-all">python fetch_skills.py --format=blocks</span>
       </div>
+
+      <h2 class="sr-only">Technical Skills</h2>
 
       <div class="pl-2 sm:pl-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
         <div class="space-y-4 animate-on-scroll stagger-1">
           <h3 class="text-[#ffbd2e] text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-[#333] pb-2">Frontend</h3>
           <div class="flex flex-wrap gap-2 pt-2">
-            {['ReactTS', 'NextJS', 'VueJS', 'Astro', 'HTML/CSS', 'JavaScript'].map(skill => (
-              <span class="px-2 sm:px-3 py-1.5 bg-[#1e1e1e] border border-[#333] text-xs sm:text-sm text-[#d4d4d4] hover:border-[#27c93f] hover:bg-[#27c93f]/10 transition-colors cursor-default">{skill}</span>
+            {frontendSkills.map(skill => (
+              <span class={`group px-2 sm:px-3 py-1.5 bg-[#1e1e1e] border border-[#333] text-xs sm:text-sm text-[#d4d4d4] hover:border-[#27c93f] hover:bg-[#27c93f]/10 transition-colors cursor-default relative`}>
+                {skill.name}
+                <span class={`ml-1.5 proficiency-bar ${skill.level === 'primary' ? 'text-[#27c93f]' : 'text-[#555]'}`} aria-label={`${skill.level} proficiency`}>{getProficiencyBar(skill.level)}</span>
+              </span>
             ))}
           </div>
         </div>
@@ -19,8 +58,11 @@
         <div class="space-y-4 animate-on-scroll stagger-2">
           <h3 class="text-[#ffbd2e] text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-[#333] pb-2">Backend & Desktop</h3>
           <div class="flex flex-wrap gap-2 pt-2">
-            {['Python', 'Java', 'C++', 'JavaFX', 'Tkinter/CustomTkinter'].map(skill => (
-              <span class="px-2 sm:px-3 py-1.5 bg-[#1e1e1e] border border-[#333] text-xs sm:text-sm text-[#d4d4d4] hover:border-[#27c93f] hover:bg-[#27c93f]/10 transition-colors cursor-default">{skill}</span>
+            {backendSkills.map(skill => (
+              <span class={`group px-2 sm:px-3 py-1.5 bg-[#1e1e1e] border border-[#333] text-xs sm:text-sm text-[#d4d4d4] hover:border-[#27c93f] hover:bg-[#27c93f]/10 transition-colors cursor-default relative`}>
+                {skill.name}
+                <span class={`ml-1.5 proficiency-bar ${skill.level === 'primary' ? 'text-[#27c93f]' : 'text-[#555]'}`} aria-label={`${skill.level} proficiency`}>{getProficiencyBar(skill.level)}</span>
+              </span>
             ))}
           </div>
         </div>
@@ -28,13 +70,19 @@
         <div class="space-y-4 md:col-span-2 animate-on-scroll stagger-3">
           <h3 class="text-[#ffbd2e] text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-[#333] pb-2">Databases & Infrastructure</h3>
           <div class="flex flex-wrap gap-2 pt-2">
-            {['Supabase', 'MariaDB', 'MySQL', 'PostgreSQL', 'Debian/Ubuntu Server', 'Nginx', 'Cloudflare', 'Tailscale'].map(skill => (
-              <span class="px-2 sm:px-3 py-1.5 bg-[#111] border border-[#333] text-xs sm:text-sm text-[#888] hover:text-[#d4d4d4] hover:border-[#888] transition-colors cursor-default">{skill}</span>
+            {infraSkills.map(skill => (
+              <span class={`group px-2 sm:px-3 py-1.5 bg-[#111] border border-[#333] text-xs sm:text-sm ${skill.level === 'primary' ? 'text-[#d4d4d4] hover:border-[#27c93f]' : 'text-[#888] hover:text-[#d4d4d4] hover:border-[#888]'} transition-colors cursor-default relative`}>
+                {skill.name}
+                <span class={`ml-1.5 proficiency-bar ${skill.level === 'primary' ? 'text-[#27c93f]' : 'text-[#555]'}`} aria-label={`${skill.level} proficiency`}>{getProficiencyBar(skill.level)}</span>
+              </span>
             ))}
           </div>
         </div>
       </div>
       
+      <div class="mt-6 pl-2 sm:pl-4 flex items-center gap-4 text-[10px] text-[#555] font-mono animate-on-scroll stagger-3">
+        <span class="flex items-center gap-1"><span class="text-[#27c93f] proficiency-bar">████░</span> primary</span>
+        <span class="flex items-center gap-1"><span class="text-[#555] proficiency-bar">███░░</span> familiar</span>
       </div>
       
     </div>

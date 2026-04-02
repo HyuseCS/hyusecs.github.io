@@ -5,47 +5,82 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title?: string;
+	description?: string;
 }
 
-const { title = "My Portfolio" } = Astro.props;
+const { 
+	title = "CJ | Full Stack Developer",
+	description = "Christian John Legaspi — Full Stack Developer & Computer Science student at USTP. Building robust web applications with React, Next.js, Supabase, and more."
+} = Astro.props;
+
+const siteUrl = "https://hyusecs.github.io";
 ---
 
 <!doctype html>
-<!-- Added snap-y and snap-proximity to the HTML tag to enable vertical scroll locking -->
 <html lang="en" class="scroll-smooth md:snap-y md:snap-proximity">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		
+		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		
+		<!-- SEO Meta -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="Christian John Legaspi" />
+		<link rel="canonical" href={siteUrl} />
+		
+		<!-- Open Graph -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:site_name" content="CJ Portfolio" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Font: JetBrains Mono with font-display swap for performance -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-		<title>{title}</title>
 	</head>
 	<body class="bg-[#0c0c0c] text-[#d4d4d4] flex flex-col min-h-screen font-['JetBrains_Mono',monospace]">
 		<Navbar />
-		<main class="w-full overflow-x-hidden flex-grow flex flex-col focus:outline-none pb-[30px] sm:pb-8" tabindex="0">
+		<main class="w-full overflow-x-hidden flex-grow flex flex-col focus:outline-none pb-[30px] sm:pb-8" tabindex="0" id="main-content">
 			<slot />
 		</main>
 		<Footer />
 
-		<!-- Scroll Animation Observer -->
+		<!-- Back to Top Button -->
+		<button
+			id="back-to-top"
+			class="fixed bottom-12 right-4 sm:right-6 z-[90] hidden items-center gap-1.5 px-3 py-2 bg-[#1a1a1a] border border-[#333] text-[#888] hover:text-[#27c93f] hover:border-[#27c93f] transition-colors font-mono text-xs cursor-pointer back-to-top"
+			aria-label="Back to top"
+		>
+			<span aria-hidden="true" class="text-[#27c93f] font-bold">❯</span> cd ~
+		</button>
+
+		<!-- Scroll Animation Observer + Active Nav + Back to Top -->
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
+				// 1. Scroll-reveal animation observer
 				const observerOptions = {
 					root: null,
 					rootMargin: '0px',
-					threshold: 0.15 // Trigger when 15% of the element is visible
+					threshold: 0.15
 				};
 
 				const observer = new IntersectionObserver((entries) => {
 					entries.forEach(entry => {
 						if (entry.isIntersecting) {
 							entry.target.classList.add('is-visible');
-							// Optional: Stop observing after animation triggers once
-							// observer.unobserve(entry.target);
 						}
 					});
 				}, observerOptions);
@@ -53,6 +88,48 @@ const { title = "My Portfolio" } = Astro.props;
 				document.querySelectorAll('.animate-on-scroll').forEach((el) => {
 					observer.observe(el);
 				});
+
+				// 2. Active nav link highlighting
+				const sections = document.querySelectorAll('section[id]');
+				const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+				const navObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const id = entry.target.getAttribute('id');
+							navLinks.forEach(link => {
+								const href = link.getAttribute('href');
+								if (href === `#${id}`) {
+									link.classList.add('text-[#27c93f]');
+									link.classList.remove('text-[#888]');
+								} else {
+									link.classList.remove('text-[#27c93f]');
+									link.classList.add('text-[#888]');
+								}
+							});
+						}
+					});
+				}, { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+				sections.forEach(section => navObserver.observe(section));
+
+				// 3. Back to top button visibility
+				const backToTop = document.getElementById('back-to-top');
+				if (backToTop) {
+					window.addEventListener('scroll', () => {
+						if (window.scrollY > 500) {
+							backToTop.classList.remove('hidden');
+							backToTop.classList.add('flex');
+						} else {
+							backToTop.classList.add('hidden');
+							backToTop.classList.remove('flex');
+						}
+					}, { passive: true });
+
+					backToTop.addEventListener('click', () => {
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+					});
+				}
 			});
 		</script>
 	</body>

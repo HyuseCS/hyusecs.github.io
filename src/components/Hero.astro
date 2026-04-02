@@ -1,14 +1,24 @@
-<section id="hero" class="min-h-[calc(100vh-4rem)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c]">
-  <div class="p-5 md:p-8 flex-grow flex flex-col justify-center items-center">
+<section id="hero" class="min-h-[calc(100vh-4rem-30px)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c] relative overflow-hidden">
+  <!-- Animated Grid Background -->
+  <div class="absolute inset-0 hero-grid-bg pointer-events-none" aria-hidden="true"></div>
+  
+  <!-- Floating particles decoration -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-[#27c93f] rounded-full opacity-20 animate-pulse"></div>
+    <div class="absolute top-3/4 right-1/3 w-1 h-1 bg-[#27c93f] rounded-full opacity-10 animate-pulse" style="animation-delay: 1s"></div>
+    <div class="absolute top-1/2 right-1/4 w-0.5 h-0.5 bg-[#ffbd2e] rounded-full opacity-15 animate-pulse" style="animation-delay: 2s"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-[#27c93f] rounded-full opacity-10 animate-pulse" style="animation-delay: 3s"></div>
+  </div>
+
+  <div class="p-5 md:p-8 flex-grow flex flex-col justify-center items-center relative z-10">
     <div class="space-y-4 max-w-4xl w-full animate-on-scroll">
       <div class="space-y-4">
         <div class="flex gap-2 text-[#27c93f] items-center">
-          <span class="font-bold">❯</span>
+          <span class="font-bold" aria-hidden="true">❯</span>
           <span id="hero-typewriter" class="text-[#d4d4d4] font-mono border-r-2 border-[#d4d4d4] pr-1 min-h-[1.5rem]"></span>
         </div>
         
         <script>
-          // Ensure it runs perfectly when Astro hydrates
           document.addEventListener('DOMContentLoaded', () => {
              const target = document.getElementById("hero-typewriter");
              if(!target) return;
@@ -16,12 +26,12 @@
              const textToType = "whoami";
              let index = 0;
 
-             // Blink the cursor via border color bridging
+             // Blink the cursor via border color toggle
              setInterval(() => {
                target.style.borderColor = target.style.borderColor === "transparent" ? "#d4d4d4" : "transparent";
              }, 500);
 
-             // Execute typewriter 
+             // Execute typewriter with slight delay for effect
              setTimeout(() => {
                const typingInterval = setInterval(() => {
                  target.textContent += textToType.charAt(index);
@@ -30,7 +40,7 @@
                    clearInterval(typingInterval);
                  }
                }, 120);
-             }, 400); // wait briefly before typing
+             }, 400);
           });
         </script>
         
@@ -47,7 +57,7 @@
 
         <div class="animate-on-scroll stagger-3">
           <div class="flex gap-2 text-[#27c93f] pt-4">
-            <span class="font-bold">❯</span>
+            <span class="font-bold" aria-hidden="true">❯</span>
             <span class="text-[#d4d4d4]">ls -a ./highlights</span>
           </div>
 
@@ -69,10 +79,10 @@
                 <div class="bg-[#1e1e1e] flex items-center justify-between px-3 py-1.5 border-b border-[#333]">
                   <span class="text-[#888] font-mono text-[10px]">previewing: resume.pdf</span>
                   <span class="text-[#ffbd2e] font-mono text-[10px] flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-[#ffbd2e] animate-pulse"></span> Rendering
+                    <span class="w-2 h-2 rounded-full bg-[#ffbd2e] animate-pulse" aria-hidden="true"></span> Rendering
                   </span>
                 </div>
-                <iframe src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100"></iframe>
+                <iframe src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
               </div>
             </div>
           </div>
