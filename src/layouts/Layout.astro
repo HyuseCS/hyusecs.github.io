@@ -5,337 +5,132 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
 	title?: string;
+	description?: string;
 }
 
-const { title = "My Portfolio" } = Astro.props;
+const { 
+	title = "CJ | Full Stack Developer",
+	description = "Christian John Legaspi — Full Stack Developer & Computer Science student at USTP. Building robust web applications with React, Next.js, Supabase, and more."
+} = Astro.props;
+
+const siteUrl = "https://hyusecs.github.io";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth md:snap-y md:snap-proximity">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		
+		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		
+		<!-- SEO Meta -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="author" content="Christian John Legaspi" />
+		<link rel="canonical" href={siteUrl} />
+		
+		<!-- Open Graph -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:site_name" content="CJ Portfolio" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Font: JetBrains Mono with font-display swap for performance -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
-		<title>{title}</title>
 	</head>
-	<body class="bg-[#0c0c0c] text-[#d4d4d4] flex flex-col h-screen font-['JetBrains_Mono',monospace] scanlines overflow-hidden">
-		<main class="w-full h-full overflow-x-auto overflow-y-hidden scroll-smooth flex snap-x snap-mandatory focus:outline-none crt-power-on crt-flicker" tabindex="0">
-			<div class="flex h-full">
-				<slot />
-			</div>
+	<body class="bg-[#0c0c0c] text-[#d4d4d4] flex flex-col min-h-screen font-['JetBrains_Mono',monospace]">
+		<Navbar />
+		<main class="w-full overflow-x-hidden flex-grow flex flex-col focus:outline-none pb-[30px] sm:pb-8" tabindex="0" id="main-content">
+			<slot />
 		</main>
 		<Footer />
 
-		<!-- Floating Navigation Legend -->
-		<div class="fixed bottom-12 right-6 z-[90] pointer-events-none">
-			<div class="bg-[#0c0c0c]/80 backdrop-blur-md border border-[#333] p-4 font-mono shadow-2xl rounded-sm">
-				<div class="text-[9px] text-[#555] mb-3 uppercase tracking-[0.2em] font-bold border-b border-[#1e1e1e] pb-1">System Navigation</div>
-				<div class="space-y-2">
-					<div class="flex items-center justify-between gap-6">
-						<span class="text-[#888] text-[10px]">Command Runner</span>
-						<span class="text-[#ffbd2e] text-[10px] bg-[#1e1e1e] px-1.5 py-0.5 border border-[#333]">SPACE</span>
-					</div>
-					<div class="flex items-center justify-between gap-6">
-						<span class="text-[#888] text-[10px]">Switch Window</span>
-						<span class="text-[#ffbd2e] text-[10px] bg-[#1e1e1e] px-1.5 py-0.5 border border-[#333]">ALT + 1-5</span>
-					</div>
-					<div class="flex items-center justify-between gap-6">
-						<span class="text-[#888] text-[10px]">Scroll Ribbon</span>
-						<span class="text-[#ffbd2e] text-[10px] bg-[#1e1e1e] px-1.5 py-0.5 border border-[#333]">H / L</span>
-					</div>
-					<div class="flex items-center justify-between gap-6">
-						<span class="text-[#888] text-[10px]">Show Help</span>
-						<span class="text-[#ffbd2e] text-[10px] bg-[#1e1e1e] px-1.5 py-0.5 border border-[#333]">?</span>
-					</div>
-				</div>
-			</div>
-		</div>
+		<!-- Back to Top Button -->
+		<button
+			id="back-to-top"
+			class="fixed bottom-12 right-4 sm:right-6 z-[90] hidden items-center gap-1.5 px-3 py-2 bg-[#1a1a1a] border border-[#333] text-[#888] hover:text-[#27c93f] hover:border-[#27c93f] transition-colors font-mono text-xs cursor-pointer back-to-top"
+			aria-label="Back to top"
+		>
+			<span aria-hidden="true" class="text-[#27c93f] font-bold">❯</span> cd ~
+		</button>
 
-		<!-- Shortcuts Help Overlay -->
-		<div id="help-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
-			<div class="bg-[#1e1e1e] border border-[#27c93f] p-8 font-mono max-w-md w-full shadow-2xl">
-				<h2 class="text-[#27c93f] text-xl mb-4 border-b border-[#27c93f] pb-2">SYSTEM_SHORTCUTS</h2>
-				<div class="space-y-3 text-sm">
-					<div class="flex justify-between"><span class="text-[#ffbd2e]">[:]</span> <span>Open Command Runner</span></div>
-					<div class="flex justify-between"><span class="text-[#ffbd2e]">[Alt + 1-5]</span> <span>Jump to Window</span></div>
-					<div class="flex justify-between"><span class="text-[#ffbd2e]">[H / L]</span> <span>Scroll Left / Right</span></div>
-					<div class="flex justify-between"><span class="text-[#ffbd2e]">[?]</span> <span>Toggle Help</span></div>
-				</div>
-				<div class="mt-6 pt-4 border-t border-[#333]">
-					<h3 class="text-[#ffbd2e] text-xs mb-2 uppercase">Commands:</h3>
-					<p class="text-[10px] text-[#888]">goto [hero|about|skills|projects|contact]</p>
-					<p class="text-[10px] text-[#888]">clear (reset scroll)</p>
-				</div>
-				<button onclick="document.getElementById('help-modal').classList.add('hidden')" class="mt-6 w-full border border-[#27c93f] text-[#27c93f] py-2 hover:bg-[#27c93f] hover:text-black transition-colors">
-					CLOSE
-				</button>
-			</div>
-		</div>
-
-		<!-- Command Runner -->
-		<div id="command-runner" class="fixed inset-0 z-[110] hidden items-start justify-center pt-[20vh] bg-black/40 backdrop-blur-[2px]">
-			<div class="w-full max-w-xl px-4">
-				<div class="bg-[#1a1a1a] border-2 border-[#27c93f] shadow-[0_0_50px_rgba(39,201,63,0.15)] overflow-hidden rounded-sm">
-					<div id="suggestions" class="px-4 py-3 border-b border-[#333] bg-[#111]">
-						<div class="text-[9px] text-[#555] mb-2 uppercase tracking-[0.2em] font-bold">Search Targets</div>
-						<div id="suggestion-list" class="flex flex-wrap gap-x-6 gap-y-2">
-							<!-- Suggestions will be injected here -->
-						</div>
-					</div>
-					<div class="p-5 flex items-center gap-4 bg-[#1a1a1a]">
-						<span class="text-[#27c93f] font-bold animate-pulse">❯</span>
-						<input type="text" id="cmd-input" class="bg-transparent border-none outline-none text-[#d4d4d4] font-mono w-full text-lg" placeholder="Run command..." autocomplete="off" />
-					</div>
-				</div>
-				<div class="mt-4 text-center">
-					<span class="text-[9px] text-[#444] uppercase tracking-widest">Esc to cancel • Space to toggle</span>
-				</div>
-			</div>
-		</div>
-
+		<!-- Scroll Animation Observer + Active Nav + Back to Top -->
 		<script>
-			const scrollContainer = document.querySelector('main');
-			const targets = ['hero', 'about', 'skills', 'projects', 'contact'];
-			const helpModal = document.getElementById('help-modal');
-			const commandRunner = document.getElementById('command-runner');
-			const cmdInput = document.getElementById('cmd-input') as HTMLInputElement;
-			const suggestionsUI = document.getElementById('suggestions');
-			const suggestionList = document.getElementById('suggestion-list');
-
-			function setupTerminal() {
-				const inputs = document.querySelectorAll('.terminal-input') as NodeListOf<HTMLInputElement>;
-				let activeInput: HTMLInputElement | null = inputs[0] || null;
-				
+			document.addEventListener('DOMContentLoaded', () => {
+				// 1. Scroll-reveal animation observer
 				const observerOptions = {
-					root: scrollContainer,
-					threshold: 0.6
+					root: null,
+					rootMargin: '0px',
+					threshold: 0.15
 				};
 
 				const observer = new IntersectionObserver((entries) => {
 					entries.forEach(entry => {
 						if (entry.isIntersecting) {
-							const input = entry.target.querySelector('.terminal-input') as HTMLInputElement;
-							if (input) {
-								activeInput = input;
-								setTimeout(() => input.focus(), 100);
-							}
+							entry.target.classList.add('is-visible');
 						}
 					});
 				}, observerOptions);
 
-				document.querySelectorAll('section').forEach(section => observer.observe(section));
+				document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+					observer.observe(el);
+				});
 
-				inputs.forEach(input => {
-					const section = input.closest('section');
-					if (!section) return;
+				// 2. Active nav link highlighting
+				const sections = document.querySelectorAll('section[id]');
+				const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
-					const history = section.querySelector('.terminal-history');
-					const suggestionsUI = section.querySelector('.terminal-suggestions');
-					const suggestionList = section.querySelector('.suggestion-list');
-
-					const printToTerminal = (command: string, response: string) => {
-						if (!history) return;
-						const entry = document.createElement('div');
-						entry.className = 'space-y-2 mt-4 terminal-command-result';
-						entry.innerHTML = `
-							<div class="flex gap-2 text-[#27c93f]">
-								<span>[user@hyuse ~]$</span>
-								<span class="text-[#d4d4d4]">${command}</span>
-							</div>
-							<div class="pl-4 text-[#888] text-sm leading-relaxed">${response}</div>
-						`;
-						history.appendChild(entry);
-						requestAnimationFrame(() => {
-							input.scrollIntoView({ behavior: 'smooth', block: 'end' });
-						});
-					};
-
-					input.addEventListener('input', (e) => {
-						if (activeInput !== input) return;
-						const val = (e.target as HTMLInputElement).value.toLowerCase().trim();
-						if (!suggestionList || !suggestionsUI) return;
-
-						const query = val.startsWith('goto ') ? val.split(' ')[1] : val;
-						const matches = targets.filter(t => t.startsWith(query || ''));
-
-						if (val.length > 0 && matches.length > 0) {
-							suggestionsUI.classList.remove('hidden');
-							suggestionList.innerHTML = matches
-								.map(m => `<div class="text-xs text-[#27c93f] font-mono cursor-pointer hover:bg-[#27c93f]/10 px-1" data-target="${m}">./${m}</div>`)
-								.join('');
-							
-							suggestionList.querySelectorAll('div').forEach(div => {
-								div.addEventListener('click', () => {
-									input.value = 'goto ' + div.getAttribute('data-target');
-									suggestionsUI.classList.add('hidden');
-									input.focus();
-								});
-							});
-						} else {
-							suggestionsUI.classList.add('hidden');
-						}
-					});
-
-					input.addEventListener('keydown', (e) => {
-						if (activeInput !== input) return;
-						if (e.key === 'Enter') {
-							const val = input.value.trim();
-							const cmd = val.toLowerCase();
-							if (!val) return;
-
-							if (cmd === '?' || cmd === 'help') {
-								printToTerminal(val, `
-									<div class="grid grid-cols-1 gap-1">
-										<span class="text-[#ffbd2e]">goto [target]</span> - Navigate to a section
-										<span class="text-[#ffbd2e]">ls</span> - List segments
-										<span class="text-[#ffbd2e]">whoami</span> - Identity check
-										<span class="text-[#ffbd2e]">clear</span> - Wipe command results
-									</div>
-								`);
-							} else if (cmd === 'ls') {
-								printToTerminal(val, "hero/  about/  skills/  projects/  contact/");
-							} else if (cmd === 'whoami') {
-								printToTerminal(val, "USER: hyuse | STATUS: active | SHELL: zsh");
-							} else if (cmd === 'clear') {
-								if (history) {
-									history.querySelectorAll('.terminal-command-result').forEach(el => el.remove());
-								}
-							} else if (cmd.startsWith('goto ') || targets.includes(cmd)) {
-								let targetId = cmd.startsWith('goto ') ? cmd.split(' ')[1] : cmd;
-								if (targets.includes(targetId)) {
-									printToTerminal(val, `Connecting to ${targetId}...`);
-									setTimeout(() => {
-										window.dispatchEvent(new CustomEvent('terminal-nav', {detail: targetId}));
-									}, 500);
+				const navObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const id = entry.target.getAttribute('id');
+							navLinks.forEach(link => {
+								const href = link.getAttribute('href');
+								if (href === `#${id}`) {
+									link.classList.add('text-[#27c93f]');
+									link.classList.remove('text-[#888]');
 								} else {
-									printToTerminal(val, `sh: target not found: ${targetId}`);
+									link.classList.remove('text-[#27c93f]');
+									link.classList.add('text-[#888]');
 								}
-							} else {
-								printToTerminal(val, `sh: command not found: ${val}`);
-							}
-
-							input.value = '';
-							suggestionsUI?.classList.add('hidden');
+							});
 						}
 					});
+				}, { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 });
 
-					section.addEventListener('click', () => {
-						if (activeInput === input) input.focus();
+				sections.forEach(section => navObserver.observe(section));
+
+				// 3. Back to top button visibility
+				const backToTop = document.getElementById('back-to-top');
+				if (backToTop) {
+					window.addEventListener('scroll', () => {
+						if (window.scrollY > 500) {
+							backToTop.classList.remove('hidden');
+							backToTop.classList.add('flex');
+						} else {
+							backToTop.classList.add('hidden');
+							backToTop.classList.remove('flex');
+						}
+					}, { passive: true });
+
+					backToTop.addEventListener('click', () => {
+						window.scrollTo({ top: 0, behavior: 'smooth' });
 					});
-				});
-			}
-
-			if (scrollContainer) {
-				setupTerminal();
-
-				scrollContainer.addEventListener('wheel', (evt) => {
-					evt.preventDefault();
-					scrollContainer.scrollLeft += evt.deltaY;
-				}, { passive: false });
-
-				const updateSuggestions = (val: string) => {
-					if (!suggestionList || !suggestionsUI) return;
-					const query = val.toLowerCase().replace('goto ', '').trim();
-					const matches = targets.filter(s => s.startsWith(query));
-
-					if (query.length > 0 && matches.length > 0) {
-						suggestionsUI.classList.remove('hidden');
-						suggestionList.innerHTML = matches
-							.map(m => `<span class="text-xs text-[#27c93f] font-mono"><span class="text-[#555]">./</span>${m}</span>`)
-							.join('');
-					} else if (query.length === 0) {
-						suggestionsUI.classList.remove('hidden');
-						suggestionList.innerHTML = targets
-							.map(m => `<span class="text-xs text-[#888] font-mono"><span class="text-[#333]">./</span>${m}</span>`)
-							.join('');
-					} else {
-						suggestionsUI.classList.add('hidden');
-					}
-				};
-
-				cmdInput?.addEventListener('input', (e) => {
-					updateSuggestions((e.target as HTMLInputElement).value);
-				});
-
-				const executeCommand = (cmd: string) => {
-					const cleanCmd = cmd.toLowerCase().trim();
-					if (cleanCmd === 'clear') {
-						scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
-					} else {
-						let targetId = cleanCmd;
-						if (cleanCmd.startsWith('goto ')) {
-							targetId = cleanCmd.split(' ')[1];
-						}
-						const el = document.getElementById(targetId);
-						if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-					}
-					commandRunner?.classList.add('hidden');
-					commandRunner?.classList.remove('flex');
-					suggestionsUI?.classList.add('hidden');
-					cmdInput.value = '';
-				};
-
-				window.addEventListener('terminal-nav', ((e: CustomEvent) => {
-					const targetId = e.detail;
-					const el = document.getElementById(targetId);
-					if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-				}) as EventListener);
-
-				window.addEventListener('keydown', (e) => {
-					if (commandRunner && !commandRunner.classList.contains('hidden')) {
-						if (e.key === 'Enter') executeCommand(cmdInput.value);
-						if (e.key === 'Escape' || e.key === ' ') {
-							if (e.key === ' ' && cmdInput.value.length > 0) return;
-							e.preventDefault();
-							commandRunner.classList.add('hidden');
-							commandRunner.classList.remove('flex');
-							suggestionsUI?.classList.add('hidden');
-							cmdInput.value = '';
-						}
-						return;
-					}
-
-					if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
-						if (e.key === 'Escape') e.target.blur();
-						return;
-					}
-
-					if (e.key === ':' || e.key === ' ') {
-						e.preventDefault();
-						commandRunner?.classList.remove('hidden');
-						commandRunner?.classList.add('flex');
-						updateSuggestions('');
-						cmdInput?.focus();
-					}
-
-					if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-						helpModal?.classList.toggle('hidden');
-						helpModal?.classList.toggle('flex');
-					}
-					
-					if (e.key === 'Escape') {
-						helpModal?.classList.add('hidden');
-						helpModal?.classList.remove('flex');
-					}
-
-					const scrollAmount = 400;
-					if (e.key === 'l') scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-					if (e.key === 'h') scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-
-					if (e.altKey && !isNaN(parseInt(e.key))) {
-						const index = parseInt(e.key) - 1;
-						if (index >= 0 && index < targets.length) {
-							const target = document.getElementById(targets[index]);
-							target?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-						}
-					}
-				});
-			}
+				}
+			});
 		</script>
 	</body>
 </html>

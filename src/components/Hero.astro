@@ -1,71 +1,83 @@
-<section id="hero" class="w-screen h-screen snap-center shrink-0 border-r border-[#333] bg-[#0c0c0c] flex flex-col overflow-hidden">
-  <!-- Terminal Title Bar -->
-  <div class="bg-[#1e1e1e] px-4 py-2 flex items-center gap-2 border-b border-[#333] shrink-0 h-10">
-    <div class="flex gap-1.5">
-      <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-      <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-      <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-    </div>
-    <div class="flex-grow text-center text-[10px] text-gray-500 font-medium">
-      greeting.sh — 80x24
-    </div>
-  </div>
+<section id="hero" class="min-h-[calc(100vh-4rem-30px)] md:snap-start scroll-mt-14 flex flex-col justify-center border-b border-[#333] bg-[#0c0c0c] relative overflow-hidden">
+  <!-- Animated Grid Background -->
+  <div class="absolute inset-0 hero-grid-bg pointer-events-none" aria-hidden="true"></div>
   
-  <div class="p-8 overflow-y-auto flex-grow flex flex-col items-center">
-    <div class="terminal-history space-y-4 max-w-4xl w-full">
+
+
+  <div class="p-5 md:p-8 flex-grow flex flex-col justify-center items-center relative z-10">
+    <div class="space-y-4 max-w-4xl w-full animate-on-scroll">
       <div class="space-y-4">
-        <div class="flex gap-2 text-[#27c93f]">
-          <span>[user@hyuse ~]$</span>
-          <span class="text-[#d4d4d4]">whoami</span>
+        <div class="flex gap-2 text-[#27c93f] items-center">
+          <span class="font-bold" aria-hidden="true">❯</span>
+          <span id="hero-typewriter" class="text-[#d4d4d4] font-mono border-r-2 border-[#d4d4d4] pr-1 min-h-[1.5rem]"></span>
         </div>
         
-        <div class="pl-4">
-          <h1 class="text-3xl sm:text-5xl font-bold text-white mb-4">
-            CJ (Hyuse)
+        <script>
+          document.addEventListener('DOMContentLoaded', () => {
+             const target = document.getElementById("hero-typewriter");
+             if(!target) return;
+             
+             const textToType = "whoami";
+             let index = 0;
+
+             // Blink the cursor via border color toggle
+             setInterval(() => {
+               target.style.borderColor = target.style.borderColor === "transparent" ? "#d4d4d4" : "transparent";
+             }, 500);
+
+             // Execute typewriter with slight delay for effect
+             setTimeout(() => {
+               const typingInterval = setInterval(() => {
+                 target.textContent += textToType.charAt(index);
+                 index++;
+                 if (index >= textToType.length) {
+                   clearInterval(typingInterval);
+                 }
+               }, 120);
+             }, 400);
+          });
+        </script>
+        
+        <div class="pl-2 sm:pl-4 py-6">
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 animate-on-scroll stagger-1">
+            Christian John Legaspi
           </h1>
-          <p class="text-lg text-[#888] max-w-2xl">
-            > Full Stack Developer
-            <br />
-            > Crafting modern, accessible, and performant web applications.
+          <p class="text-sm sm:text-base md:text-lg text-[#888] max-w-2xl leading-relaxed animate-on-scroll stagger-2">
+            <span class="text-[#27c93f]">const</span> role = <span class="text-[#ffbd2e]">"Full Stack Developer"</span>;
+            <br /><br />
+            Computer Science student at USTP and Full Stack Developer based in Cagayan de Oro. Building robust software solutions and web applications.
           </p>
         </div>
 
-        <div class="flex gap-2 text-[#27c93f] pt-4">
-          <span>[user@hyuse ~]$</span>
-          <span class="text-[#d4d4d4]">ls -a ./highlights</span>
-        </div>
+        <div class="animate-on-scroll stagger-3">
+          <div class="flex gap-2 text-[#27c93f] pt-4">
+            <span class="font-bold" aria-hidden="true">❯</span>
+            <span class="text-[#d4d4d4]">ls -a ./highlights</span>
+          </div>
 
-        <div class="pl-4 flex flex-wrap gap-4 pt-2">
-          <button onclick="window.dispatchEvent(new CustomEvent('terminal-nav', {detail: 'projects'}))" class="text-[#27c93f] hover:underline decoration-dashed underline-offset-4 cursor-pointer text-left">
-            drwxr-xr-x  projects/
-          </button>
-          <button onclick="window.dispatchEvent(new CustomEvent('terminal-nav', {detail: 'contact'}))" class="text-[#ffbd2e] hover:underline decoration-dashed underline-offset-4 cursor-pointer text-left">
-            -rw-r--r--  contact.sh
-          </button>
-          <span class="text-[#888]">
-            -rw-r--r--  resume.pdf
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Active Input Area -->
-    <div class="max-w-4xl w-full mt-6 shrink-0">
-      <div class="flex flex-col gap-2">
-        <div class="flex gap-2 text-[#27c93f] relative">
-          <span>[user@hyuse ~]$</span>
-          <div class="flex-grow relative">
-            <input 
-              type="text" 
-              class="terminal-input bg-transparent border-none outline-none text-[#d4d4d4] font-mono w-full caret-[#27c93f] focus:ring-0 p-0 placeholder-[#333]" 
-              placeholder="type '?' for help..." 
-              autocomplete="off"
-              autofocus
-            />
-            <!-- Inline Suggestions -->
-            <div class="terminal-suggestions absolute left-0 bottom-full mb-2 bg-[#1e1e1e] border border-[#333] p-2 hidden z-20 min-w-[200px] shadow-xl">
-              <div class="text-[9px] text-[#555] mb-1 uppercase tracking-widest">Suggestions</div>
-              <div class="suggestion-list flex flex-col gap-1"></div>
+          <div class="pl-2 sm:pl-4 flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 pt-4 text-sm sm:text-base">
+            <a href="#projects" class="text-[#27c93f] hover:text-white hover:underline decoration-dashed underline-offset-4 transition-colors">
+              drwxr-xr-x  projects/
+            </a>
+            <a href="#contact" class="text-[#ffbd2e] hover:text-white hover:underline decoration-dashed underline-offset-4 transition-colors">
+              -rw-r--r--  contact.sh
+            </a>
+            
+            <div class="relative group cursor-pointer w-fit">
+              <a href="/resume.pdf" target="_blank" class="text-[#d4d4d4] hover:text-[#27c93f] hover:underline decoration-dashed underline-offset-4 transition-colors block">
+                -rw-r--r--  resume.pdf
+              </a>
+              
+              <!-- PDF Hover Panel (Desktop Only) -->
+              <div class="absolute bottom-full left-0 md:-left-24 mb-4 w-[320px] h-[400px] sm:w-[600px] sm:h-[800px] bg-[#1a1a1a] border border-[#333] shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 rounded-sm overflow-hidden hidden md:block origin-bottom-left scale-95 group-hover:scale-100">
+                <div class="bg-[#1e1e1e] flex items-center justify-between px-3 py-1.5 border-b border-[#333]">
+                  <span class="text-[#888] font-mono text-[10px]">previewing: resume.pdf</span>
+                  <span class="text-[#ffbd2e] font-mono text-[10px] flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-[#ffbd2e] animate-pulse" aria-hidden="true"></span> Rendering
+                  </span>
+                </div>
+                <iframe src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
+              </div>
             </div>
           </div>
         </div>
