@@ -71,20 +71,19 @@ try {
 
     if (years.length > 0) {
       fallbackMatrixData = { years, contributions: allContributions, source: 'graphql' };
-      console.log('Telemetry Engine: GraphQL API fetch successful.');
     }
   }
 
-  // Fallback: Third-party API if no token configured
+  // Fallback: Third-party API if no token configured or GraphQL fails
   if (!fallbackMatrixData) {
     const staticRes = await fetch('https://github-contributions.vercel.app/api/v1/hyuseCS');
     if (staticRes.ok) {
       fallbackMatrixData = await staticRes.json();
-      console.log('Telemetry Engine: Fallback API fetch used (no GH_TOKEN).');
+      fallbackMatrixData.source = 'fallback-api';
     }
   }
 } catch (e) {
-  console.log('Telemetry build-time fetch failed:', e);
+  // Silent fallback
 }
 ---
 
@@ -260,28 +259,13 @@ try {
 
     // 3. Dynamic Contribution Matrix
     try {
-      let matrixData = null;
-      
-      try {
-        const liveRes = await fetch('https://github-contributions.vercel.app/api/v1/hyuseCS');
-        if(liveRes.ok) {
-          matrixData = await liveRes.json();
-          matrixData.source = 'live-api';
-          console.log('Telemetry Engine: Live API fetch successful. Data is fresh.');
-        }
-      } catch(err) {
-        console.warn('Telemetry Engine: Live API failed, falling back to SSG cache.');
-      }
-
-      if (!matrixData && fallbackMatrixData) {
-        // Use build-time SSR data (from GraphQL or fallback API)
-        matrixData = fallbackMatrixData;
-        console.log('Telemetry Engine: Using build-time SSR dataset.' + (matrixData.source === 'graphql' ? ' (GraphQL)' : ' (Fallback API)'));
-      } else if (!matrixData) {
-        throw new Error('Fatal: Both Live and SSR caches missing.');
+      if (!fallbackMatrixData) {
+        throw new Error('Fatal: SSR cache missing.');
       }
       
-      const hasAccurateCounts = matrixData.source === 'graphql' || matrixData.source === 'live-api';
+      const matrixData = fallbackMatrixData;
+      
+      const hasAccurateCounts = matrixData.source === 'graphql';
       
       const years = matrixData.years.map(y => y.year);
       const yearFilter = document.getElementById('year-filter');
@@ -384,6 +368,14 @@ try {
       
     } catch (e) {
       document.getElementById('matrix-container').innerHTML = '<div class="text-[#e06c75] text-xs font-mono flex items-center gap-2"><span>✕</span> // Matrix datalink severed (Global Network Integrity Failure)</div>';
+    }
+  });
+</script>
+div>';
+    }
+  });
+</script>
+rity Failure)</div>';
     }
   });
 </script>
