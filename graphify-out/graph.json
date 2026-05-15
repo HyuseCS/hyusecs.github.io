@@ -1,51 +1,14 @@
 {
   "directed": false,
   "multigraph": false,
-  "graph": {
-    "hyperedges": [
-      {
-        "id": "frontend_architecture",
-        "label": "Frontend Component Architecture",
-        "nodes": [
-          "layouts_layout",
-          "components_navbar",
-          "components_footer",
-          "components_hero",
-          "components_about",
-          "components_skills",
-          "components_projects",
-          "components_telemetry",
-          "components_contact"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "src/layouts/Layout.astro"
-      },
-      {
-        "id": "design_language",
-        "label": "System Monitor Design Language",
-        "nodes": [
-          "concept_the_system_monitor",
-          "concept_terminal_first",
-          "concept_high_craft",
-          "concept_the_machine_aesthetic",
-          "concept_tonal_layering"
-        ],
-        "relation": "form",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "DESIGN.md"
-      }
-    ]
-  },
+  "graph": {},
   "nodes": [
     {
       "label": "astro.config.mjs",
       "file_type": "code",
       "source_file": "astro.config.mjs",
       "source_location": "L1",
-      "community": 9,
+      "community": 12,
       "norm_label": "astro.config.mjs",
       "id": "astro_config_mjs"
     },
@@ -54,7 +17,7 @@
       "file_type": "code",
       "source_file": "astro.config.mjs",
       "source_location": "L5",
-      "community": 9,
+      "community": 12,
       "norm_label": "isbuild",
       "id": "hyusecs_github_io_astro_config_isbuild"
     },
@@ -63,7 +26,7 @@
       "file_type": "code",
       "source_file": "scratch.js",
       "source_location": "L1",
-      "community": 8,
+      "community": 9,
       "norm_label": "scratch.js",
       "id": "scratch_js"
     },
@@ -72,7 +35,7 @@
       "file_type": "code",
       "source_file": "scratch.js",
       "source_location": "L1",
-      "community": 8,
+      "community": 9,
       "norm_label": "{ jsdom }",
       "id": "hyusecs_github_io_scratch_jsdom"
     },
@@ -81,7 +44,7 @@
       "file_type": "code",
       "source_file": "scratch.js",
       "source_location": "L12",
-      "community": 8,
+      "community": 9,
       "norm_label": "dom",
       "id": "hyusecs_github_io_scratch_dom"
     },
@@ -90,7 +53,7 @@
       "file_type": "code",
       "source_file": "scratch.js",
       "source_location": "L13",
-      "community": 8,
+      "community": 9,
       "norm_label": "els",
       "id": "hyusecs_github_io_scratch_els"
     },
@@ -100,7 +63,7 @@
       "source_file": "src/components/About.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 3,
+      "community": 2,
       "norm_label": "../components/about.astro",
       "id": "src_components_about_astro"
     },
@@ -156,7 +119,7 @@
       "source_file": "src/components/Footer.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 2,
+      "community": 4,
       "norm_label": "../components/footer.astro",
       "id": "src_components_footer_astro"
     },
@@ -166,7 +129,7 @@
       "source_file": "src/components/Hero.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 3,
+      "community": 7,
       "norm_label": "../components/hero.astro",
       "id": "src_components_hero_astro"
     },
@@ -175,7 +138,7 @@
       "file_type": "code",
       "source_file": "src/components/Hero.astro",
       "source_location": "L17",
-      "community": 3,
+      "community": 7,
       "norm_label": "target",
       "id": "components_hero_target"
     },
@@ -184,7 +147,7 @@
       "file_type": "code",
       "source_file": "src/components/Hero.astro",
       "source_location": "L30",
-      "community": 3,
+      "community": 7,
       "norm_label": "typinginterval",
       "id": "components_hero_typinginterval"
     },
@@ -194,7 +157,7 @@
       "source_file": "src/components/Navbar.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 2,
+      "community": 4,
       "norm_label": "../components/navbar.astro",
       "id": "src_components_navbar_astro"
     },
@@ -213,7 +176,7 @@
       "file_type": "code",
       "source_file": "src/components/Projects.astro",
       "source_location": "L4",
-      "community": 3,
+      "community": 0,
       "norm_label": "projects",
       "id": "components_projects_projects"
     },
@@ -223,7 +186,7 @@
       "source_file": "src/components/Skills.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 6,
+      "community": 8,
       "norm_label": "../components/skills.astro",
       "id": "src_components_skills_astro"
     },
@@ -232,7 +195,7 @@
       "file_type": "code",
       "source_file": "src/components/Skills.astro",
       "source_location": "L11",
-      "community": 6,
+      "community": 8,
       "norm_label": "backendskills",
       "id": "components_skills_backendskills"
     },
@@ -241,7 +204,7 @@
       "file_type": "code",
       "source_file": "src/components/Skills.astro",
       "source_location": "L19",
-      "community": 6,
+      "community": 8,
       "norm_label": "infraskills",
       "id": "components_skills_infraskills"
     },
@@ -250,7 +213,7 @@
       "file_type": "code",
       "source_file": "src/components/Skills.astro",
       "source_location": "L30",
-      "community": 6,
+      "community": 8,
       "norm_label": "getproficiencybar()",
       "id": "components_skills_getproficiencybar"
     },
@@ -260,7 +223,7 @@
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 0,
+      "community": 1,
       "norm_label": "../components/telemetry.astro",
       "id": "src_components_telemetry_astro"
     },
@@ -269,7 +232,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L7",
-      "community": 0,
+      "community": 1,
       "norm_label": "currentyear",
       "id": "components_telemetry_currentyear"
     },
@@ -278,7 +241,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L8",
-      "community": 0,
+      "community": 1,
       "norm_label": "years",
       "id": "components_telemetry_years"
     },
@@ -287,7 +250,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L9",
-      "community": 0,
+      "community": 1,
       "norm_label": "allcontributions",
       "id": "components_telemetry_allcontributions"
     },
@@ -296,7 +259,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L11",
-      "community": 0,
+      "community": 1,
       "norm_label": "colortointensity",
       "id": "components_telemetry_colortointensity"
     },
@@ -305,7 +268,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L217",
-      "community": 0,
+      "community": 1,
       "norm_label": "now",
       "id": "components_telemetry_now"
     },
@@ -314,7 +277,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L241",
-      "community": 0,
+      "community": 1,
       "norm_label": "strtime",
       "id": "components_telemetry_strtime"
     },
@@ -323,7 +286,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L243",
-      "community": 0,
+      "community": 1,
       "norm_label": "el",
       "id": "components_telemetry_el"
     },
@@ -332,7 +295,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L277",
-      "community": 0,
+      "community": 1,
       "norm_label": "days",
       "id": "components_telemetry_days"
     },
@@ -341,7 +304,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L285",
-      "community": 0,
+      "community": 1,
       "norm_label": "firstday",
       "id": "components_telemetry_firstday"
     },
@@ -350,7 +313,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L286",
-      "community": 0,
+      "community": 1,
       "norm_label": "htmlweeks",
       "id": "components_telemetry_htmlweeks"
     },
@@ -359,7 +322,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L287",
-      "community": 0,
+      "community": 1,
       "norm_label": "curweek",
       "id": "components_telemetry_curweek"
     },
@@ -368,7 +331,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L300",
-      "community": 0,
+      "community": 1,
       "norm_label": "monthnames",
       "id": "components_telemetry_monthnames"
     },
@@ -377,7 +340,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L305",
-      "community": 0,
+      "community": 1,
       "norm_label": "firstvalidday",
       "id": "components_telemetry_firstvalidday"
     },
@@ -386,7 +349,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L307",
-      "community": 0,
+      "community": 1,
       "norm_label": "month",
       "id": "components_telemetry_month"
     },
@@ -395,7 +358,7 @@
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
       "source_location": "L315",
-      "community": 0,
+      "community": 1,
       "norm_label": "matrixbody",
       "id": "components_telemetry_matrixbody"
     },
@@ -405,7 +368,7 @@
       "source_file": "src/layouts/Layout.astro",
       "source_location": "L1",
       "confidence": "EXTRACTED",
-      "community": 2,
+      "community": 4,
       "norm_label": "../layouts/layout.astro",
       "id": "src_layouts_layout_astro"
     },
@@ -414,7 +377,7 @@
       "file_type": "code",
       "source_file": "src/layouts/Layout.astro",
       "source_location": "L99",
-      "community": 2,
+      "community": 4,
       "norm_label": "id",
       "id": "layouts_layout_id"
     },
@@ -423,7 +386,7 @@
       "file_type": "code",
       "source_file": "src/layouts/Layout.astro",
       "source_location": "L101",
-      "community": 2,
+      "community": 4,
       "norm_label": "href",
       "id": "layouts_layout_href"
     },
@@ -432,7 +395,7 @@
       "file_type": "code",
       "source_file": "src/styles/global.css",
       "confidence": "EXTRACTED",
-      "community": 2,
+      "community": 4,
       "norm_label": "../styles/global.css",
       "id": "home_hyuse_desktop_hyusecs_github_io_src_styles_global_css"
     },
@@ -441,7 +404,7 @@
       "file_type": "code",
       "source_file": "src/pages/index.astro",
       "source_location": "L1",
-      "community": 3,
+      "community": 2,
       "norm_label": "index.astro",
       "id": "src_pages_index_astro"
     },
@@ -450,7 +413,7 @@
       "file_type": "code",
       "source_file": "src/pages/404.astro",
       "source_location": "L66",
-      "community": 2,
+      "community": 4,
       "norm_label": "cursor",
       "id": "pages_404_cursor"
     },
@@ -458,7 +421,7 @@
       "label": "Astro Configuration",
       "file_type": "code",
       "source_file": "astro.config.mjs",
-      "community": 12,
+      "community": 13,
       "norm_label": "astro configuration",
       "id": "astro_config_config"
     },
@@ -466,7 +429,7 @@
       "label": "Matrix Selector Test",
       "file_type": "code",
       "source_file": "scratch.js",
-      "community": 1,
+      "community": 0,
       "norm_label": "matrix selector test",
       "id": "scratch_code"
     },
@@ -474,7 +437,7 @@
       "label": "Home Page",
       "file_type": "code",
       "source_file": "src/pages/index.astro",
-      "community": 1,
+      "community": 0,
       "norm_label": "home page",
       "id": "pages_index_index"
     },
@@ -482,7 +445,7 @@
       "label": "Hero Section",
       "file_type": "code",
       "source_file": "src/components/Hero.astro",
-      "community": 1,
+      "community": 0,
       "norm_label": "hero section",
       "id": "components_hero_hero"
     },
@@ -490,7 +453,7 @@
       "label": "About Section",
       "file_type": "code",
       "source_file": "src/components/About.astro",
-      "community": 1,
+      "community": 0,
       "norm_label": "about section",
       "id": "components_about_about"
     },
@@ -498,7 +461,7 @@
       "label": "Project Card",
       "file_type": "code",
       "source_file": "src/components/ProjectCard.astro",
-      "community": 3,
+      "community": 0,
       "norm_label": "project card",
       "id": "components_projectcard_projectcard"
     },
@@ -506,7 +469,7 @@
       "label": "Telemetry & GitHub Activity",
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
-      "community": 1,
+      "community": 0,
       "norm_label": "telemetry & github activity",
       "id": "components_telemetry_telemetry"
     },
@@ -514,7 +477,7 @@
       "label": "Contact Section",
       "file_type": "code",
       "source_file": "src/components/Contact.astro",
-      "community": 1,
+      "community": 0,
       "norm_label": "contact section",
       "id": "components_contact_contact"
     },
@@ -522,7 +485,7 @@
       "label": "README",
       "file_type": "document",
       "source_file": "README.md",
-      "community": 13,
+      "community": 14,
       "norm_label": "readme",
       "id": "readme_readme"
     },
@@ -530,7 +493,7 @@
       "label": "Resume PDF",
       "file_type": "document",
       "source_file": "public/LEGASPI_RESUME.pdf",
-      "community": 1,
+      "community": 0,
       "norm_label": "resume pdf",
       "id": "public_legaspi_resume_pdf"
     },
@@ -538,7 +501,7 @@
       "label": "Favicon",
       "file_type": "image",
       "source_file": "public/favicon.svg",
-      "community": 14,
+      "community": 15,
       "norm_label": "favicon",
       "id": "public_favicon_svg"
     },
@@ -546,7 +509,7 @@
       "label": "Astro Logo",
       "file_type": "image",
       "source_file": "src/assets/astro.svg",
-      "community": 15,
+      "community": 16,
       "norm_label": "astro logo",
       "id": "assets_astro_svg"
     },
@@ -554,21 +517,21 @@
       "label": "Background Graphic",
       "file_type": "image",
       "source_file": "src/assets/background.svg",
-      "community": 16,
+      "community": 17,
       "norm_label": "background graphic",
       "id": "assets_background_svg"
     },
     {
       "label": "Terminal Aesthetic",
       "file_type": "concept",
-      "community": 1,
+      "community": 0,
       "norm_label": "terminal aesthetic",
       "id": "concept_terminal_aesthetic"
     },
     {
       "label": "GitHub Integration",
       "file_type": "concept",
-      "community": 1,
+      "community": 0,
       "norm_label": "github integration",
       "id": "concept_github_integration"
     },
@@ -577,374 +540,752 @@
       "file_type": "code",
       "source_file": "components/About.astro",
       "source_location": "L1",
-      "id": "components_about_astro",
-      "community": 17,
-      "norm_label": "about.astro"
+      "community": 18,
+      "norm_label": "about.astro",
+      "id": "components_about_astro"
     },
     {
       "label": "Contact.astro",
       "file_type": "code",
       "source_file": "components/Contact.astro",
       "source_location": "L1",
-      "id": "components_contact_astro",
       "community": 7,
-      "norm_label": "contact.astro"
+      "norm_label": "contact.astro",
+      "id": "components_contact_astro"
     },
     {
       "label": "Footer.astro",
       "file_type": "code",
       "source_file": "components/Footer.astro",
       "source_location": "L1",
-      "id": "components_footer_astro",
-      "community": 2,
-      "norm_label": "footer.astro"
+      "community": 4,
+      "norm_label": "footer.astro",
+      "id": "components_footer_astro"
     },
     {
       "label": "cpu",
       "file_type": "code",
       "source_file": "components/Footer.astro",
       "source_location": "L33",
-      "id": "components_footer_cpu",
-      "community": 2,
-      "norm_label": "cpu"
+      "community": 4,
+      "norm_label": "cpu",
+      "id": "components_footer_cpu"
     },
     {
       "label": "mem",
       "file_type": "code",
       "source_file": "components/Footer.astro",
       "source_location": "L34",
-      "id": "components_footer_mem",
-      "community": 2,
-      "norm_label": "mem"
+      "community": 4,
+      "norm_label": "mem",
+      "id": "components_footer_mem"
     },
     {
       "label": "cpuStates",
       "file_type": "code",
       "source_file": "components/Footer.astro",
       "source_location": "L37",
-      "id": "components_footer_cpustates",
-      "community": 2,
-      "norm_label": "cpustates"
+      "community": 4,
+      "norm_label": "cpustates",
+      "id": "components_footer_cpustates"
     },
     {
       "label": "memStates",
       "file_type": "code",
       "source_file": "components/Footer.astro",
       "source_location": "L38",
-      "id": "components_footer_memstates",
-      "community": 2,
-      "norm_label": "memstates"
+      "community": 4,
+      "norm_label": "memstates",
+      "id": "components_footer_memstates"
     },
     {
       "label": "Hero.astro",
       "file_type": "code",
       "source_file": "components/Hero.astro",
       "source_location": "L1",
-      "id": "components_hero_astro",
-      "community": 3,
-      "norm_label": "hero.astro"
+      "community": 7,
+      "norm_label": "hero.astro",
+      "id": "components_hero_astro"
     },
     {
       "label": "Navbar.astro",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L1",
-      "id": "components_navbar_astro",
-      "community": 4,
-      "norm_label": "navbar.astro"
+      "community": 6,
+      "norm_label": "navbar.astro",
+      "id": "components_navbar_astro"
     },
     {
       "label": "drawer",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L84",
-      "id": "components_navbar_drawer",
-      "community": 4,
-      "norm_label": "drawer"
+      "community": 6,
+      "norm_label": "drawer",
+      "id": "components_navbar_drawer"
     },
     {
       "label": "backdrop",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L85",
-      "id": "components_navbar_backdrop",
-      "community": 4,
-      "norm_label": "backdrop"
+      "community": 6,
+      "norm_label": "backdrop",
+      "id": "components_navbar_backdrop"
     },
     {
       "label": "closeBtn",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L86",
-      "id": "components_navbar_closebtn",
-      "community": 4,
-      "norm_label": "closebtn"
+      "community": 6,
+      "norm_label": "closebtn",
+      "id": "components_navbar_closebtn"
     },
     {
       "label": "drawerLinks",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L87",
-      "id": "components_navbar_drawerlinks",
-      "community": 4,
-      "norm_label": "drawerlinks"
+      "community": 6,
+      "norm_label": "drawerlinks",
+      "id": "components_navbar_drawerlinks"
     },
     {
       "label": "lines",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L88",
-      "id": "components_navbar_lines",
-      "community": 4,
-      "norm_label": "lines"
+      "community": 6,
+      "norm_label": "lines",
+      "id": "components_navbar_lines"
     },
     {
       "label": "openDrawer()",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L92",
-      "id": "components_navbar_opendrawer",
-      "community": 4,
-      "norm_label": "opendrawer()"
+      "community": 6,
+      "norm_label": "opendrawer()",
+      "id": "components_navbar_opendrawer"
     },
     {
       "label": "closeDrawer()",
       "file_type": "code",
       "source_file": "components/Navbar.astro",
       "source_location": "L101",
-      "id": "components_navbar_closedrawer",
-      "community": 4,
-      "norm_label": "closedrawer()"
+      "community": 6,
+      "norm_label": "closedrawer()",
+      "id": "components_navbar_closedrawer"
     },
     {
       "label": "Projects.astro",
       "file_type": "code",
       "source_file": "components/Projects.astro",
       "source_location": "L1",
-      "id": "components_projects_astro",
       "community": 3,
-      "norm_label": "projects.astro"
+      "norm_label": "projects.astro",
+      "id": "components_projects_astro"
     },
     {
       "label": "./ProjectCard.astro",
       "file_type": "code",
       "source_file": "components/ProjectCard.astro",
       "confidence": "EXTRACTED",
-      "id": "components_projectcard_astro",
       "community": 3,
-      "norm_label": "./projectcard.astro"
+      "norm_label": "./projectcard.astro",
+      "id": "components_projectcard_astro"
     },
     {
       "label": "Skills.astro",
       "file_type": "code",
       "source_file": "components/Skills.astro",
       "source_location": "L1",
-      "id": "components_skills_astro",
-      "community": 6,
-      "norm_label": "skills.astro"
+      "community": 8,
+      "norm_label": "skills.astro",
+      "id": "components_skills_astro"
     },
     {
       "label": "bars",
       "file_type": "code",
       "source_file": "components/Skills.astro",
       "source_location": "L95",
-      "id": "components_skills_bars",
-      "community": 6,
-      "norm_label": "bars"
+      "community": 8,
+      "norm_label": "bars",
+      "id": "components_skills_bars"
     },
     {
       "label": "observer",
       "file_type": "code",
       "source_file": "components/Skills.astro",
       "source_location": "L99",
-      "id": "components_skills_observer",
-      "community": 6,
-      "norm_label": "observer"
+      "community": 8,
+      "norm_label": "observer",
+      "id": "components_skills_observer"
     },
     {
       "label": "Telemetry.astro",
       "file_type": "code",
       "source_file": "components/Telemetry.astro",
       "source_location": "L1",
-      "id": "components_telemetry_astro",
-      "community": 0,
-      "norm_label": "telemetry.astro"
+      "community": 1,
+      "norm_label": "telemetry.astro",
+      "id": "components_telemetry_astro"
     },
     {
       "label": "Layout.astro",
       "file_type": "code",
       "source_file": "layouts/Layout.astro",
       "source_location": "L1",
-      "id": "layouts_layout_astro",
-      "community": 2,
-      "norm_label": "layout.astro"
+      "community": 4,
+      "norm_label": "layout.astro",
+      "id": "layouts_layout_astro"
     },
     {
       "label": "404.astro",
       "file_type": "code",
       "source_file": "pages/404.astro",
       "source_location": "L1",
-      "id": "pages_404_astro",
-      "community": 2,
-      "norm_label": "404.astro"
+      "community": 4,
+      "norm_label": "404.astro",
+      "id": "pages_404_astro"
     },
     {
       "label": "About Me Component",
       "file_type": "code",
       "source_file": "src/components/About.astro",
-      "id": "components_about",
-      "community": 18,
-      "norm_label": "about me component"
+      "community": 19,
+      "norm_label": "about me component",
+      "id": "components_about"
     },
     {
       "label": "Contact Component",
       "file_type": "code",
       "source_file": "src/components/Contact.astro",
-      "id": "components_contact",
-      "community": 19,
-      "norm_label": "contact component"
+      "community": 20,
+      "norm_label": "contact component",
+      "id": "components_contact"
     },
     {
       "label": "Footer Component",
       "file_type": "code",
       "source_file": "src/components/Footer.astro",
-      "id": "components_footer",
-      "community": 1,
-      "norm_label": "footer component"
+      "community": 0,
+      "norm_label": "footer component",
+      "id": "components_footer"
     },
     {
       "label": "Hero Component",
       "file_type": "code",
       "source_file": "src/components/Hero.astro",
-      "id": "components_hero",
-      "community": 20,
-      "norm_label": "hero component"
+      "community": 21,
+      "norm_label": "hero component",
+      "id": "components_hero"
     },
     {
       "label": "Navbar Component",
       "file_type": "code",
       "source_file": "src/components/Navbar.astro",
-      "id": "components_navbar",
-      "community": 1,
-      "norm_label": "navbar component"
+      "community": 0,
+      "norm_label": "navbar component",
+      "id": "components_navbar"
     },
     {
       "label": "Projects Section",
       "file_type": "code",
       "source_file": "src/components/Projects.astro",
-      "id": "components_projects",
       "community": 10,
-      "norm_label": "projects section"
+      "norm_label": "projects section",
+      "id": "components_projects"
     },
     {
       "label": "Skills Section",
       "file_type": "code",
       "source_file": "src/components/Skills.astro",
-      "id": "components_skills",
-      "community": 1,
-      "norm_label": "skills section"
+      "community": 0,
+      "norm_label": "skills section",
+      "id": "components_skills"
     },
     {
       "label": "Project Card Component",
       "file_type": "code",
       "source_file": "src/components/ProjectCard.astro",
-      "id": "components_projectcard",
       "community": 10,
-      "norm_label": "project card component"
+      "norm_label": "project card component",
+      "id": "components_projectcard"
     },
     {
       "label": "Telemetry Component",
       "file_type": "code",
       "source_file": "src/components/Telemetry.astro",
-      "id": "components_telemetry",
       "community": 11,
-      "norm_label": "telemetry component"
+      "norm_label": "telemetry component",
+      "id": "components_telemetry"
     },
     {
       "label": "Main Layout",
       "file_type": "code",
       "source_file": "src/layouts/Layout.astro",
-      "id": "layouts_layout",
-      "community": 1,
-      "norm_label": "main layout"
+      "community": 0,
+      "norm_label": "main layout",
+      "id": "layouts_layout"
     },
     {
       "label": "404 Error Page",
       "file_type": "code",
       "source_file": "src/pages/404.astro",
-      "id": "pages_404",
-      "community": 1,
-      "norm_label": "404 error page"
+      "community": 0,
+      "norm_label": "404 error page",
+      "id": "pages_404"
     },
     {
       "label": "Product Manifesto",
       "file_type": "document",
       "source_file": "PRODUCT.md",
-      "id": "hyusecs_github_io_product",
-      "community": 5,
-      "norm_label": "product manifesto"
+      "community": 0,
+      "norm_label": "product manifesto",
+      "id": "hyusecs_github_io_product"
     },
     {
       "label": "Design System Specification",
       "file_type": "document",
       "source_file": "DESIGN.md",
-      "id": "hyusecs_github_io_design",
-      "community": 5,
-      "norm_label": "design system specification"
+      "community": 0,
+      "norm_label": "design system specification",
+      "id": "hyusecs_github_io_design"
     },
     {
       "label": "The System Monitor",
       "file_type": "rationale",
       "source_file": "DESIGN.md",
       "rationale": "A dark, tactile environment where code, status, and telemetry are primary citizens. Rejects 'AI slop' aesthetics in favor of rigid grids and terminal prompts.",
-      "id": "concept_the_system_monitor",
-      "community": 5,
-      "norm_label": "the system monitor"
+      "community": 0,
+      "norm_label": "the system monitor",
+      "id": "concept_the_system_monitor"
     },
     {
       "label": "Terminal-First Aesthetic",
       "file_type": "rationale",
       "source_file": "DESIGN.md",
       "rationale": "Monospaced typography and command-line affordances drive the interface. Uses prefixes like \u276f, ./, or // to indicate command intent.",
-      "id": "concept_terminal_first",
-      "community": 5,
-      "norm_label": "terminal-first aesthetic"
+      "community": 0,
+      "norm_label": "terminal-first aesthetic",
+      "id": "concept_terminal_first"
     },
     {
       "label": "High-Craft Design",
       "file_type": "rationale",
       "source_file": "PRODUCT.md",
       "rationale": "Obsessive attention to detail in animations, telemetry data, and system-level status.",
-      "id": "concept_high_craft",
-      "community": 5,
-      "norm_label": "high-craft design"
+      "community": 0,
+      "norm_label": "high-craft design",
+      "id": "concept_high_craft"
     },
     {
       "label": "Show, Don't Tell Principle",
       "file_type": "rationale",
       "source_file": "PRODUCT.md",
       "rationale": "Use live telemetry and working code patterns (typewriters, terminal logs) to prove expertise rather than static claims.",
-      "id": "concept_show_dont_tell",
       "community": 11,
-      "norm_label": "show, don't tell principle"
+      "norm_label": "show, don't tell principle",
+      "id": "concept_show_dont_tell"
     },
     {
       "label": "The Machine Aesthetic",
       "file_type": "rationale",
       "source_file": "PRODUCT.md",
       "rationale": "Embrace the raw materials of computing\u2014grids, terminal prompts, and status daemons.",
-      "id": "concept_the_machine_aesthetic",
-      "community": 5,
-      "norm_label": "the machine aesthetic"
+      "community": 0,
+      "norm_label": "the machine aesthetic",
+      "id": "concept_the_machine_aesthetic"
     },
     {
       "label": "Tonal Layering",
       "file_type": "rationale",
       "source_file": "DESIGN.md",
       "rationale": "Depth is conveyed through background shifts and border treatments instead of drop shadows. Surfaces move from Obsidian base to Layer 1 and Layer 2.",
-      "id": "concept_tonal_layering",
+      "community": 0,
+      "norm_label": "tonal layering",
+      "id": "concept_tonal_layering"
+    },
+    {
+      "label": "../lib/firebase/config",
+      "file_type": "code",
+      "source_file": "lib/firebase/config",
+      "confidence": "EXTRACTED",
+      "id": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_config",
+      "community": 7,
+      "norm_label": "../lib/firebase/config"
+    },
+    {
+      "label": "mobileDrawer",
+      "file_type": "code",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L77",
+      "id": "components_navbar_mobiledrawer",
+      "community": 6,
+      "norm_label": "mobiledrawer"
+    },
+    {
+      "label": "mobileLinks",
+      "file_type": "code",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L78",
+      "id": "components_navbar_mobilelinks",
+      "community": 6,
+      "norm_label": "mobilelinks"
+    },
+    {
+      "label": "openMenu()",
+      "file_type": "code",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L80",
+      "id": "components_navbar_openmenu",
+      "community": 6,
+      "norm_label": "openmenu()"
+    },
+    {
+      "label": "closeMenu()",
+      "file_type": "code",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L85",
+      "id": "components_navbar_closemenu",
+      "community": 6,
+      "norm_label": "closemenu()"
+    },
+    {
+      "label": "staticProjects",
+      "file_type": "code",
+      "source_file": "components/Projects.astro",
+      "source_location": "L6",
+      "id": "components_projects_staticprojects",
+      "community": 3,
+      "norm_label": "staticprojects"
+    },
+    {
+      "label": "projectsCol",
+      "file_type": "code",
+      "source_file": "components/Projects.astro",
+      "source_location": "L47",
+      "id": "components_projects_projectscol",
+      "community": 3,
+      "norm_label": "projectscol"
+    },
+    {
+      "label": "projectsQuery",
+      "file_type": "code",
+      "source_file": "components/Projects.astro",
+      "source_location": "L48",
+      "id": "components_projects_projectsquery",
+      "community": 3,
+      "norm_label": "projectsquery"
+    },
+    {
+      "label": "../lib/firebase/client",
+      "file_type": "code",
+      "source_file": "lib/firebase/client",
+      "confidence": "EXTRACTED",
+      "id": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_client",
+      "community": 2,
+      "norm_label": "../lib/firebase/client"
+    },
+    {
+      "label": "firebase/firestore",
+      "file_type": "code",
+      "source_file": "firebase/firestore",
+      "confidence": "EXTRACTED",
+      "id": "firestore",
+      "community": 3,
+      "norm_label": "firebase/firestore"
+    },
+    {
+      "label": "LoginTerminal.astro",
+      "file_type": "code",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L1",
+      "id": "components_admin_loginterminal_astro",
+      "community": 2,
+      "norm_label": "loginterminal.astro"
+    },
+    {
+      "label": "githubBtn",
+      "file_type": "code",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L62",
+      "id": "admin_loginterminal_githubbtn",
+      "community": 2,
+      "norm_label": "githubbtn"
+    },
+    {
+      "label": "errorEl",
+      "file_type": "code",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L63",
+      "id": "admin_loginterminal_errorel",
+      "community": 2,
+      "norm_label": "errorel"
+    },
+    {
+      "label": "statusEl",
+      "file_type": "code",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L64",
+      "id": "admin_loginterminal_statusel",
+      "community": 2,
+      "norm_label": "statusel"
+    },
+    {
+      "label": "provider",
+      "file_type": "code",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L67",
+      "id": "admin_loginterminal_provider",
+      "community": 2,
+      "norm_label": "provider"
+    },
+    {
+      "label": "firebase/auth",
+      "file_type": "code",
+      "source_file": "firebase/auth",
+      "confidence": "EXTRACTED",
+      "id": "auth",
+      "community": 3,
+      "norm_label": "firebase/auth"
+    },
+    {
+      "label": "ProjectManager.astro",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L1",
+      "id": "components_admin_projectmanager_astro",
       "community": 5,
-      "norm_label": "tonal layering"
+      "norm_label": "projectmanager.astro"
+    },
+    {
+      "label": "projectsList",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L137",
+      "id": "admin_projectmanager_projectslist",
+      "community": 5,
+      "norm_label": "projectslist"
+    },
+    {
+      "label": "loadingEl",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L138",
+      "id": "admin_projectmanager_loadingel",
+      "community": 5,
+      "norm_label": "loadingel"
+    },
+    {
+      "label": "emptyEl",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L139",
+      "id": "admin_projectmanager_emptyel",
+      "community": 5,
+      "norm_label": "emptyel"
+    },
+    {
+      "label": "modal",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L140",
+      "id": "admin_projectmanager_modal",
+      "community": 5,
+      "norm_label": "modal"
+    },
+    {
+      "label": "projectForm",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L141",
+      "id": "admin_projectmanager_projectform",
+      "community": 5,
+      "norm_label": "projectform"
+    },
+    {
+      "label": "cardTemplate",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L142",
+      "id": "admin_projectmanager_cardtemplate",
+      "community": 5,
+      "norm_label": "cardtemplate"
+    },
+    {
+      "label": "currentProjects",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L144",
+      "id": "admin_projectmanager_currentprojects",
+      "community": 5,
+      "norm_label": "currentprojects"
+    },
+    {
+      "label": "fetchProjects()",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L146",
+      "id": "admin_projectmanager_fetchprojects",
+      "community": 5,
+      "norm_label": "fetchprojects()"
+    },
+    {
+      "label": "renderProjects()",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L164",
+      "id": "admin_projectmanager_renderprojects",
+      "community": 5,
+      "norm_label": "renderprojects()"
+    },
+    {
+      "label": "openModal()",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L187",
+      "id": "admin_projectmanager_openmodal",
+      "community": 5,
+      "norm_label": "openmodal()"
+    },
+    {
+      "label": "deleteProject()",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L211",
+      "id": "admin_projectmanager_deleteproject",
+      "community": 5,
+      "norm_label": "deleteproject()"
+    },
+    {
+      "label": "data",
+      "file_type": "code",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L222",
+      "id": "admin_projectmanager_data",
+      "community": 5,
+      "norm_label": "data"
+    },
+    {
+      "label": "SystemDeployControl.astro",
+      "file_type": "code",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L1",
+      "id": "components_admin_systemdeploycontrol_astro",
+      "community": 2,
+      "norm_label": "systemdeploycontrol.astro"
+    },
+    {
+      "label": "saveBtn",
+      "file_type": "code",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L60",
+      "id": "admin_systemdeploycontrol_savebtn",
+      "community": 2,
+      "norm_label": "savebtn"
+    },
+    {
+      "label": "deployBtn",
+      "file_type": "code",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L61",
+      "id": "admin_systemdeploycontrol_deploybtn",
+      "community": 2,
+      "norm_label": "deploybtn"
+    },
+    {
+      "label": "statusText",
+      "file_type": "code",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L63",
+      "id": "admin_systemdeploycontrol_statustext",
+      "community": 2,
+      "norm_label": "statustext"
+    },
+    {
+      "label": "errorText",
+      "file_type": "code",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L65",
+      "id": "admin_systemdeploycontrol_errortext",
+      "community": 2,
+      "norm_label": "errortext"
+    },
+    {
+      "label": "storedPat",
+      "file_type": "code",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L68",
+      "id": "admin_systemdeploycontrol_storedpat",
+      "community": 2,
+      "norm_label": "storedpat"
+    },
+    {
+      "label": "SystemConfig.astro",
+      "file_type": "code",
+      "source_file": "components/admin/SystemConfig.astro",
+      "source_location": "L1",
+      "id": "components_admin_systemconfig_astro",
+      "community": 2,
+      "norm_label": "systemconfig.astro"
+    },
+    {
+      "label": "client.ts",
+      "file_type": "code",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L1",
+      "id": "lib_firebase_client_ts",
+      "community": 3,
+      "norm_label": "client.ts"
+    },
+    {
+      "label": "firebaseConfig",
+      "file_type": "code",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L5",
+      "id": "firebase_client_firebaseconfig",
+      "community": 3,
+      "norm_label": "firebaseconfig"
+    },
+    {
+      "label": "db",
+      "file_type": "code",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L16",
+      "id": "firebase_client_db",
+      "community": 3,
+      "norm_label": "db"
+    },
+    {
+      "label": "auth",
+      "file_type": "code",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L17",
+      "id": "firebase_client_auth",
+      "community": 3,
+      "norm_label": "auth"
+    },
+    {
+      "label": "config.ts",
+      "file_type": "code",
+      "source_file": "lib/firebase/config.ts",
+      "source_location": "L1",
+      "id": "lib_firebase_config_ts",
+      "community": 3,
+      "norm_label": "config.ts"
+    },
+    {
+      "label": "getSystemConfig()",
+      "file_type": "code",
+      "source_file": "lib/firebase/config.ts",
+      "source_location": "L4",
+      "id": "firebase_config_getsystemconfig",
+      "community": 3,
+      "norm_label": "getsystemconfig()"
     }
   ],
   "links": [
@@ -1056,9 +1397,9 @@
       "source_file": "components/Contact.astro",
       "source_location": "L154",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_contact_astro",
-      "target": "components_contact_status",
-      "confidence_score": 1.0
+      "target": "components_contact_status"
     },
     {
       "relation": "contains",
@@ -1066,9 +1407,9 @@
       "source_file": "components/Contact.astro",
       "source_location": "L160",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_contact_astro",
-      "target": "components_contact_submitbtn",
-      "confidence_score": 1.0
+      "target": "components_contact_submitbtn"
     },
     {
       "relation": "contains",
@@ -1076,9 +1417,9 @@
       "source_file": "components/Contact.astro",
       "source_location": "L167",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_contact_astro",
-      "target": "components_contact_formdata",
-      "confidence_score": 1.0
+      "target": "components_contact_formdata"
     },
     {
       "relation": "imports_from",
@@ -1090,6 +1431,17 @@
       "confidence_score": 1.0,
       "source": "src_layouts_layout_astro",
       "target": "src_components_footer_astro"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "layouts/Layout.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "layouts_layout_astro",
+      "target": "src_components_footer_astro",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1128,9 +1480,9 @@
       "source_file": "components/Hero.astro",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_hero_astro",
-      "target": "components_hero_target",
-      "confidence_score": 1.0
+      "target": "components_hero_target"
     },
     {
       "relation": "contains",
@@ -1138,9 +1490,9 @@
       "source_file": "components/Hero.astro",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_hero_astro",
-      "target": "components_hero_typinginterval",
-      "confidence_score": 1.0
+      "target": "components_hero_typinginterval"
     },
     {
       "relation": "imports_from",
@@ -1210,11 +1562,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/Projects.astro",
-      "source_location": "L4",
+      "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_projects_astro",
-      "target": "components_projects_projects",
-      "confidence_score": 1.0
+      "target": "components_projects_projects"
     },
     {
       "relation": "contains",
@@ -1263,9 +1615,9 @@
       "source_file": "components/Skills.astro",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_skills_astro",
-      "target": "components_skills_backendskills",
-      "confidence_score": 1.0
+      "target": "components_skills_backendskills"
     },
     {
       "relation": "contains",
@@ -1273,9 +1625,9 @@
       "source_file": "components/Skills.astro",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_skills_astro",
-      "target": "components_skills_infraskills",
-      "confidence_score": 1.0
+      "target": "components_skills_infraskills"
     },
     {
       "relation": "contains",
@@ -1283,9 +1635,9 @@
       "source_file": "components/Skills.astro",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_skills_astro",
-      "target": "components_skills_getproficiencybar",
-      "confidence_score": 1.0
+      "target": "components_skills_getproficiencybar"
     },
     {
       "relation": "contains",
@@ -1454,9 +1806,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_currentyear",
-      "confidence_score": 1.0
+      "target": "components_telemetry_currentyear"
     },
     {
       "relation": "contains",
@@ -1464,9 +1816,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_years",
-      "confidence_score": 1.0
+      "target": "components_telemetry_years"
     },
     {
       "relation": "contains",
@@ -1474,9 +1826,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_allcontributions",
-      "confidence_score": 1.0
+      "target": "components_telemetry_allcontributions"
     },
     {
       "relation": "contains",
@@ -1484,9 +1836,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_colortointensity",
-      "confidence_score": 1.0
+      "target": "components_telemetry_colortointensity"
     },
     {
       "relation": "contains",
@@ -1494,9 +1846,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L217",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_now",
-      "confidence_score": 1.0
+      "target": "components_telemetry_now"
     },
     {
       "relation": "contains",
@@ -1504,9 +1856,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L241",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_strtime",
-      "confidence_score": 1.0
+      "target": "components_telemetry_strtime"
     },
     {
       "relation": "contains",
@@ -1514,9 +1866,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L243",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_el",
-      "confidence_score": 1.0
+      "target": "components_telemetry_el"
     },
     {
       "relation": "contains",
@@ -1524,9 +1876,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L277",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_days",
-      "confidence_score": 1.0
+      "target": "components_telemetry_days"
     },
     {
       "relation": "contains",
@@ -1534,9 +1886,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L285",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_firstday",
-      "confidence_score": 1.0
+      "target": "components_telemetry_firstday"
     },
     {
       "relation": "contains",
@@ -1544,9 +1896,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L286",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_htmlweeks",
-      "confidence_score": 1.0
+      "target": "components_telemetry_htmlweeks"
     },
     {
       "relation": "contains",
@@ -1554,9 +1906,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L287",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_curweek",
-      "confidence_score": 1.0
+      "target": "components_telemetry_curweek"
     },
     {
       "relation": "contains",
@@ -1564,9 +1916,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L300",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_monthnames",
-      "confidence_score": 1.0
+      "target": "components_telemetry_monthnames"
     },
     {
       "relation": "contains",
@@ -1574,9 +1926,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L305",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_firstvalidday",
-      "confidence_score": 1.0
+      "target": "components_telemetry_firstvalidday"
     },
     {
       "relation": "contains",
@@ -1584,9 +1936,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L307",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_month",
-      "confidence_score": 1.0
+      "target": "components_telemetry_month"
     },
     {
       "relation": "contains",
@@ -1594,9 +1946,9 @@
       "source_file": "components/Telemetry.astro",
       "source_location": "L315",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_telemetry_astro",
-      "target": "components_telemetry_matrixbody",
-      "confidence_score": 1.0
+      "target": "components_telemetry_matrixbody"
     },
     {
       "relation": "contains",
@@ -1648,9 +2000,9 @@
       "source_file": "layouts/Layout.astro",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layouts_layout_astro",
-      "target": "layouts_layout_id",
-      "confidence_score": 1.0
+      "target": "layouts_layout_id"
     },
     {
       "relation": "contains",
@@ -1658,16 +2010,84 @@
       "source_file": "layouts/Layout.astro",
       "source_location": "L101",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layouts_layout_astro",
-      "target": "layouts_layout_href",
-      "confidence_score": 1.0
+      "target": "layouts_layout_href"
     },
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "layouts/Layout.astro",
+      "confidence_score": 1.0,
       "source": "layouts_layout_astro",
-      "target": "home_hyuse_desktop_hyusecs_github_io_src_styles_global_css",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_styles_global_css"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_index_astro",
+      "target": "components_admin_loginterminal_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_index_astro",
+      "target": "components_admin_projectmanager_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_index_astro",
+      "target": "components_admin_systemdeploycontrol_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_index_astro",
+      "target": "components_admin_systemconfig_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source": "src_pages_index_astro",
+      "target": "layouts_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source": "src_pages_index_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "pages/admin/index.astro",
+      "source": "src_pages_index_astro",
+      "target": "auth",
       "confidence_score": 1.0
     },
     {
@@ -1825,14 +2245,22 @@
       "target": "concept_terminal_aesthetic"
     },
     {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Contact.astro",
+      "source": "components_contact_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_config",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/Footer.astro",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_footer_astro",
-      "target": "components_footer_cpu",
-      "confidence_score": 1.0
+      "target": "components_footer_cpu"
     },
     {
       "relation": "contains",
@@ -1840,9 +2268,9 @@
       "source_file": "components/Footer.astro",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_footer_astro",
-      "target": "components_footer_mem",
-      "confidence_score": 1.0
+      "target": "components_footer_mem"
     },
     {
       "relation": "contains",
@@ -1850,9 +2278,9 @@
       "source_file": "components/Footer.astro",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_footer_astro",
-      "target": "components_footer_cpustates",
-      "confidence_score": 1.0
+      "target": "components_footer_cpustates"
     },
     {
       "relation": "contains",
@@ -1860,9 +2288,9 @@
       "source_file": "components/Footer.astro",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_footer_astro",
-      "target": "components_footer_memstates",
-      "confidence_score": 1.0
+      "target": "components_footer_memstates"
     },
     {
       "relation": "imports_from",
@@ -1871,8 +2299,16 @@
       "source_file": "layouts/Layout.astro",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layouts_layout_astro",
-      "target": "components_footer_astro",
+      "target": "components_footer_astro"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Hero.astro",
+      "source": "components_hero_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_config",
       "confidence_score": 1.0
     },
     {
@@ -1881,8 +2317,109 @@
       "source_file": "components/Navbar.astro",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_navbar_astro",
-      "target": "components_navbar_drawer",
+      "target": "components_navbar_drawer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_backdrop"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L86",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_closebtn"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L87",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_drawerlinks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L88",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_lines"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_opendrawer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L76",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_closedrawer"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "layouts/Layout.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "layouts_layout_astro",
+      "target": "components_navbar_astro"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_mobiledrawer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_mobilelinks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Navbar.astro",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "components_navbar_astro",
+      "target": "components_navbar_openmenu",
       "confidence_score": 1.0
     },
     {
@@ -1892,68 +2429,86 @@
       "source_location": "L85",
       "weight": 1.0,
       "source": "components_navbar_astro",
-      "target": "components_navbar_backdrop",
+      "target": "components_navbar_closemenu",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "components/Navbar.astro",
-      "source_location": "L86",
-      "weight": 1.0,
       "source": "components_navbar_astro",
-      "target": "components_navbar_closebtn",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_config",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
-      "source_file": "components/Navbar.astro",
-      "source_location": "L87",
+      "source_file": "components/Projects.astro",
+      "confidence_score": 1.0,
+      "source": "components_projects_astro",
+      "target": "components_projectcard_astro"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Projects.astro",
+      "source_location": "L3",
       "weight": 1.0,
-      "source": "components_navbar_astro",
-      "target": "components_navbar_drawerlinks",
+      "source": "components_projects_astro",
+      "target": "lib_firebase_client_ts",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports",
+      "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "components/Navbar.astro",
-      "source_location": "L88",
+      "source_file": "components/Projects.astro",
+      "source_location": "L3",
       "weight": 1.0,
-      "source": "components_navbar_astro",
-      "target": "components_navbar_lines",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/Navbar.astro",
-      "source_location": "L92",
-      "weight": 1.0,
-      "source": "components_navbar_astro",
-      "target": "components_navbar_opendrawer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/Navbar.astro",
-      "source_location": "L101",
-      "weight": 1.0,
-      "source": "components_navbar_astro",
-      "target": "components_navbar_closedrawer",
+      "source": "components_projects_astro",
+      "target": "firebase_client_db",
       "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "layouts/Layout.astro",
-      "source_location": "L3",
+      "source_file": "components/Projects.astro",
+      "source_location": "L4",
       "weight": 1.0,
-      "source": "layouts_layout_astro",
-      "target": "components_navbar_astro",
+      "source": "components_projects_astro",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Projects.astro",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "components_projects_astro",
+      "target": "components_projects_staticprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Projects.astro",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "components_projects_astro",
+      "target": "components_projects_projectscol",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/Projects.astro",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "components_projects_astro",
+      "target": "components_projects_projectsquery",
       "confidence_score": 1.0
     },
     {
@@ -1961,7 +2516,7 @@
       "confidence": "EXTRACTED",
       "source_file": "components/Projects.astro",
       "source": "components_projects_astro",
-      "target": "components_projectcard_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_client",
       "confidence_score": 1.0
     },
     {
@@ -1970,9 +2525,9 @@
       "source_file": "components/Skills.astro",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_skills_astro",
-      "target": "components_skills_bars",
-      "confidence_score": 1.0
+      "target": "components_skills_bars"
     },
     {
       "relation": "contains",
@@ -1980,17 +2535,17 @@
       "source_file": "components/Skills.astro",
       "source_location": "L99",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_skills_astro",
-      "target": "components_skills_observer",
-      "confidence_score": 1.0
+      "target": "components_skills_observer"
     },
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "pages/404.astro",
+      "confidence_score": 1.0,
       "source": "pages_404_astro",
-      "target": "layouts_layout_astro",
-      "confidence_score": 1.0
+      "target": "layouts_layout_astro"
     },
     {
       "relation": "calls",
@@ -2087,43 +2642,409 @@
       "source_file": "DESIGN.md",
       "source": "concept_tonal_layering",
       "target": "hyusecs_github_io_design"
-    }
-  ],
-  "hyperedges": [
-    {
-      "id": "frontend_architecture",
-      "label": "Frontend Component Architecture",
-      "nodes": [
-        "layouts_layout",
-        "components_navbar",
-        "components_footer",
-        "components_hero",
-        "components_about",
-        "components_skills",
-        "components_projects",
-        "components_telemetry",
-        "components_contact"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/layouts/Layout.astro"
     },
     {
-      "id": "design_language",
-      "label": "System Monitor Design Language",
-      "nodes": [
-        "concept_the_system_monitor",
-        "concept_terminal_first",
-        "concept_high_craft",
-        "concept_the_machine_aesthetic",
-        "concept_tonal_layering"
-      ],
-      "relation": "form",
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source": "components_admin_loginterminal_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source": "components_admin_projectmanager_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemConfig.astro",
+      "source": "components_admin_systemconfig_astro",
+      "target": "home_hyuse_desktop_hyusecs_github_io_src_lib_firebase_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemConfig.astro",
+      "source": "components_admin_systemconfig_astro",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "lib_firebase_client_ts",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/config.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "lib_firebase_config_ts",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "components_admin_loginterminal_astro",
+      "target": "auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "components_admin_loginterminal_astro",
+      "target": "admin_loginterminal_githubbtn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "components_admin_loginterminal_astro",
+      "target": "admin_loginterminal_errorel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "components_admin_loginterminal_astro",
+      "target": "admin_loginterminal_statusel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/LoginTerminal.astro",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "components_admin_loginterminal_astro",
+      "target": "admin_loginterminal_provider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_loginterminal_errorel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_loginterminal_statusel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lib_firebase_client_ts",
+      "target": "auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_projectslist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_loadingel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_emptyel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_modal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_projectform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_cardtemplate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_currentprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_fetchprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_renderprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_openmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L211",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_deleteproject",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L222",
+      "weight": 1.0,
+      "source": "components_admin_projectmanager_astro",
+      "target": "admin_projectmanager_data",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "admin_projectmanager_fetchprojects",
+      "target": "admin_projectmanager_renderprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/ProjectManager.astro",
+      "source_location": "L214",
+      "weight": 1.0,
+      "source": "admin_projectmanager_deleteproject",
+      "target": "admin_projectmanager_fetchprojects",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_systemdeploycontrol_savebtn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_systemdeploycontrol_deploybtn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_systemdeploycontrol_statustext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_systemdeploycontrol_errortext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/admin/SystemDeployControl.astro",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "components_admin_systemdeploycontrol_astro",
+      "target": "admin_systemdeploycontrol_storedpat",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "lib_firebase_client_ts",
+      "target": "firebase_client_firebaseconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "lib_firebase_client_ts",
+      "target": "firebase_client_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/client.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "lib_firebase_client_ts",
+      "target": "firebase_client_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/config.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "lib_firebase_config_ts",
+      "target": "lib_firebase_client_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/config.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "lib_firebase_config_ts",
+      "target": "firebase_client_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/firebase/config.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "lib_firebase_config_ts",
+      "target": "firebase_config_getsystemconfig",
+      "confidence_score": 1.0
     }
   ],
-  "built_at_commit": "b7d73a5a48cad4af0de79340ebadc97992207f5b"
+  "hyperedges": [],
+  "built_at_commit": "1718108d6bfefaed2dbd08d2b8397b9dc7b26bd0"
 }
