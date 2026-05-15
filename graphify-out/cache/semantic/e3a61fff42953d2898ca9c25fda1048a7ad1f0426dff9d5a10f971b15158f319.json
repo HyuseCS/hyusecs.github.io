@@ -1,0 +1,1 @@
+{"nodes": [{"id": "scratch_code", "label": "Matrix Selector Test", "file_type": "code", "source_file": "scratch.js"}], "edges": [{"source": "scratch_code", "target": "components_telemetry_telemetry", "relation": "semantically_similar_to", "confidence": "INFERRED", "confidence_score": 0.85, "source_file": "scratch.js"}], "hyperedges": []}

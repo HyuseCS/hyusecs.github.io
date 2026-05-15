@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-14T00:00:00Z",
+  "title": "Design System: The System Monitor",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Binary Green",
+        "canonical": "oklch(75% 0.18 145)",
+        "tonalRamp": [
+          "oklch(15% 0.05 145)",
+          "oklch(25% 0.08 145)",
+          "oklch(35% 0.1 145)",
+          "oklch(50% 0.15 145)",
+          "oklch(65% 0.18 145)",
+          "oklch(75% 0.18 145)",
+          "oklch(85% 0.12 145)",
+          "oklch(95% 0.05 145)"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Caution Yellow",
+        "canonical": "#ffbd2e",
+        "tonalRamp": [
+          "oklch(20% 0.05 85)",
+          "oklch(40% 0.1 85)",
+          "oklch(60% 0.15 85)",
+          "oklch(75% 0.18 85)",
+          "oklch(85% 0.15 85)",
+          "oklch(95% 0.05 85)"
+        ]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Obsidian Background",
+        "canonical": "#0c0c0c"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "System Headline",
+        "purpose": "Hero sections and page titles."
+      },
+      "body": {
+        "displayName": "Terminal Text",
+        "purpose": "Standard system output and descriptions."
+      }
+    },
+    "motion": [
+      {
+        "name": "functional-standard",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Standard entrance easing for sections."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Terminal Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Functional action button with sharp corners and terminal prefix.",
+      "html": "<button class=\"ds-btn-terminal\"><span class=\"ds-btn-prefix\">❯</span> [ Transmit ]</button>",
+      "css": ".ds-btn-terminal { background: transparent; color: #27c93f; border: 1px solid #27c93f; padding: 8px 24px; font-family: 'JetBrains Mono', monospace; font-size: 14px; text-transform: uppercase; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 0; } .ds-btn-terminal:hover { background: #27c93f; color: #0c0c0c; } .ds-btn-prefix { font-weight: bold; margin-right: 8px; }"
+    },
+    {
+      "name": "System Card",
+      "kind": "card",
+      "refersTo": "card-base",
+      "description": "Information container with tonal layering and system borders.",
+      "html": "<div class=\"ds-card-system\"><h3 class=\"ds-card-title\">// CPU STATUS</h3><p class=\"ds-card-body\">System operating at nominal parameters.</p></div>",
+      "css": ".ds-card-system { background: #111111; border: 1px solid #333333; padding: 24px; font-family: 'JetBrains Mono', monospace; border-radius: 0; transition: border-color 0.2s; } .ds-card-system:hover { border-color: #27c93f; } .ds-card-title { color: #ffbd2e; font-size: 12px; font-weight: bold; margin-bottom: 12px; letter-spacing: 0.1em; } .ds-card-body { color: #888888; font-size: 14px; line-height: 1.6; }"
+    },
+    {
+      "name": "Status Indicator",
+      "kind": "chip",
+      "description": "Live status signal with pulse animation.",
+      "html": "<div class=\"ds-status\"><span class=\"ds-status-dot\"></span> System Online</div>",
+      "css": ".ds-status { display: flex; items-center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #d4d4d4; text-transform: uppercase; letter-spacing: 0.05em; } .ds-status-dot { width: 8px; height: 8px; background: #27c93f; border-radius: 50%; position: relative; } .ds-status-dot::after { content: ''; position: absolute; inset: 0; background: #27c93f; border-radius: 50%; animation: ds-pulse 2s infinite; } @keyframes ds-pulse { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(2.5); opacity: 0; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The System Monitor",
+    "overview": "A live diagnostic interface for a high-performance server. Dark, tactile, and functional.",
+    "keyCharacteristics": [
+      "Terminal-First aesthetic",
+      "High-density information structure",
+      "Reactive functional states"
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "The primary Binary Green accent is used on ≤10% of any given screen.",
+        "section": "colors"
+      },
+      {
+        "name": "The Prefix Rule",
+        "body": "Interactive elements or section headers lead with ❯, ./, or //.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat and defined by borders. Shadows are prohibited.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use monospaced fonts for all text elements",
+      "Do use ❯ or ./ to prefix interactive links",
+      "Do define structure using 1px borders (#333333)"
+    ],
+    "donts": [
+      "Don't use border-radius greater than 2px",
+      "Don't use drop shadows or blur effects",
+      "Don't use soft gradients or generic proportional fonts"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "pages_404", "label": "404 Error Page", "file_type": "code", "source_file": "src/pages/404.astro"}], "edges": [{"source": "pages_404", "target": "layouts_layout", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "src/pages/404.astro"}], "hyperedges": []}

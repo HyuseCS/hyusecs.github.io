@@ -1,0 +1,1 @@
+{"nodes": [{"id": "components_projects", "label": "Projects Section", "file_type": "code", "source_file": "src/components/Projects.astro"}], "edges": [{"source": "components_projects", "target": "components_projectcard", "relation": "calls", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "src/components/Projects.astro"}], "hyperedges": []}

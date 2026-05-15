@@ -6,55 +6,55 @@ import Layout from '../layouts/Layout.astro';
   <section class="min-h-[calc(100vh-4rem-30px)] flex flex-col justify-center items-center px-5">
     <div class="max-w-2xl w-full space-y-6">
       
-      <div class="flex gap-2 text-[#27c93f] items-center text-sm sm:text-base">
+      <div class="flex gap-2 text-binary-green items-center text-sm sm:text-base">
         <span class="font-bold" aria-hidden="true">❯</span>
-        <span class="text-[#d4d4d4]">cd /requested/page</span>
+        <span class="text-text-muted">cd /requested/page</span>
       </div>
       
       <div class="pl-2 sm:pl-4 space-y-6">
-        <div class="text-[#e06c75] font-mono text-sm sm:text-base">
+        <div class="text-error font-mono text-sm sm:text-base">
           <p>bash: cd: /requested/page: No such file or directory</p>
         </div>
         
-        <div class="border border-[#333] bg-[#111] p-6 sm:p-8 space-y-4">
+        <div class="border border-system-border bg-layer-1 p-6 sm:p-8 space-y-4">
           <h1 class="text-5xl sm:text-7xl font-bold text-white">404</h1>
-          <p class="text-[#888] text-sm sm:text-base font-mono leading-relaxed">
+          <p class="text-text-dim text-sm sm:text-base font-mono leading-relaxed">
             // The requested resource could not be found on this server.<br/>
             // The path may have been moved, deleted, or never existed.
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4 pt-4">
-            <div class="flex gap-2 text-[#27c93f] items-center text-sm">
+            <div class="flex gap-2 text-binary-green items-center text-sm">
               <span class="font-bold" aria-hidden="true">❯</span>
-              <span class="text-[#888]">Suggested recovery:</span>
+              <span class="text-text-dim">Suggested recovery:</span>
             </div>
           </div>
           
           <div class="flex flex-col sm:flex-row gap-3 pl-4">
             <a 
               href="/" 
-              class="px-5 py-2 border border-[#27c93f] text-[#27c93f] hover:bg-[#27c93f] hover:text-black font-mono text-xs sm:text-sm transition-colors text-center"
+              class="px-5 py-2 border border-binary-green text-binary-green hover:bg-binary-green hover:text-black font-mono text-xs sm:text-sm transition-colors text-center"
             >
               [ cd ~ ]
             </a>
             <a 
               href="/#projects" 
-              class="px-5 py-2 border border-[#333] text-[#d4d4d4] hover:border-[#d4d4d4] hover:bg-[#d4d4d4] hover:text-black font-mono text-xs sm:text-sm transition-colors text-center"
+              class="px-5 py-2 border border-system-border text-text-muted hover:border-text-muted hover:bg-text-muted hover:text-black font-mono text-xs sm:text-sm transition-colors text-center"
             >
               [ ls ./projects ]
             </a>
             <a 
               href="/#contact" 
-              class="px-5 py-2 border border-[#333] text-[#888] hover:border-[#ffbd2e] hover:text-[#ffbd2e] font-mono text-xs sm:text-sm transition-colors text-center"
+              class="px-5 py-2 border border-system-border text-text-dim hover:border-caution-yellow hover:text-caution-yellow font-mono text-xs sm:text-sm transition-colors text-center"
             >
               [ ping contact ]
             </a>
           </div>
         </div>
         
-        <div class="flex gap-2 text-[#27c93f] items-center text-sm">
+        <div class="flex gap-2 text-binary-green items-center text-sm">
           <span class="font-bold" aria-hidden="true">❯</span>
-          <span id="cursor-404" class="text-[#d4d4d4] font-mono border-r-2 border-[#d4d4d4] pr-1">&nbsp;</span>
+          <span id="cursor-404" class="text-text-muted font-mono border-r-2 border-text-muted pr-1">&nbsp;</span>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@ import Layout from '../layouts/Layout.astro';
     const cursor = document.getElementById('cursor-404');
     if (cursor) {
       setInterval(() => {
-        cursor.style.borderColor = cursor.style.borderColor === 'transparent' ? '#d4d4d4' : 'transparent';
+        cursor.style.borderColor = cursor.style.borderColor === 'transparent' ? 'var(--color-text-muted)' : 'transparent';
       }, 500);
     }
   });

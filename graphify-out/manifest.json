@@ -1,0 +1,86 @@
+{
+  "/home/hyuse/Desktop/hyusecs.github.io/astro.config.mjs": {
+    "mtime": 1770964048.4993274,
+    "hash": "11373ee4e0f6423783c20af6b6438696"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/scratch.js": {
+    "mtime": 1776172503.458433,
+    "hash": "9aa97d22d43c48ed120469da073aa079"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/About.astro": {
+    "mtime": 1778828004.5457528,
+    "hash": "22c19fd8ca9a477459d7ef8b5a90e0c1"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Contact.astro": {
+    "mtime": 1778828004.5457528,
+    "hash": "111fffe68d17d6598596ac0537d153d7"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Footer.astro": {
+    "mtime": 1778829234.060462,
+    "hash": "0a9fa3c5bcf7a0aeb1d98fdbc005b6e7"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Hero.astro": {
+    "mtime": 1778828004.5457528,
+    "hash": "774ccaae8e9542a0c6af4c4019705141"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Navbar.astro": {
+    "mtime": 1778827987.7759073,
+    "hash": "70be13d71406604e879759c9f27a6eed"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Projects.astro": {
+    "mtime": 1778828004.5457528,
+    "hash": "3a4a97aa24ef02f135a3a00a90cc7726"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Skills.astro": {
+    "mtime": 1778828004.5457528,
+    "hash": "55aa8d57087ce498955b9e9662ab7065"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/ProjectCard.astro": {
+    "mtime": 1778827987.7759073,
+    "hash": "df4962edbb4cb3a02033c4cd1305b273"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Telemetry.astro": {
+    "mtime": 1778829442.3338664,
+    "hash": "f325ac613b6bbec5f1647e9bca6d77e2"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/layouts/Layout.astro": {
+    "mtime": 1778828004.5457528,
+    "hash": "b18fe6ce55f85c2bad1ed55140ade60a"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/pages/index.astro": {
+    "mtime": 1775097346.3987005,
+    "hash": "4f2e4b871b1e4b1d66b8145d97bf8211"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/pages/404.astro": {
+    "mtime": 1778826735.0516753,
+    "hash": "02bfcdcfa237e051963f9e3cd60039cd"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/README.md": {
+    "mtime": 1770964048.4993274,
+    "hash": "de76967202948d4f70d11f4b3d9e7674"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/PRODUCT.md": {
+    "mtime": 1778772588.590824,
+    "hash": "d54a6cc848030e1bb96cb5410cef427d"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/DESIGN.md": {
+    "mtime": 1778773304.0562325,
+    "hash": "f4003e5b0c98733c5fcda926b54a9cd8"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/public/LEGASPI_RESUME.pdf": {
+    "mtime": 1776172997.8094857,
+    "hash": "3715f31f67bbb9d27f3eb4dfec155bfc"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/public/favicon.svg": {
+    "mtime": 1770964048.5017383,
+    "hash": "8c13f40658976ea1dfb8ba37a8be0e8d"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/assets/astro.svg": {
+    "mtime": 1770964048.5019367,
+    "hash": "d26c3520f1f016bad745392df8b5fae5"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/assets/background.svg": {
+    "mtime": 1770964048.5020998,
+    "hash": "c2eaad48507ad1ea41f586bd5c21858a"
+  }
+}

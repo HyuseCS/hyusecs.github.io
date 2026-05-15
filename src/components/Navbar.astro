@@ -8,12 +8,12 @@ const links = [
 ];
 ---
 
-<nav class="sticky top-0 z-50 bg-[#1e1e1e]/95 backdrop-blur-sm border-b border-[#333] shadow-md" role="navigation" aria-label="Main navigation">
+<nav class="sticky top-0 z-50 bg-surface-high/95 backdrop-blur-sm border-b border-system-border" role="navigation" aria-label="Main navigation">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-14">
       <div class="flex-shrink-0 flex items-center gap-2 pr-4 sm:pr-0">
-        <span class="text-[#27c93f] font-bold" aria-hidden="true">❯</span>
-        <a href="#" class="text-xs sm:text-sm font-bold text-[#d4d4d4] hover:text-[#27c93f] transition-colors whitespace-nowrap">CJ_Portfolio</a>
+        <span class="text-binary-green font-bold" aria-hidden="true">❯</span>
+        <a href="#" class="text-xs sm:text-sm font-bold text-text-muted hover:text-binary-green transition-colors animate-glitch-hover whitespace-nowrap">CJ_Portfolio</a>
       </div>
 
       <!-- Desktop Nav -->
@@ -21,9 +21,9 @@ const links = [
         {links.map((link) => (
           <a
             href={link.href}
-            class="text-[#888] hover:text-[#27c93f] py-2 text-xs sm:text-sm font-medium transition-colors duration-200 whitespace-nowrap"
+            class="text-text-dim hover:text-binary-green py-2 text-xs sm:text-sm font-medium transition-colors duration-200 animate-glitch-hover whitespace-nowrap"
           >
-            <span class="text-[#555]" aria-hidden="true">./</span>{link.name.toLowerCase()}
+            <span class="text-text-deemphasized" aria-hidden="true">./</span>{link.name.toLowerCase()}
           </a>
         ))}
       </div>
@@ -36,9 +36,9 @@ const links = [
         aria-expanded="false"
         aria-controls="mobile-drawer"
       >
-        <span class="hamburger-line w-5 h-[2px] bg-[#888] group-hover:bg-[#27c93f] transition-all duration-200 origin-center"></span>
-        <span class="hamburger-line w-5 h-[2px] bg-[#888] group-hover:bg-[#27c93f] transition-all duration-200 origin-center"></span>
-        <span class="hamburger-line w-3.5 h-[2px] bg-[#888] group-hover:bg-[#27c93f] transition-all duration-200 origin-center self-end"></span>
+        <span class="hamburger-line w-5 h-[2px] bg-text-dim group-hover:bg-binary-green transition-all duration-200 origin-center"></span>
+        <span class="hamburger-line w-5 h-[2px] bg-text-dim group-hover:bg-binary-green transition-all duration-200 origin-center"></span>
+        <span class="hamburger-line w-3.5 h-[2px] bg-text-dim group-hover:bg-binary-green transition-all duration-200 origin-center self-end"></span>
       </button>
     </div>
   </div>
@@ -50,14 +50,14 @@ const links = [
 <!-- Mobile Drawer -->
 <div
   id="mobile-drawer"
-  class="fixed top-0 right-0 h-full w-64 bg-[#1a1a1a] border-l border-[#333] z-[999] hidden flex-col shadow-2xl"
+  class="fixed top-0 right-0 h-full w-64 bg-layer-2 border-l border-system-border z-[999] hidden flex-col"
   role="dialog"
   aria-modal="true"
   aria-label="Navigation menu"
 >
-  <div class="flex items-center justify-between px-5 h-14 border-b border-[#333]">
-    <span class="text-[#888] text-xs font-mono uppercase tracking-widest">Navigation</span>
-    <button id="drawer-close" class="text-[#888] hover:text-[#27c93f] transition-colors text-lg cursor-pointer" aria-label="Close navigation menu">
+  <div class="flex items-center justify-between px-5 h-14 border-b border-system-border">
+    <span class="text-text-dim text-xs font-mono uppercase tracking-widest">Navigation</span>
+    <button id="drawer-close" class="text-text-dim hover:text-binary-green transition-colors text-lg cursor-pointer" aria-label="Close navigation menu">
       ✕
     </button>
   </div>
@@ -65,14 +65,14 @@ const links = [
     {links.map((link, i) => (
       <a
         href={link.href}
-        class="drawer-link text-[#888] hover:text-[#27c93f] hover:bg-[#222] px-5 py-3 text-sm font-medium transition-colors duration-200"
+        class="drawer-link text-text-dim hover:text-binary-green hover:bg-system-border-dim px-5 py-3 text-sm font-medium transition-colors duration-200"
       >
-        <span class="text-[#555] mr-1" aria-hidden="true">❯</span> {link.name.toLowerCase()}
+        <span class="text-text-deemphasized mr-1" aria-hidden="true">❯</span> {link.name.toLowerCase()}
       </a>
     ))}
   </div>
-  <div class="px-5 py-4 border-t border-[#333]">
-    <a href="/LEGASPI_RESUME.pdf" target="_blank" class="flex items-center gap-2 text-[#ffbd2e] hover:text-white text-xs font-mono transition-colors">
+  <div class="px-5 py-4 border-t border-system-border">
+    <a href="/LEGASPI_RESUME.pdf" target="_blank" class="flex items-center gap-2 text-caution-yellow hover:text-white text-xs font-mono transition-colors">
       <span aria-hidden="true">📄</span> LEGASPI_RESUME.pdf
     </a>
   </div>

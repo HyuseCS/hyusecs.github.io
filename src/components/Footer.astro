@@ -2,14 +2,14 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="fixed bottom-0 left-0 w-full bg-[#111] text-[#777] h-[30px] sm:h-8 border-t border-[#333] font-mono flex items-center justify-between px-4 sm:px-6 text-[9px] sm:text-[10px] z-[100]" role="contentinfo">
+<footer class="fixed bottom-0 left-0 w-full bg-layer-1 text-text-deemphasized h-[30px] sm:h-8 border-t border-system-border font-mono flex items-center justify-between px-4 sm:px-6 text-[9px] sm:text-[10px] z-[100]" role="contentinfo">
   <div class="flex items-center gap-4">
     <div class="flex items-center gap-2">
-      <span class="text-[#27c93f]" aria-hidden="true">●</span>
-      <span class="text-[#d4d4d4] uppercase tracking-tighter">System Online</span>
+      <span class="text-binary-green" aria-hidden="true">●</span>
+      <span class="text-text-muted uppercase tracking-tighter">System Online</span>
     </div>
-    <div class="hidden sm:block h-4 w-[1px] bg-[#333]" aria-hidden="true"></div>
-    <div class="hidden sm:flex text-[#777]">
+    <div class="hidden sm:block h-4 w-[1px] bg-system-border" aria-hidden="true"></div>
+    <div class="hidden sm:flex text-text-deemphasized">
       &copy; {currentYear} CJ 
     </div>
   </div>
@@ -17,13 +17,38 @@ const currentYear = new Date().getFullYear();
   <div class="flex items-center gap-6">
     <div class="hidden lg:flex gap-6">
       <div class="flex gap-2">
-        <span class="text-[#555]">CPU</span>
-        <span class="text-[#888]">Normal</span>
+        <span class="text-text-deemphasized">CPU</span>
+        <span id="footer-cpu" class="text-text-dim w-12">Normal</span>
       </div>
       <div class="flex gap-2">
-        <span class="text-[#555]">MEM</span>
-        <span class="text-[#888]">Stable</span>
+        <span class="text-text-deemphasized">MEM</span>
+        <span id="footer-mem" class="text-text-dim w-12">Stable</span>
       </div>
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cpu = document.getElementById('footer-cpu');
+    const mem = document.getElementById('footer-mem');
+    
+    if (cpu && mem) {
+      const cpuStates = ['Normal', 'Load: 12%', 'Active', 'Normal', 'Peak: 24%'];
+      const memStates = ['Stable', '8.4 GB', 'Stable', 'Peak: 9GB', 'Stable'];
+      
+      setInterval(() => {
+        if (Math.random() > 0.7) {
+          cpu.textContent = cpuStates[Math.floor(Math.random() * cpuStates.length)];
+          cpu.classList.add('text-binary-green');
+          setTimeout(() => cpu.classList.remove('text-binary-green'), 1000);
+        }
+        if (Math.random() > 0.8) {
+          mem.textContent = memStates[Math.floor(Math.random() * memStates.length)];
+          mem.classList.add('text-caution-yellow');
+          setTimeout(() => mem.classList.remove('text-caution-yellow'), 1200);
+        }
+      }, 3000);
+    }
+  });
+</script>
