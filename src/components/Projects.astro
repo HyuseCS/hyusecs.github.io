@@ -1,7 +1,9 @@
 ---
 import ProjectCard from './ProjectCard.astro';
+import { db } from '../lib/firebase/client';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
-const projects = [
+const staticProjects = [
   {
     title: "JRJC Car Rental Booking",
     date: "Sep 2025",
@@ -36,6 +38,31 @@ const projects = [
     staggerClass: "stagger-3"
   }
 ];
+
+let projects = [];
+
+try {
+  // Only attempt Firestore fetch if we have the config
+  if (import.meta.env.PUBLIC_FIREBASE_API_KEY) {
+    const projectsCol = collection(db, 'projects');
+    const projectsQuery = query(projectsCol, orderBy('order', 'asc'));
+    const projectsSnapshot = await getDocs(projectsQuery);
+    
+    if (!projectsSnapshot.empty) {
+      projects = projectsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+    } else {
+      projects = staticProjects;
+    }
+  } else {
+    projects = staticProjects;
+  }
+} catch (error) {
+  console.error("Error fetching projects from Firestore:", error);
+  projects = staticProjects;
+}
 ---
 
 <section id="projects" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">

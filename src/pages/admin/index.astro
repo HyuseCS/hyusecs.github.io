@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LoginTerminal from '../../components/admin/LoginTerminal.astro';
+import ProjectManager from '../../components/admin/ProjectManager.astro';
+import SystemDeployControl from '../../components/admin/SystemDeployControl.astro';
+import SystemConfig from '../../components/admin/SystemConfig.astro';
+---
+
+<Layout title="System Administration | Portfolio">
+  <main class="min-h-screen bg-obsidian">
+    <!-- Auth Shield -->
+    <LoginTerminal />
+
+    <div id="admin-dashboard" class="hidden pt-24 pb-20 px-4 md:px-8">
+      <div class="max-w-7xl mx-auto space-y-12 animate-boot">
+        <header class="border-b border-system-border pb-8 space-y-6">
+          <div class="flex items-center gap-3 text-binary-green text-[10px] font-mono tracking-widest">
+            <span class="inline-block w-2 h-2 rounded-full bg-binary-green animate-pulse"></span>
+            <span class="uppercase">Session Status: Active</span>
+            <span class="text-system-border">/</span>
+            <span id="user-display" class="text-text-muted">guest@mainframe</span>
+            <span class="text-system-border">/</span>
+            <span class="text-caution-yellow uppercase">Level 4 Clearance</span>
+          </div>
+          
+          <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8">
+            <div class="space-y-3">
+              <h1 class="text-text-primary text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none">
+                Mainframe<span class="text-binary-green">.</span>Control
+              </h1>
+              <p class="text-text-dim max-w-2xl text-sm leading-relaxed font-mono">
+                Accessing centralized management protocols for portfolio assets and system configuration. 
+                All modifications are persistent and will trigger a global cache invalidation.
+              </p>
+            </div>
+            
+            <button id="logout-btn" class="group flex items-center gap-2 text-[10px] text-text-dim hover:text-white uppercase tracking-[0.2em] border border-system-border px-4 py-2 transition-all hover:bg-red-500/10 hover:border-red-500/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500/50 group-hover:bg-red-500 animate-pulse"></span>
+              Terminate Session
+            </button>
+          </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <!-- Main Content -->
+          <div class="lg:col-span-8 space-y-16">
+            <ProjectManager />
+          </div>
+
+          <!-- Sidebar / Controls -->
+          <div class="lg:col-span-4 space-y-10">
+            <div class="sticky top-24 space-y-10">
+              <SystemDeployControl />
+              <SystemConfig />
+              
+              <div class="border border-system-border bg-layer-1 p-6 space-y-4">
+                <div class="flex items-center justify-between border-b border-system-border pb-3">
+                  <h4 class="text-text-primary text-[10px] font-bold uppercase tracking-widest">Environment Intel</h4>
+                  <div class="flex gap-1">
+                    <div class="w-1 h-1 bg-binary-green/40"></div>
+                    <div class="w-1 h-1 bg-binary-green/60"></div>
+                    <div class="w-1 h-1 bg-binary-green"></div>
+                  </div>
+                </div>
+                
+                <div class="space-y-3 text-[10px] font-mono">
+                  <div class="flex justify-between items-center group">
+                    <span class="text-text-dim group-hover:text-text-muted transition-colors">OS_TARGET</span>
+                    <span class="text-text-primary px-1.5 py-0.5 bg-system-border">LINUX_X64</span>
+                  </div>
+                  <div class="flex justify-between items-center group">
+                    <span class="text-text-dim group-hover:text-text-muted transition-colors">RUNTIME</span>
+                    <span class="text-text-primary px-1.5 py-0.5 bg-system-border">ASTRO_V4</span>
+                  </div>
+                  <div class="flex justify-between items-center group">
+                    <span class="text-text-dim group-hover:text-text-muted transition-colors">DATABASE</span>
+                    <span class="text-binary-green">FIRESTORE_LIVE</span>
+                  </div>
+                  <div class="flex justify-between items-center group">
+                    <span class="text-text-dim group-hover:text-text-muted transition-colors">DISPATCH</span>
+                    <span class="text-caution-yellow">GH_REPOS_DISPATCH</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { auth } from '../../lib/firebase/client';
+  import { onAuthStateChanged, signOut } from 'firebase/auth';
+
+  const loginTerminal = document.getElementById('login-terminal');
+  const adminDashboard = document.getElementById('admin-dashboard');
+  const userDisplay = document.getElementById('user-display');
+  const logoutBtn = document.getElementById('logout-btn');
+  const mainContainer = document.getElementById('main-layout-container');
+
+  // Reset layout constraints for admin page
+  if (mainContainer) {
+    mainContainer.classList.remove('flex', 'flex-col', 'pb-[30px]', 'sm:pb-8');
+    mainContainer.classList.add('block', 'w-full');
+  }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      if (loginTerminal) loginTerminal.classList.add('hidden');
+      if (adminDashboard) adminDashboard.classList.remove('hidden');
+      if (userDisplay) userDisplay.textContent = user.email;
+    } else {
+      if (loginTerminal) loginTerminal.classList.remove('hidden');
+      if (adminDashboard) adminDashboard.classList.add('hidden');
+    }
+  });
+
+  logoutBtn?.addEventListener('click', () => {
+    signOut(auth);
+  });
+</script>

@@ -51,9 +51,9 @@ const siteUrl = "https://hyusecs.github.io";
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 	</head>
-	<body class="bg-obsidian text-text-muted flex flex-col min-h-screen font-['JetBrains_Mono',monospace]">
+	<body class="bg-obsidian text-text-muted flex flex-col min-h-screen font-['JetBrains_Mono',monospace] overflow-x-hidden">
 		<Navbar />
-		<main class="w-full overflow-x-hidden flex-grow flex flex-col focus:outline-none pb-[30px] sm:pb-8" tabindex="0" id="main-content">
+		<main id="main-layout-container" class="w-full flex-grow flex flex-col focus:outline-none pb-[30px] sm:pb-8" tabindex="0">
 			<slot />
 		</main>
 		<Footer />

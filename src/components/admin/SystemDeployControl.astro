@@ -1,0 +1,132 @@
+---
+---
+
+<div id="deploy-control" class="border border-system-border bg-layer-1 p-8 space-y-8 animate-boot">
+  <div class="space-y-2 border-l-2 border-binary-green pl-4">
+    <h3 class="text-text-primary text-lg font-black uppercase tracking-tighter flex items-center gap-3">
+      <span class="text-binary-green">!</span> System Override
+    </h3>
+    <p class="text-text-dim text-[10px] uppercase tracking-[0.2em] font-bold">Manual Deployment Protocol</p>
+  </div>
+
+  <div class="space-y-6">
+    <div id="pat-section" class="space-y-3">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Encrypted Access Token</label>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <input 
+          type="password" 
+          id="github-pat" 
+          placeholder="ghp_********************************"
+          class="flex-grow bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+        />
+        <button 
+          id="save-pat"
+          class="px-6 py-3 border border-system-border text-text-dim hover:text-white hover:border-binary-green/50 transition-all text-[10px] uppercase font-black tracking-widest bg-layer-2"
+        >
+          Store
+        </button>
+      </div>
+      <p class="text-[9px] text-text-dim/60 italic font-mono uppercase tracking-tighter">Token is cached in local browser storage only.</p>
+    </div>
+
+    <div class="pt-6 border-t border-system-border">
+      <button 
+        id="redeploy-btn"
+        class="group w-full py-5 bg-obsidian border-2 border-binary-green/30 text-binary-green hover:bg-binary-green hover:text-obsidian transition-all uppercase tracking-[0.3em] text-[10px] font-black flex items-center justify-center gap-4 disabled:opacity-30 disabled:cursor-not-allowed"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-hover:rotate-180 transition-transform duration-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        Execute Global Redeploy
+      </button>
+    </div>
+
+    <div id="deploy-status" class="hidden p-4 border border-binary-green/30 bg-binary-green/5 text-binary-green text-[10px] font-mono leading-relaxed">
+      <div class="flex items-center gap-3">
+        <span class="w-1.5 h-1.5 bg-binary-green animate-pulse"></span>
+        <span id="status-text" class="uppercase tracking-widest font-bold">Dispatching_Signal...</span>
+      </div>
+    </div>
+    
+    <div id="deploy-error" class="hidden p-4 border border-red-500/30 bg-red-500/5 text-red-500 text-[10px] font-mono leading-relaxed">
+      <div class="font-black uppercase tracking-widest">[Signal_Transmission_Failure]</div>
+      <div id="error-text" class="mt-1 opacity-80">ERROR_DETAILS_UNKNOWN</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const patInput = document.getElementById('github-pat') as HTMLInputElement;
+  const saveBtn = document.getElementById('save-pat');
+  const deployBtn = document.getElementById('redeploy-btn') as HTMLButtonElement;
+  const statusEl = document.getElementById('deploy-status');
+  const statusText = document.getElementById('status-text');
+  const errorEl = document.getElementById('deploy-error');
+  const errorText = document.getElementById('error-text');
+
+  // Load PAT from localStorage
+  const storedPat = localStorage.getItem('GITHUB_PAT');
+  if (storedPat) {
+    patInput.value = storedPat;
+  }
+
+  saveBtn?.addEventListener('click', () => {
+    localStorage.setItem('GITHUB_PAT', patInput.value);
+    alert('TOKEN_STORED_IN_LOCAL_CACHE');
+  });
+
+  deployBtn?.addEventListener('click', async () => {
+    const pat = patInput.value;
+    if (!pat) {
+      alert('REQUIRED: GITHUB_PERSONAL_ACCESS_TOKEN');
+      return;
+    }
+
+    if (!confirm('INITIATE_REMOTE_REBUILD? This will trigger a new GitHub Actions run.')) return;
+
+    deployBtn.disabled = true;
+    if (statusEl) statusEl.classList.remove('hidden');
+    if (errorEl) errorEl.classList.add('hidden');
+    if (statusText) statusText.textContent = 'CONNECTING_TO_GITHUB_API...';
+
+    try {
+      // Get owner and repo from current URL or meta (hardcoding for now based on context)
+      const owner = 'hyusecs';
+      const repo = 'hyusecs.github.io';
+      
+      const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/dispatches`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${pat}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        body: JSON.stringify({
+          event_type: 'redeploy_event',
+          client_payload: {
+            triggered_by: 'system_admin_panel',
+            timestamp: new Date().toISOString()
+          }
+        })
+      });
+
+      if (response.ok) {
+        if (statusText) statusText.textContent = 'SIGNAL_RECEIVED: DEPLOYMENT_QUEUED';
+        setTimeout(() => {
+           if (statusEl) statusEl.classList.add('hidden');
+           deployBtn.disabled = false;
+        }, 5000);
+      } else {
+        const err = await response.json();
+        throw new Error(err.message || 'DISPATCH_REJECTED');
+      }
+    } catch (error: any) {
+      console.error(error);
+      if (statusEl) statusEl.classList.add('hidden');
+      if (errorEl) errorEl.classList.remove('hidden');
+      if (errorText) errorText.textContent = error.message;
+      deployBtn.disabled = false;
+    }
+  });
+</script>

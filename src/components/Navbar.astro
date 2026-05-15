@@ -1,134 +1,93 @@
 ---
-const links = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Activity", href: "#activity" },
-  { name: "Contact", href: "#contact" },
-];
+import { getSystemConfig } from '../lib/firebase/config';
+
+const config = await getSystemConfig();
+const resumeUrl = config.resumeUrl;
 ---
 
-<nav class="sticky top-0 z-50 bg-surface-high/95 backdrop-blur-sm border-b border-system-border" role="navigation" aria-label="Main navigation">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-14">
-      <div class="flex-shrink-0 flex items-center gap-2 pr-4 sm:pr-0">
-        <span class="text-binary-green font-bold" aria-hidden="true">❯</span>
-        <a href="#" class="text-xs sm:text-sm font-bold text-text-muted hover:text-binary-green transition-colors animate-glitch-hover whitespace-nowrap">CJ_Portfolio</a>
+<nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-obsidian/80 backdrop-blur-md border-b border-system-border">
+  <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+    <!-- Brand -->
+    <a href="/" class="flex items-center gap-2 group">
+      <div class="w-8 h-8 bg-binary-green flex items-center justify-center font-bold text-obsidian text-lg">
+        L
       </div>
-
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-baseline space-x-4 sm:space-x-6">
-        {links.map((link) => (
-          <a
-            href={link.href}
-            class="text-text-dim hover:text-binary-green py-2 text-xs sm:text-sm font-medium transition-colors duration-200 animate-glitch-hover whitespace-nowrap"
-          >
-            <span class="text-text-deemphasized" aria-hidden="true">./</span>{link.name.toLowerCase()}
-          </a>
-        ))}
+      <div class="flex flex-col">
+        <span class="text-white font-bold text-sm tracking-tight group-hover:text-binary-green transition-colors">LEGASPI</span>
+        <span class="text-text-dim text-[10px] font-mono leading-none uppercase">v5.2.0-stable</span>
       </div>
+    </a>
 
-      <!-- Mobile Hamburger -->
-      <button
-        id="hamburger-btn"
-        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 cursor-pointer group"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="mobile-drawer"
-      >
-        <span class="hamburger-line w-5 h-[2px] bg-text-dim group-hover:bg-binary-green transition-all duration-200 origin-center"></span>
-        <span class="hamburger-line w-5 h-[2px] bg-text-dim group-hover:bg-binary-green transition-all duration-200 origin-center"></span>
-        <span class="hamburger-line w-3.5 h-[2px] bg-text-dim group-hover:bg-binary-green transition-all duration-200 origin-center self-end"></span>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <div class="flex items-center gap-6">
+        <a href="#about" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">About</a>
+        <a href="#projects" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Projects</a>
+        <a href="#skills" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Skills</a>
+        <a href="#contact" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Contact</a>
+      </div>
+      
+      <div class="h-8 w-px bg-system-border"></div>
+      
+      <a href={resumeUrl} target="_blank" class="flex items-center gap-2 text-caution-yellow hover:text-white text-xs font-mono transition-colors">
+        <span aria-hidden="true">📄</span> {resumeUrl.split('/').pop()}
+      </a>
+    </div>
+
+    <!-- Mobile Toggle -->
+    <button id="mobile-toggle" class="md:hidden text-white p-2" aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 bg-obsidian z-[60] flex flex-col translate-x-full transition-transform duration-300 md:hidden">
+    <div class="h-16 border-b border-system-border flex items-center justify-between px-4 bg-neutral-surface">
+      <span class="text-binary-green font-mono text-xs uppercase tracking-widest">System Navigation</span>
+      <button id="close-drawer" class="text-white p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
+    </div>
+    <div class="flex-grow flex flex-col justify-center items-center gap-8 p-8">
+      <a href="#about" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./About</a>
+      <a href="#projects" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Projects</a>
+      <a href="#skills" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Skills</a>
+      <a href="#contact" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Contact</a>
+      
+      <div class="w-full h-px bg-system-border my-4"></div>
+      
+      <a href={resumeUrl} target="_blank" class="flex items-center gap-3 text-caution-yellow text-lg font-mono">
+        <span aria-hidden="true">📄</span> {resumeUrl.split('/').pop()}
+      </a>
+    </div>
+    <div class="p-8 border-t border-system-border bg-neutral-surface text-[10px] font-mono text-text-dim flex justify-between">
+      <span>SECURE_CONNECTION: TRUE</span>
+      <span>v5.2.0</span>
     </div>
   </div>
 </nav>
 
-<!-- Mobile Drawer Overlay -->
-<div id="drawer-backdrop" class="fixed inset-0 bg-black/60 z-[998] hidden" aria-hidden="true"></div>
-
-<!-- Mobile Drawer -->
-<div
-  id="mobile-drawer"
-  class="fixed top-0 right-0 h-full w-64 bg-layer-2 border-l border-system-border z-[999] hidden flex-col"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Navigation menu"
->
-  <div class="flex items-center justify-between px-5 h-14 border-b border-system-border">
-    <span class="text-text-dim text-xs font-mono uppercase tracking-widest">Navigation</span>
-    <button id="drawer-close" class="text-text-dim hover:text-binary-green transition-colors text-lg cursor-pointer" aria-label="Close navigation menu">
-      ✕
-    </button>
-  </div>
-  <div class="flex flex-col py-4 flex-grow">
-    {links.map((link, i) => (
-      <a
-        href={link.href}
-        class="drawer-link text-text-dim hover:text-binary-green hover:bg-system-border-dim px-5 py-3 text-sm font-medium transition-colors duration-200"
-      >
-        <span class="text-text-deemphasized mr-1" aria-hidden="true">❯</span> {link.name.toLowerCase()}
-      </a>
-    ))}
-  </div>
-  <div class="px-5 py-4 border-t border-system-border">
-    <a href="/LEGASPI_RESUME.pdf" target="_blank" class="flex items-center gap-2 text-caution-yellow hover:text-white text-xs font-mono transition-colors">
-      <span aria-hidden="true">📄</span> LEGASPI_RESUME.pdf
-    </a>
-  </div>
-</div>
-
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('hamburger-btn');
-    const drawer = document.getElementById('mobile-drawer');
-    const backdrop = document.getElementById('drawer-backdrop');
-    const closeBtn = document.getElementById('drawer-close');
-    const drawerLinks = document.querySelectorAll('.drawer-link');
-    const lines = hamburger?.querySelectorAll('.hamburger-line');
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const closeDrawer = document.getElementById('close-drawer');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    let isOpen = false;
+  function openMenu() {
+    mobileDrawer?.classList.remove('translate-x-full');
+    document.body.style.overflow = 'hidden';
+  }
 
-    function openDrawer() {
-      isOpen = true;
-      drawer?.classList.remove('hidden', 'drawer-close');
-      drawer?.classList.add('flex', 'drawer-open');
-      backdrop?.classList.remove('hidden');
-      hamburger?.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
+  function closeMenu() {
+    mobileDrawer?.classList.add('translate-x-full');
+    document.body.style.overflow = '';
+  }
 
-    function closeDrawer() {
-      isOpen = false;
-      drawer?.classList.remove('drawer-open');
-      drawer?.classList.add('drawer-close');
-      backdrop?.classList.add('hidden');
-      hamburger?.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-      
-      setTimeout(() => {
-        drawer?.classList.add('hidden');
-        drawer?.classList.remove('flex', 'drawer-close');
-      }, 200);
-    }
-
-    hamburger?.addEventListener('click', () => {
-      if (isOpen) closeDrawer();
-      else openDrawer();
-    });
-
-    closeBtn?.addEventListener('click', closeDrawer);
-    backdrop?.addEventListener('click', closeDrawer);
-
-    drawerLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        closeDrawer();
-      });
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isOpen) closeDrawer();
-    });
-  });
+  mobileToggle?.addEventListener('click', openMenu);
+  closeDrawer?.addEventListener('click', closeMenu);
+  mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 </script>

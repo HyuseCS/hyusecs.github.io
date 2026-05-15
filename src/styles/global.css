@@ -27,11 +27,6 @@
   --radius-sm: 2px;
   --radius-none: 0px;
 
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 32px;
 }
 
 @layer base {

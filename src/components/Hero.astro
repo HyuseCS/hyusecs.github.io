@@ -1,86 +1,116 @@
-<section id="hero" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian relative overflow-hidden animate-boot">
-  <!-- Animated Grid Background -->
-  <div class="absolute inset-0 hero-grid-bg pointer-events-none" aria-hidden="true"></div>
-  
+---
+import { getSystemConfig } from '../lib/firebase/config';
 
+const config = await getSystemConfig();
+const resumeUrl = config.resumeUrl;
+---
 
-  <div class="p-5 md:p-8 flex-grow flex flex-col justify-center items-center relative z-10">
-    <div class="space-y-4 max-w-4xl w-full animate-on-scroll">
-      <div class="space-y-4">
-        <div class="flex gap-2 text-binary-green items-center">
-          <span class="font-bold" aria-hidden="true">❯</span>
-          <span id="hero-typewriter" class="text-text-muted font-mono border-r-2 border-text-muted pr-1 min-h-[1.5rem]"></span>
-        </div>
+<section id="hero" class="min-h-screen flex flex-col justify-center border-b border-system-border bg-obsidian pt-16">
+  <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
+    <div class="max-w-6xl w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-             const target = document.getElementById("hero-typewriter");
-             if(!target) return;
-             
-             const textToType = "whoami";
-             let index = 0;
-
-             // Blink the cursor via border color toggle
-             setInterval(() => {
-               target.style.borderColor = target.style.borderColor === "transparent" ? "var(--color-text-muted)" : "transparent";
-             }, 500);
-
-             // Execute typewriter with slight delay for effect
-             setTimeout(() => {
-               const typingInterval = setInterval(() => {
-                 target.textContent += textToType.charAt(index);
-                 index++;
-                 if (index >= textToType.length) {
-                   clearInterval(typingInterval);
-                 }
-               }, 120);
-             }, 600); // Increased delay slightly for boot effect
-          });
-        </script>
-        
-        <div class="pl-2 sm:pl-4 py-6">
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 animate-on-scroll stagger-2">
-            Christian John Legaspi
-          </h1>
-          <p class="text-sm sm:text-base md:text-lg text-text-dim max-w-2xl leading-relaxed animate-on-scroll stagger-3">
-            <span class="text-binary-green">const</span> role = <span class="text-caution-yellow">"Full Stack Developer"</span>;
-            <br /><br />
-            Computer Science student at USTP and Full Stack Developer based in Cagayan de Oro. Building robust software solutions and web applications.
-          </p>
-        </div>
-
-        <div class="animate-on-scroll stagger-3">
-          <div class="flex gap-2 text-binary-green pt-4">
-            <span class="font-bold" aria-hidden="true">❯</span>
-            <span class="text-text-muted">ls -a ./highlights</span>
+        <!-- Main Content -->
+        <div class="lg:col-span-8 space-y-8">
+          <div class="space-y-4">
+            <div class="flex gap-2 text-binary-green mb-4 text-xs sm:text-sm animate-on-scroll">
+              <span class="font-bold">❯</span>
+              <span class="text-text-muted">cat ~/bio/intro.md</span>
+            </div>
+            
+            <h1 class="text-text-primary text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter leading-none animate-on-scroll">
+              Christian John Legaspi
+            </h1>
+            
+            <p class="text-text-muted text-base sm:text-lg md:text-xl max-w-xl leading-relaxed animate-on-scroll">
+              <span class="text-binary-green">Full Stack Developer</span> & <span class="text-caution-yellow">CS Student</span>. Building high-density digital systems with precision and craft.
+            </p>
+            
+            <div class="flex flex-wrap gap-4 pt-4 animate-on-scroll">
+              <a href="#projects" class="group px-4 py-2 bg-binary-green text-obsidian text-xs sm:text-sm font-bold uppercase tracking-widest hover:brightness-110 transition-all flex items-center gap-2">
+                ./view_projects.sh
+              </a>
+              <a href={resumeUrl} target="_blank" class="px-4 py-2 border border-system-border text-text-dim text-xs sm:text-sm font-bold uppercase tracking-widest hover:border-binary-green hover:text-binary-green transition-all flex items-center gap-2">
+                <span>📄</span> Get Resume
+              </a>
+            </div>
           </div>
 
-          <div class="pl-2 sm:pl-4 flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6 pt-4 text-sm sm:text-base">
-            <a href="#projects" class="text-binary-green hover:text-white hover:underline decoration-dashed underline-offset-4 transition-colors">
-              drwxr-xr-x  projects/
-            </a>
-            <a href="#contact" class="text-caution-yellow hover:text-white hover:underline decoration-dashed underline-offset-4 transition-colors">
-              -rw-r--r--  contact.sh
-            </a>
-            
-            <div class="relative group cursor-pointer w-fit">
-              <a href="/LEGASPI_RESUME.pdf" target="_blank" class="text-text-muted hover:text-binary-green hover:underline decoration-dashed underline-offset-4 transition-colors block">
-                -rw-r--r--  resume.pdf
-              </a>
+          <!-- Decorative Terminal Sidebar -->
+          <div class="hidden lg:block w-64 space-y-4 animate-on-scroll stagger-1">
+            <div class="border border-system-border bg-neutral-surface p-4 space-y-3 font-mono">
+              <div class="flex justify-between items-center border-b border-system-border pb-2">
+                <span class="text-text-dim text-[10px] uppercase tracking-widest">File System</span>
+                <span class="text-binary-green text-[10px]">RW</span>
+              </div>
+              <div class="space-y-1 text-xs">
+                <a href={resumeUrl} target="_blank" class="text-text-muted hover:text-binary-green hover:underline decoration-dashed underline-offset-4 transition-colors block">
+                  -rw-r--r--  resume.pdf
+                </a>
+                <span class="text-text-dim block">drwxr-xr-x  projects/</span>
+                <span class="text-text-dim block">drwxr-xr-x  about/</span>
+              </div>
               
-              <!-- PDF Hover Panel (Desktop Only) -->
-              <div class="absolute bottom-full left-0 md:-left-24 mb-4 w-[320px] h-[400px] sm:w-[600px] sm:h-[800px] bg-layer-2 border border-system-border opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 rounded-sm overflow-hidden hidden md:block origin-bottom-left scale-95 group-hover:scale-100">
-                <div class="bg-surface-high flex items-center justify-between px-3 py-1.5 border-b border-system-border">
-                  <span class="text-text-dim font-mono text-[10px]">previewing: LEGASPI_RESUME.pdf</span>
-                  <span class="text-caution-yellow font-mono text-[10px] flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-caution-yellow animate-pulse" aria-hidden="true"></span> Rendering
-                  </span>
+              <div class="pt-2">
+                <div class="bg-neutral-layer border border-system-border aspect-[3/4] relative overflow-hidden group">
+                  <div class="absolute inset-0 bg-obsidian/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    <span class="text-binary-green text-[10px] font-bold tracking-widest uppercase">Open Terminal View</span>
+                  </div>
+                  <div class="p-2 border-b border-system-border bg-neutral-layer flex justify-between items-center">
+                    <div class="flex gap-1">
+                      <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
+                      <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
+                    </div>
+                    <span class="text-text-dim font-mono text-[10px]">previewing: {resumeUrl.split('/').pop()}</span>
+                  </div>
+                  <iframe src={`${resumeUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
                 </div>
-                <iframe src="/LEGASPI_RESUME.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Telemetry Data (Desktop) -->
+        <div class="lg:col-span-4 space-y-6 hidden lg:block">
+          <div class="border border-system-border bg-neutral-surface p-6 font-mono space-y-4 animate-on-scroll stagger-2">
+            <h3 class="text-caution-yellow text-xs font-bold uppercase tracking-widest border-b border-system-border pb-2">System Status</h3>
+            <div class="space-y-3">
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px] uppercase">
+                  <span class="text-text-dim">Uptime</span>
+                  <span class="text-binary-green">99.98%</span>
+                </div>
+                <div class="h-1 bg-neutral-layer overflow-hidden">
+                  <div class="h-full bg-binary-green w-[99.98%]"></div>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px] uppercase">
+                  <span class="text-text-dim">Latency</span>
+                  <span class="text-binary-green">24ms</span>
+                </div>
+                <div class="h-1 bg-neutral-layer overflow-hidden">
+                  <div class="h-full bg-binary-green w-[24%]"></div>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex justify-between text-[10px] uppercase">
+                  <span class="text-text-dim">Core Load</span>
+                  <span class="text-caution-yellow">Optimized</span>
+                </div>
+                <div class="h-1 bg-neutral-layer overflow-hidden">
+                  <div class="h-full bg-caution-yellow w-[65%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-2 text-[10px] text-text-dim leading-tight">
+              PROD_READY_ENVIRONMENT<br/>
+              NODE_VERSION: v20.x<br/>
+              SSR_ENABLED: FALSE
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

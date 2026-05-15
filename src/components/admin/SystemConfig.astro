@@ -1,0 +1,91 @@
+---
+---
+
+<div id="system-config" class="border border-system-border bg-layer-1 p-8 space-y-8 animate-boot">
+  <div class="space-y-2 border-l-2 border-binary-green pl-4">
+    <h3 class="text-text-primary text-lg font-black uppercase tracking-tighter flex items-center gap-3">
+      <span class="text-binary-green">#</span> System Variables
+    </h3>
+    <p class="text-text-dim text-[10px] uppercase tracking-[0.2em] font-bold">Global Configuration Clusters</p>
+  </div>
+
+  <form id="config-form" class="space-y-6">
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Resume Artifact URL</label>
+      <input 
+        type="text" 
+        id="resume-url" 
+        placeholder="/LEGASPI_RESUME.pdf"
+        class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+      <p class="text-[9px] text-text-dim/60 italic font-mono uppercase tracking-tighter">Direct path or external CDN URL.</p>
+    </div>
+
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Broadcast Alert Message</label>
+      <input 
+        type="text" 
+        id="alert-msg" 
+        placeholder="System operational."
+        class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+    </div>
+
+    <button 
+      type="submit"
+      class="group w-full py-3 border border-binary-green/30 text-binary-green hover:bg-binary-green hover:text-obsidian transition-all text-[10px] uppercase tracking-[0.2em] font-black flex items-center justify-center gap-2"
+    >
+      <span class="w-1.5 h-1.5 bg-binary-green group-hover:bg-obsidian transition-colors"></span>
+      Update Parameters
+    </button>
+  </form>
+  
+  <div id="config-status" class="hidden p-3 border border-binary-green/30 bg-binary-green/5 text-binary-green text-[10px] font-mono flex items-center gap-2">
+    <span class="font-bold">[SUCCESS]</span>
+    <span class="uppercase tracking-widest">Configuration_Updated</span>
+  </div>
+</div>
+
+<script>
+  import { db } from '../../lib/firebase/client';
+  import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+  const form = document.getElementById('config-form') as HTMLFormElement;
+  const resumeInput = document.getElementById('resume-url') as HTMLInputElement;
+  const alertInput = document.getElementById('alert-msg') as HTMLInputElement;
+  const statusEl = document.getElementById('config-status');
+
+  async function loadConfig() {
+    try {
+      const docRef = doc(db, 'system', 'config');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        resumeInput.value = data.resumeUrl || '';
+        alertInput.value = data.alertMsg || '';
+      }
+    } catch (error) {
+      console.error("Config load failed", error);
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, 'system', 'config'), {
+        resumeUrl: resumeInput.value,
+        alertMsg: alertInput.value,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+        setTimeout(() => statusEl.classList.add('hidden'), 3000);
+      }
+    } catch (error) {
+      alert('UPDATE_FAILED');
+    }
+  });
+
+  loadConfig();
+</script>

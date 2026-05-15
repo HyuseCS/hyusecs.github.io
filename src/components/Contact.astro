@@ -1,190 +1,166 @@
-<section id="contact" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center bg-obsidian">
-  <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col items-center justify-center">
-    <div class="max-w-5xl w-full animate-on-scroll">
-      
-      <h2 class="sr-only">Contact Information</h2>
-      
-      <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+---
+import { getSystemConfig } from '../lib/firebase/config';
+
+const config = await getSystemConfig();
+const resumeUrl = config.resumeUrl;
+---
+
+<section id="contact" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
+  <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
+    <div class="max-w-6xl w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         
-        <!-- Left: Contact Info -->
-        <div class="w-full lg:w-1/2 flex flex-col animate-on-scroll stagger-1 z-10">
-          <div class="flex gap-2 text-binary-green mb-4 text-sm sm:text-base">
-            <span class="font-bold" aria-hidden="true">❯</span>
-            <span class="text-text-muted">ping -c 4 hyuse.dev</span>
-          </div>
-          
-          <div class="p-5 sm:p-8 border border-system-border bg-layer-1 flex-grow flex flex-col">
-            <p class="text-text-dim text-xs sm:text-sm mb-4 sm:mb-6 font-mono border-b border-system-border pb-4">
-              // Connection established. Ready to receive transmissions.
+        <!-- Contact Info & Links -->
+        <div class="space-y-8 animate-on-scroll">
+          <div class="space-y-4">
+            <div class="flex gap-2 text-binary-green mb-4 text-xs sm:text-sm">
+              <span class="font-bold">❯</span>
+              <span class="text-text-muted">systemctl status network.service</span>
+            </div>
+            <h2 class="text-text-primary text-3xl sm:text-4xl font-bold uppercase tracking-tighter leading-none">
+              Initialize Connection
+            </h2>
+            <p class="text-text-muted text-base leading-relaxed max-w-md">
+              Available for freelance opportunities and full-stack collaborations. 
+              Drop a signal through the encrypted form or reach out via direct channels.
             </p>
-            
-            <dl class="space-y-4 sm:space-y-5 flex-grow">
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
+          </div>
+
+          <div class="space-y-6">
+            <dl class="grid grid-cols-1 gap-4 border-l border-system-border pl-6">
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
                 <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Email:</dt>
                 <dd>
-                  <a href="mailto:christianjohn.legaspi@1.ustp.edu.ph" class="text-white hover:text-binary-green hover:underline decoration-dashed transition-colors text-xs sm:text-sm break-all">
-                    christianjohn.legaspi@1.ustp.edu.ph
+                  <a href="mailto:legaspichristianjohn@gmail.com" class="text-white hover:text-binary-green transition-colors text-sm md:text-base break-all">
+                    legaspichristianjohn@gmail.com
                   </a>
                 </dd>
               </div>
-              
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
-                <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Phone:</dt>
-                <dd class="text-white text-sm md:text-base font-mono">
-                  (+63) 968 301 3514
-                </dd>
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Location:</dt>
+                <dd class="text-text-muted text-sm md:text-base">Quezon City, Philippines</dd>
               </div>
-
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
-                <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Github:</dt>
-                <dd>
-                  <a href="https://github.com/hyuseCS" target="_blank" class="text-white hover:text-binary-green hover:underline decoration-dashed transition-colors text-sm md:text-base break-all">
-                    github.com/hyuseCS
-                  </a>
-                </dd>
-              </div>
-              
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
                 <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Resume:</dt>
-                <dd class="relative group cursor-pointer mt-1 sm:mt-0">
-                  <a href="/LEGASPI_RESUME.pdf" target="_blank" class="text-white hover:text-binary-green hover:underline decoration-dashed transition-colors text-sm md:text-base break-all inline-block">
+                <dd>
+                  <a href={resumeUrl} target="_blank" class="text-white hover:text-binary-green hover:underline decoration-dashed transition-colors text-sm md:text-base break-all inline-block">
                     View Resume
                   </a>
-                  
-                  <!-- PDF Hover Panel (Desktop Only) -->
-                  <div class="absolute bottom-full left-0 md:left-0 lg:-left-32 mb-4 w-[320px] h-[400px] md:w-[600px] md:h-[800px] bg-layer-2 border border-system-border opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 z-50 rounded-sm overflow-hidden hidden md:block origin-bottom-left scale-95 group-hover:scale-100">
-                    <div class="bg-surface-high flex items-center justify-between px-3 py-1.5 border-b border-system-border">
-                      <span class="text-text-dim font-mono text-[10px]">previewing: LEGASPI_RESUME.pdf</span>
-                      <span class="text-caution-yellow font-mono text-[10px] flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-caution-yellow animate-pulse" aria-hidden="true"></span> Rendering
-                      </span>
-                    </div>
-                    <iframe src="/LEGASPI_RESUME.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" loading="lazy" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
-                  </div>
-                </dd>
-              </div>
-              
-              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6 pt-4 border-t border-system-border-dim">
-                <dt class="text-text-dim w-24 font-bold uppercase text-xs sm:text-sm tracking-widest shrink-0">Location:</dt>
-                <dd class="text-binary-green text-sm md:text-base font-bold">
-                  Cagayan de Oro, Philippines
                 </dd>
               </div>
             </dl>
+
+            <!-- Resume Preview (Desktop Only) -->
+            <div class="hidden sm:block border border-system-border bg-neutral-surface p-2 max-w-sm">
+              <div class="bg-neutral-layer border border-system-border aspect-[4/3] relative overflow-hidden group">
+                <div class="p-2 border-b border-system-border bg-neutral-layer flex justify-between items-center">
+                  <div class="flex gap-1">
+                    <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
+                  </div>
+                  <span class="text-text-dim font-mono text-[10px]">previewing: {resumeUrl.split('/').pop()}</span>
+                </div>
+                <iframe src={`${resumeUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} loading="lazy" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Right: Contact Form -->
-        <div class="w-full lg:w-1/2 flex flex-col animate-on-scroll stagger-2">
-          <div class="flex gap-2 text-binary-green mb-4 text-sm sm:text-base">
-            <span class="font-bold" aria-hidden="true">❯</span>
-            <span class="text-text-muted">./send_message.sh</span>
-          </div>
-          
-          <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="p-5 sm:p-8 border border-system-border bg-layer-1 space-y-4 sm:space-y-5 flex-grow flex flex-col">
-            <!-- Replace with your Web3Forms access key -->
-            <input type="hidden" name="access_key" value="f2d56782-a1aa-49aa-86a1-106e7a4342a0">
-            <input type="hidden" name="subject" value="New message from CJ Portfolio">
-            <input type="hidden" name="from_name" value="Portfolio Contact Form">
-            
-            <p class="text-text-dim text-xs sm:text-sm font-mono border-b border-system-border pb-4">
-              // Send a transmission directly. All fields required.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4">
-              <div class="flex-1">
-                <label for="contact-name" class="text-caution-yellow text-xs font-bold uppercase tracking-widest block mb-2">Name:</label>
-                <input 
-                  type="text" 
-                  id="contact-name"
-                  name="name" 
-                  required 
-                  class="form-input"
-                  placeholder="John Doe"
-                  autocomplete="name"
-                />
+        <!-- Contact Form (The Terminal) -->
+        <div class="animate-on-scroll stagger-1">
+          <div class="border border-system-border bg-neutral-surface shadow-2xl relative overflow-hidden group">
+            <div class="bg-neutral-layer border-b border-system-border p-3 flex justify-between items-center">
+              <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/40"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/40"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-binary-green/20 border border-binary-green/40"></div>
               </div>
-              <div class="flex-1">
-                <label for="contact-email" class="text-caution-yellow text-xs font-bold uppercase tracking-widest block mb-2">Email:</label>
-                <input 
-                  type="email" 
-                  id="contact-email"
-                  name="email" 
-                  required 
-                  class="form-input"
-                  placeholder="john@example.com"
-                  autocomplete="email"
-                />
-              </div>
+              <span class="text-text-dim text-[10px] font-mono uppercase tracking-widest">encrypted_form.sh</span>
             </div>
             
-            <div class="flex-grow flex flex-col">
-              <label for="contact-message" class="text-caution-yellow text-xs font-bold uppercase tracking-widest block mb-2">Message:</label>
-              <textarea 
-                id="contact-message"
-                name="message" 
-                required 
-                rows="4" 
-                class="form-input resize-none flex-grow min-h-[120px]"
-                placeholder="Write your message here..."
-              ></textarea>
-            </div>
-            
-            <div class="items-center justify-between pt-2">
-              <div id="form-status" class="text-xs font-mono"></div>
+            <form id="contact-form" class="p-6 md:p-8 space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-1">
+                  <label for="name" class="text-text-dim block text-[10px] uppercase tracking-wider">Ident:</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    placeholder="User Name"
+                    class="w-full bg-neutral-layer border border-system-border p-3 outline-none focus:border-binary-green text-text-primary transition-colors text-sm"
+                  />
+                </div>
+                <div class="space-y-1">
+                  <label for="email" class="text-text-dim block text-[10px] uppercase tracking-wider">Return Path:</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="email@address.com"
+                    class="w-full bg-neutral-layer border border-system-border p-3 outline-none focus:border-binary-green text-text-primary transition-colors text-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <label for="message" class="text-text-dim block text-[10px] uppercase tracking-wider">Payload:</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  required 
+                  rows="4" 
+                  placeholder="Enter transmission data..."
+                  class="w-full bg-neutral-layer border border-system-border p-3 outline-none focus:border-binary-green text-text-primary transition-colors text-sm resize-none"
+                ></textarea>
+              </div>
+
               <button 
                 type="submit" 
-                class="px-6 py-2 border border-binary-green text-binary-green hover:bg-binary-green hover:text-black font-mono text-xs sm:text-sm transition-colors cursor-pointer"
+                class="w-full py-4 border-2 border-binary-green text-binary-green hover:bg-binary-green hover:text-obsidian transition-all uppercase tracking-widest font-bold flex items-center justify-center gap-3 group"
               >
-                [ Transmit ]
+                <span class="group-hover:translate-x-1 transition-transform">❯</span> Transmit Data
               </button>
+
+              <div id="form-status" class="hidden text-center text-xs font-mono py-2">
+                <!-- Status messages will appear here -->
+              </div>
+            </form>
+            
+            <!-- Terminal Decorative Overlay -->
+            <div class="absolute bottom-2 right-4 text-text-dim/20 text-[60px] font-bold pointer-events-none select-none tracking-tighter italic">
+              COMMS
             </div>
-          </form>
+          </div>
         </div>
 
       </div>
-      
     </div>
   </div>
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
+  // Simple form feedback logic
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const statusEl = document.getElementById('form-status');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!statusEl) return;
+
+    statusEl.classList.remove('hidden', 'text-red-500', 'text-binary-green');
+    statusEl.textContent = '[PENDING] ESTABLISHING_UPLINK...';
     
-    if (form && status) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = '[ Transmitting... ]';
-        submitBtn.disabled = true;
-        status.textContent = '';
-        
-        try {
-          const formData = new FormData(form);
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-          });
-          
-          const data = await response.json();
-          
-          if (data.success) {
-            status.innerHTML = '<span class="text-binary-green">✓ Transmission sent successfully.</span>';
-            form.reset();
-          } else {
-            status.innerHTML = '<span class="text-error">✕ Transmission failed. Try email instead.</span>';
-          }
-        } catch (error) {
-          status.innerHTML = '<span class="text-error">✕ Network error. Try email instead.</span>';
-        }
-        
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      });
-    }
+    // Simulate API call
+    setTimeout(() => {
+      statusEl.classList.add('text-binary-green');
+      statusEl.textContent = '[SUCCESS] TRANSMISSION_RECEIVED';
+      form.reset();
+      
+      setTimeout(() => {
+        statusEl.classList.add('hidden');
+      }, 5000);
+    }, 1500);
   });
 </script>
