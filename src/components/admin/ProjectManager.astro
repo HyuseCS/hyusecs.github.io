@@ -39,19 +39,24 @@
 </div>
 
 <!-- Add/Edit Modal (System Overlay) -->
-<div id="project-modal" class="hidden fixed inset-0 bg-black z-[200] flex items-center justify-center backdrop-blur-md overflow-y-auto p-4 md:p-12">
-  <div class="max-w-3xl w-full border border-system-border bg-layer-1 font-mono text-sm shadow-[0_0_100px_rgba(0,0,0,0.9)] animate-boot my-auto">
-    <div class="bg-layer-2 border-b border-system-border p-4 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-1.5 h-1.5 bg-binary-green animate-pulse"></div>
-        <span id="modal-title" class="text-text-primary uppercase tracking-[0.2em] font-black text-xs">New Record Entry</span>
+<div id="project-modal" class="hidden fixed inset-0 z-[200] overflow-y-auto">
+  <!-- Backdrop -->
+  <div class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
+  
+  <!-- Modal Content Wrapper -->
+  <div class="relative min-h-screen flex items-center justify-center p-4 md:p-12">
+    <div class="max-w-3xl w-full border border-system-border bg-layer-1 font-mono text-sm shadow-[0_0_100px_rgba(0,0,0,0.9)] animate-boot my-auto">
+      <div class="bg-layer-2 border-b border-system-border p-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-1.5 h-1.5 bg-binary-green animate-pulse"></div>
+          <span id="modal-title" class="text-text-primary uppercase tracking-[0.2em] font-black text-xs">New Record Entry</span>
+        </div>
+        <button id="close-modal" class="text-text-dim hover:text-white transition-colors p-1">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
       </div>
-      <button id="close-modal" class="text-text-dim hover:text-white transition-colors p-1">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-      </button>
-    </div>
-    
-    <form id="project-form" class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8 max-h-[85vh] overflow-y-auto">
+      
+      <form id="project-form" class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
       <input type="hidden" id="project-id" />
 
         <div class="space-y-2">
@@ -101,6 +106,7 @@
       </form>
     </div>
   </div>
+</div>
 <template id="project-card-template">
   <div class="project-item border border-system-border bg-layer-1 p-6 flex justify-between items-center group hover:border-binary-green/50 transition-all duration-300">
     <div class="space-y-2">
