@@ -42,27 +42,32 @@ const resumeUrl = config.resumeUrl;
               </div>
               <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
                 <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Resume:</dt>
-                <dd>
+                <dd class="relative group">
                   <a href={resumeUrl} target="_blank" class="text-white hover:text-binary-green hover:underline decoration-dashed transition-colors text-sm md:text-base break-all inline-block">
                     View Resume
                   </a>
+
+                  <!-- Floating Preview Card (Desktop Only) -->
+                  <div class="absolute bottom-full left-0 w-64 md:w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 group-hover:delay-0 delay-150 z-50 pointer-events-none group-hover:pointer-events-auto">
+                    <!-- Invisible Bridge to allow mouse movement to tooltip -->
+                    <div class="absolute top-full h-8 w-full"></div>
+                    
+                    <div class="border border-system-border bg-neutral-surface p-2 shadow-2xl space-y-2 font-mono mb-4">
+                      <div class="p-2 border-b border-system-border bg-neutral-layer flex justify-between items-center">
+                        <div class="flex gap-1">
+                          <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
+                          <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
+                        </div>
+                        <span class="text-text-dim font-mono text-[9px]">previewing: {resumeUrl.split('/').pop()}</span>
+                      </div>
+                      <div class="bg-neutral-layer border border-system-border aspect-[3/4] relative overflow-hidden">
+                        <iframe src={`${resumeUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} class="w-full h-full border-none bg-neutral-100" title="Resume preview"></iframe>
+                      </div>
+                    </div>
+                  </div>
                 </dd>
               </div>
             </dl>
-
-            <!-- Resume Preview (Desktop Only) -->
-            <div class="hidden sm:block border border-system-border bg-neutral-surface p-2 max-w-sm">
-              <div class="bg-neutral-layer border border-system-border aspect-[4/3] relative overflow-hidden group">
-                <div class="p-2 border-b border-system-border bg-neutral-layer flex justify-between items-center">
-                  <div class="flex gap-1">
-                    <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
-                    <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
-                  </div>
-                  <span class="text-text-dim font-mono text-[10px]">previewing: {resumeUrl.split('/').pop()}</span>
-                </div>
-                <iframe src={`${resumeUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} loading="lazy" class="w-full h-[calc(100%-28px)] border-none bg-neutral-100" title="Resume preview"></iframe>
-              </div>
-            </div>
           </div>
         </div>
 

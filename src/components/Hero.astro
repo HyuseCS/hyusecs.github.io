@@ -111,8 +111,11 @@ try {
             </a>
             
             <!-- Floating Preview Card -->
-            <div class="absolute bottom-full mb-6 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 w-64 md:w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pointer-events-none group-hover:pointer-events-auto">
-              <div class="border border-system-border bg-neutral-surface p-2 shadow-2xl space-y-2 font-mono">
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 w-64 md:w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 group-hover:delay-0 delay-150 z-50 pointer-events-none group-hover:pointer-events-auto">
+              <!-- Invisible Bridge to allow mouse movement to tooltip -->
+              <div class="absolute top-full h-8 w-full"></div>
+
+              <div class="border border-system-border bg-neutral-surface p-2 shadow-2xl space-y-2 font-mono mb-6">
                 <div class="p-2 border-b border-system-border bg-neutral-layer flex justify-between items-center">
                   <div class="flex gap-1">
                     <div class="w-1.5 h-1.5 rounded-full bg-system-border"></div>
