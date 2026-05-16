@@ -80,27 +80,36 @@ const resumeUrl = config.resumeUrl;
         
         <!-- Desktop ASCII Art (hidden on mobile) -->
         <div class="hidden lg:block relative">
-          <!-- Floating Logos -->
-          <div class="absolute -top-10 -left-16 animate-float opacity-30 group-hover:opacity-100 transition-opacity duration-500 select-none pointer-events-none" style="animation-duration: 7s;">
-            <img src="https://cdn.simpleicons.org/react/27c93f" class="w-8 h-8 opacity-80" alt="React" />
-          </div>
-          <div class="absolute top-1/4 -left-24 animate-float opacity-30 group-hover:opacity-100 transition-opacity duration-500 select-none pointer-events-none" style="animation-duration: 9s; animation-delay: -2s;">
-            <img src="https://cdn.simpleicons.org/astro/ffffff" class="w-8 h-8 opacity-80" alt="Astro" />
-          </div>
-          <div class="absolute -bottom-6 -left-14 animate-float opacity-30 group-hover:opacity-100 transition-opacity duration-500 select-none pointer-events-none" style="animation-duration: 8s; animation-delay: -4s;">
-            <img src="https://cdn.simpleicons.org/typescript/27c93f" class="w-8 h-8 opacity-80" alt="TypeScript" />
-          </div>
-          <div class="absolute -top-14 right-1/4 animate-float opacity-30 group-hover:opacity-100 transition-opacity duration-500 select-none pointer-events-none" style="animation-duration: 10s; animation-delay: -1s;">
-            <img src="https://cdn.simpleicons.org/firebase/ffbd2e" class="w-8 h-8 opacity-80" alt="Firebase" />
-          </div>
-          <div class="absolute top-1/2 -right-20 animate-float opacity-30 group-hover:opacity-100 transition-opacity duration-500 select-none pointer-events-none" style="animation-duration: 11s; animation-delay: -5s;">
-            <img src="https://cdn.simpleicons.org/supabase/27c93f" class="w-8 h-8 opacity-80" alt="Supabase" />
-          </div>
-          <div class="absolute -bottom-10 right-10 animate-float opacity-30 group-hover:opacity-100 transition-opacity duration-500 select-none pointer-events-none" style="animation-duration: 9s; animation-delay: -3s;">
-            <img src="https://cdn.simpleicons.org/nodedotjs/27c93f" class="w-8 h-8 opacity-80" alt="Node.js" />
+          <!-- Floating Tech Halo -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10">
+            {
+              [
+                { name: 'React', icon: 'react', color: '61DAFB', x: -320, y: -150, delay: '0s' },
+                { name: 'Next.js', icon: 'nextdotjs', color: 'FFFFFF', x: 120, y: -220, delay: '0.2s' },
+                { name: 'Astro', icon: 'astro', color: 'FF5D01', x: -180, y: -240, delay: '0.4s' },
+                { name: 'TypeScript', icon: 'typescript', color: '3178C6', x: 350, y: -80, delay: '0.6s' },
+                { name: 'Supabase', icon: 'supabase', color: '3ECF8E', x: 240, y: 180, delay: '0.1s' },
+                { name: 'Python', icon: 'python', color: '3776AB', x: -380, y: 40, delay: '0.3s' },
+                { name: 'PostgreSQL', icon: 'postgresql', color: '4169E1', x: -120, y: 260, delay: '0.5s' },
+                { name: 'MySQL', icon: 'mysql', color: '4479A1', x: 400, y: 120, delay: '0.7s' },
+                { name: 'Java', icon: 'java', color: 'ED8B00', x: -420, y: -60, delay: '0.8s' },
+                { name: 'Cloudflare', icon: 'cloudflare', color: 'F38020', x: 180, y: 240, delay: '0.9s' }
+              ].map((tech) => (
+                <div 
+                  class="absolute animate-tech-hover"
+                  style={`--tx: ${tech.x}px; --ty: ${tech.y}px; animation-delay: ${tech.delay};`}
+                >
+                  <img 
+                    src={`https://cdn.simpleicons.org/${tech.icon}/${tech.color}`} 
+                    class="w-8 h-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500" 
+                    alt={tech.name} 
+                  />
+                </div>
+              ))
+            }
           </div>
 
-          <pre class="text-binary-green font-mono text-[0.8rem] xl:text-[0.9rem] leading-none select-none text-right">
+          <pre class="text-binary-green font-mono text-[0.8rem] xl:text-[0.9rem] leading-none select-none text-right z-0 relative">
  ██████╗██╗  ██╗██████╗ ██╗███████╗████████╗██╗ █████╗ ███╗   ██╗
 ██╔════╝██║  ██║██╔══██╗██║██╔════╝╚══██╔══╝██║██╔══██╗████╗  ██║
 ██║     ███████║██████╔╝██║███████╗   ██║   ██║███████║██╔██╗ ██║

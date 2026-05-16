@@ -105,6 +105,18 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* --- Tech Halo Static Hover Logic --- */
+
+@keyframes tech-hover {
+  0%, 100% { transform: translate(var(--tx), var(--ty)) translateY(0); }
+  50% { transform: translate(var(--tx), var(--ty)) translateY(-10px); }
+}
+
+.animate-tech-hover {
+  transform: translate(var(--tx), var(--ty));
+  animation: tech-hover 6s ease-in-out infinite;
+}
+
 /* --- Utility Classes --- */
 
 .animate-boot {
