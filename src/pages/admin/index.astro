@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import LoginTerminal from '../../components/admin/LoginTerminal.astro';
 import ProjectManager from '../../components/admin/ProjectManager.astro';
+import SkillManager from '../../components/admin/SkillManager.astro';
 import SystemDeployControl from '../../components/admin/SystemDeployControl.astro';
 import SystemConfig from '../../components/admin/SystemConfig.astro';
 ---
@@ -43,8 +44,11 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <!-- Main Content -->
-          <div class="lg:col-span-8 space-y-16">
+          <div class="lg:col-span-8 space-y-20">
             <ProjectManager />
+            <div class="border-t border-system-border/30 pt-16">
+              <SkillManager />
+            </div>
           </div>
 
           <!-- Sidebar / Controls -->

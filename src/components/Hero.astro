@@ -1,8 +1,66 @@
 ---
 import { getSystemConfig } from '../lib/firebase/config';
+import { db } from '../lib/firebase/client';
+import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore';
 
 const config = await getSystemConfig();
 const resumeUrl = config.resumeUrl;
+
+// Fetch primary skills for the Hero Halo
+let heroTech = [];
+const TECH_MAP: Record<string, { icon: string; color: string }> = {
+  'ReactTS': { icon: 'react', color: '61DAFB' },
+  'NextJS': { icon: 'nextdotjs', color: 'FFFFFF' },
+  'Astro': { icon: 'astro', color: 'FF5D01' },
+  'TypeScript': { icon: 'typescript', color: '3178C6' },
+  'JavaScript': { icon: 'javascript', color: 'F7DF1E' },
+  'VueJS': { icon: 'vuedotjs', color: '4FC08D' },
+  'Python': { icon: 'python', color: '3776AB' },
+  'Java': { icon: 'java', color: 'ED8B00' },
+  'Supabase': { icon: 'supabase', color: '3ECF8E' },
+  'PostgreSQL': { icon: 'postgresql', color: '4169E1' },
+  'MySQL': { icon: 'mysql', color: '4479A1' },
+  'Cloudflare': { icon: 'cloudflare', color: 'F38020' },
+  'Nginx': { icon: 'nginx', color: '009639' },
+  'Tailscale': { icon: 'tailscale', color: '5D46E3' },
+  'HTML/CSS': { icon: 'html5', color: 'E34F26' }
+};
+
+// Preset randomized coordinates to avoid ASCII art collision
+const POSITIONS = [
+  { x: -320, y: -150 }, { x: 120, y: -220 }, { x: -180, y: -240 },
+  { x: 350, y: -80 }, { x: 240, y: 180 }, { x: -380, y: 40 },
+  { x: -120, y: 260 }, { x: 400, y: 120 }, { x: -420, y: -60 },
+  { x: 180, y: 240 }, { x: 300, y: -200 }, { x: -250, y: 150 }
+];
+
+try {
+  if (import.meta.env.PUBLIC_FIREBASE_API_KEY) {
+    const q = query(
+      collection(db, 'skills'), 
+      orderBy('order', 'asc')
+    );
+    const snapshot = await getDocs(q);
+    
+    // Filter for primary skills in memory to avoid needing a composite index
+    const primarySkills = snapshot.docs
+      .map(doc => doc.data())
+      .filter(s => s.level === 'primary')
+      .slice(0, POSITIONS.length);
+
+    heroTech = primarySkills.map((data, index) => {
+      const mapping = TECH_MAP[data.name] || { icon: 'code', color: 'FFFFFF' };
+      return {
+        name: data.name,
+        ...mapping,
+        ...POSITIONS[index],
+        delay: `${(index * 0.1).toFixed(1)}s`
+      };
+    });
+  }
+} catch (error) {
+  console.error("Hero tech fetch failed:", error);
+}
 ---
 
 <section id="hero" class="min-h-screen flex flex-col justify-center border-b border-system-border bg-obsidian pt-16">
@@ -83,18 +141,7 @@ const resumeUrl = config.resumeUrl;
           <!-- Floating Tech Halo -->
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-10">
             {
-              [
-                { name: 'React', icon: 'react', color: '61DAFB', x: -320, y: -150, delay: '0s' },
-                { name: 'Next.js', icon: 'nextdotjs', color: 'FFFFFF', x: 120, y: -220, delay: '0.2s' },
-                { name: 'Astro', icon: 'astro', color: 'FF5D01', x: -180, y: -240, delay: '0.4s' },
-                { name: 'TypeScript', icon: 'typescript', color: '3178C6', x: 350, y: -80, delay: '0.6s' },
-                { name: 'Supabase', icon: 'supabase', color: '3ECF8E', x: 240, y: 180, delay: '0.1s' },
-                { name: 'Python', icon: 'python', color: '3776AB', x: -380, y: 40, delay: '0.3s' },
-                { name: 'PostgreSQL', icon: 'postgresql', color: '4169E1', x: -120, y: 260, delay: '0.5s' },
-                { name: 'MySQL', icon: 'mysql', color: '4479A1', x: 400, y: 120, delay: '0.7s' },
-                { name: 'Java', icon: 'java', color: 'ED8B00', x: -420, y: -60, delay: '0.8s' },
-                { name: 'Cloudflare', icon: 'cloudflare', color: 'F38020', x: 180, y: 240, delay: '0.9s' }
-              ].map((tech) => (
+              heroTech.map((tech) => (
                 <div 
                   class="absolute animate-tech-hover"
                   style={`--tx: ${tech.x}px; --ty: ${tech.y}px; animation-delay: ${tech.delay};`}

@@ -1,31 +1,27 @@
 ---
-const frontendSkills = [
-  { name: 'ReactTS', level: 'primary' },
-  { name: 'NextJS', level: 'primary' },
-  { name: 'VueJS', level: 'familiar' },
-  { name: 'Astro', level: 'familiar' },
-  { name: 'HTML/CSS', level: 'primary' },
-  { name: 'JavaScript', level: 'primary' },
-];
+import { db } from '../lib/firebase/client';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
-const backendSkills = [
-  { name: 'Python', level: 'primary' },
-  { name: 'Java', level: 'primary' },
-  { name: 'C++', level: 'familiar' },
-  { name: 'JavaFX', level: 'familiar' },
-  { name: 'Tkinter/CustomTkinter', level: 'familiar' },
-];
+let frontendSkills = [];
+let backendSkills = [];
+let infraSkills = [];
 
-const infraSkills = [
-  { name: 'Supabase', level: 'primary' },
-  { name: 'MariaDB', level: 'familiar' },
-  { name: 'MySQL', level: 'primary' },
-  { name: 'PostgreSQL', level: 'primary' },
-  { name: 'Debian/Ubuntu Server', level: 'familiar' },
-  { name: 'Nginx', level: 'familiar' },
-  { name: 'Cloudflare', level: 'familiar' },
-  { name: 'Tailscale', level: 'familiar' },
-];
+try {
+  if (import.meta.env.PUBLIC_FIREBASE_API_KEY) {
+    const skillsCol = collection(db, 'skills');
+    const skillsQuery = query(skillsCol, orderBy('order', 'asc'));
+    const snapshot = await getDocs(skillsQuery);
+    
+    if (!snapshot.empty) {
+      const allSkills = snapshot.docs.map(doc => doc.data());
+      frontendSkills = allSkills.filter(s => s.category === 'frontend');
+      backendSkills = allSkills.filter(s => s.category === 'backend');
+      infraSkills = allSkills.filter(s => s.category === 'infra');
+    }
+  }
+} catch (error) {
+  console.error("Error fetching skills from Firestore:", error);
+}
 
 function getProficiencyBar(level: string) {
   return level === 'primary' ? '████░' : '███░░';
@@ -35,54 +31,91 @@ function getProficiencyBar(level: string) {
 <section id="skills" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
   <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-4xl w-full">
-      <div class="flex gap-2 text-binary-green mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
+      <div class="flex gap-2 text-binary-green mb-10 md:mb-12 text-sm sm:text-base animate-on-scroll">
         <span class="font-bold" aria-hidden="true">❯</span>
-        <span class="text-text-muted break-all">python fetch_skills.py --format=blocks</span>
+        <span class="text-text-muted break-all">systemctl status technical-proficiency.service</span>
       </div>
 
       <h2 class="sr-only">Technical Skills</h2>
 
-      <div class="pl-2 sm:pl-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-        <div class="space-y-4 animate-on-scroll stagger-1">
-          <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-system-border pb-2">Frontend</h3>
-          <div class="flex flex-wrap gap-2 pt-2">
-            {frontendSkills.map(skill => (
-              <span class={`group px-2 sm:px-3 py-1.5 bg-surface-high border border-system-border text-xs sm:text-sm text-text-muted hover:border-binary-green hover:bg-binary-green/10 transition-colors cursor-default relative`}>
-                {skill.name}
-                <span class={`ml-1.5 proficiency-bar active-bar ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-deemphasized'} opacity-0 transition-opacity duration-300`} aria-label={`${skill.level} proficiency`}>{getProficiencyBar(skill.level)}</span>
-              </span>
-            ))}
+      <div class="pl-0 sm:pl-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+        <!-- Frontend -->
+        {frontendSkills.length > 0 && (
+          <div class="space-y-6 animate-on-scroll stagger-1">
+            <div class="flex items-center justify-between border-b border-system-border pb-2">
+              <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Frontend_Core</h3>
+              <span class="text-[9px] text-text-dim font-mono">[ ACTIVE_LOAD: 98% ]</span>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+              {frontendSkills.map(skill => (
+                <div class="group flex flex-col gap-1.5">
+                  <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
+                    <span class={`text-[10px] uppercase font-bold ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-dim'}`}>{skill.level}</span>
+                  </div>
+                  <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
+                    <div 
+                      class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
+                      data-level={skill.level === 'primary' ? '85%' : '65%'}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div class="space-y-4 animate-on-scroll stagger-2">
-          <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-system-border pb-2">Backend & Desktop</h3>
-          <div class="flex flex-wrap gap-2 pt-2">
-            {backendSkills.map(skill => (
-              <span class={`group px-2 sm:px-3 py-1.5 bg-surface-high border border-system-border text-xs sm:text-sm text-text-muted hover:border-binary-green hover:bg-binary-green/10 transition-colors cursor-default relative`}>
-                {skill.name}
-                <span class={`ml-1.5 proficiency-bar active-bar ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-deemphasized'} opacity-0 transition-opacity duration-300`} aria-label={`${skill.level} proficiency`}>{getProficiencyBar(skill.level)}</span>
-              </span>
-            ))}
+        <!-- Backend -->
+        {backendSkills.length > 0 && (
+          <div class="space-y-6 animate-on-scroll stagger-2">
+            <div class="flex items-center justify-between border-b border-system-border pb-2">
+              <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Backend_Runtime</h3>
+              <span class="text-[9px] text-text-dim font-mono">[ STABLE_BUILD ]</span>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+              {backendSkills.map(skill => (
+                <div class="group flex flex-col gap-1.5">
+                  <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
+                    <span class={`text-[10px] uppercase font-bold ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-dim'}`}>{skill.level}</span>
+                  </div>
+                  <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
+                    <div 
+                      class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
+                      data-level={skill.level === 'primary' ? '85%' : '65%'}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div class="space-y-4 md:col-span-2 animate-on-scroll stagger-3">
-          <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-widest border-b border-system-border pb-2">Databases & Infrastructure</h3>
-          <div class="flex flex-wrap gap-2 pt-2">
-            {infraSkills.map(skill => (
-              <span class={`group px-2 sm:px-3 py-1.5 bg-layer-1 border border-system-border text-xs sm:text-sm ${skill.level === 'primary' ? 'text-text-muted hover:border-binary-green' : 'text-text-dim hover:text-text-muted hover:border-text-dim'} transition-colors cursor-default relative`}>
-                {skill.name}
-                <span class={`ml-1.5 proficiency-bar active-bar ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-deemphasized'} opacity-0 transition-opacity duration-300`} aria-label={`${skill.level} proficiency`}>{getProficiencyBar(skill.level)}</span>
-              </span>
-            ))}
+        <!-- Infra -->
+        {infraSkills.length > 0 && (
+          <div class="space-y-6 md:col-span-2 animate-on-scroll stagger-3">
+            <div class="flex items-center justify-between border-b border-system-border pb-2">
+              <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Infra_Database_Protocols</h3>
+              <span class="text-[9px] text-text-dim font-mono">[ CONNECTION_SECURE ]</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6">
+              {infraSkills.map(skill => (
+                <div class="group flex flex-col gap-1.5">
+                  <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
+                    <span class={`text-[10px] uppercase font-bold ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-dim'}`}>{skill.level}</span>
+                  </div>
+                  <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
+                    <div 
+                      class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
+                      data-level={skill.level === 'primary' ? '85%' : '65%'}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="mt-6 pl-2 sm:pl-4 flex items-center gap-4 text-[10px] text-text-deemphasized font-mono animate-on-scroll stagger-3">
-        <span class="flex items-center gap-1"><span class="text-binary-green proficiency-bar">████░</span> primary</span>
-        <span class="flex items-center gap-1"><span class="text-text-deemphasized proficiency-bar">███░░</span> familiar</span>
+        )}
       </div>
 
     </div>
@@ -92,7 +125,7 @@ function getProficiencyBar(level: string) {
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const section = document.getElementById('skills');
-    const bars = section?.querySelectorAll('.proficiency-bar.active-bar');
+    const bars = section?.querySelectorAll('.proficiency-bar-fill');
 
     if (!section || !bars) return;
 
@@ -101,17 +134,10 @@ function getProficiencyBar(level: string) {
         if (entry.isIntersecting) {
           bars.forEach((bar, index) => {
             const htmlBar = bar as HTMLElement;
+            const targetWidth = htmlBar.getAttribute('data-level') || '0%';
             setTimeout(() => {
-              htmlBar.style.opacity = '1';
-              const fullText = htmlBar.textContent || '';
-              htmlBar.textContent = '';
-              let i = 0;
-              const streamInterval = setInterval(() => {
-                htmlBar.textContent += fullText.charAt(i);
-                i++;
-                if (i >= fullText.length) clearInterval(streamInterval);
-              }, 80);
-            }, 300 + (index * 40));
+              htmlBar.style.width = targetWidth;
+            }, 300 + (index * 50));
           });
           observer.unobserve(section);
         }
