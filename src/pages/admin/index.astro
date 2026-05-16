@@ -13,8 +13,8 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
     <LoginTerminal />
 
     <div id="admin-dashboard" class="hidden pt-24 pb-20 px-4 md:px-8">
-      <div class="max-w-7xl mx-auto space-y-12 animate-boot">
-        <header class="border-b border-system-border pb-8 space-y-6">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <header class="border-b border-system-border pb-8 space-y-6 animate-boot">
           <div class="flex items-center gap-3 text-binary-green text-[10px] font-mono tracking-widest">
             <span class="inline-block w-2 h-2 rounded-full bg-binary-green animate-pulse"></span>
             <span class="uppercase">Session Status: Active</span>
@@ -42,7 +42,7 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
           </div>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 animate-boot stagger-1">
           <!-- Main Content -->
           <div class="lg:col-span-8 space-y-20">
             <ProjectManager />
