@@ -3,42 +3,6 @@ import ProjectCard from './ProjectCard.astro';
 import { db } from '../lib/firebase/client';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
-const staticProjects = [
-  {
-    title: "JRJC Car Rental Booking",
-    date: "Sep 2025",
-    description: "Full-stack Developer (Remote). Developed the booking system's management panel, Live Dashboard, Car Management module, and the Website's Content Management System.",
-    tags: ["NextJS", "Supabase", "Vercel"],
-    repoUrl: "https://github.com/seodowa/JRJC",
-    liveUrl: "https://jrjc.vercel.app/",
-    hasLiveUrl: true,
-    className: "",
-    staggerClass: "stagger-1"
-  },
-  {
-    title: "Happsay",
-    date: "Jan 2025",
-    description: "Frontend Developer & QA (Remote). Contributed to assessing quality and fixing last-minute UI/UX bugs in the frontend found through rigorous quality assurance testing.",
-    tags: ["React", "Django REST"],
-    repoUrl: "https://github.com/Aguynamedkent7/Happsay_frontend",
-    liveUrl: "https://happsay-frontend.vercel.app",
-    hasLiveUrl: true,
-    className: "",
-    staggerClass: "stagger-2"
-  },
-  {
-    title: "Library Management & QR Scanner",
-    date: "May 2025",
-    description: "Full-stack Developer. Developed the webcam QR scanning and recognition software natively using JavaFX and successfully integrated it into a local PostgreSQL database for efficient student record fetching.",
-    tags: ["Java", "PostgreSQL"],
-    repoUrl: "https://github.com/Aguynamedkent7/Library_Management_System",
-    liveUrl: "#",
-    hasLiveUrl: false,
-    className: "md:col-span-2 max-w-2xl w-full mx-auto",
-    staggerClass: "stagger-3"
-  }
-];
-
 let projects = [];
 
 try {
@@ -54,14 +18,15 @@ try {
         ...doc.data()
       }));
     } else {
-      projects = staticProjects;
+      console.warn("Firestore 'projects' collection is empty.");
+      projects = [];
     }
   } else {
-    projects = staticProjects;
+    projects = [];
   }
 } catch (error) {
   console.error("Error fetching projects from Firestore:", error);
-  projects = staticProjects;
+  projects = [];
 }
 ---
 
