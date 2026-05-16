@@ -100,17 +100,33 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
   const logoutBtn = document.getElementById('logout-btn');
   const mainContainer = document.getElementById('main-layout-container');
 
+  // WHITELIST: Replace this with your actual GitHub email
+  const ADMIN_WHITELIST = ['christianjohn.legaspi@1.ustp.edu.ph', 'legaspichristianjohn@gmail.com'];
+
   // Reset layout constraints for admin page
   if (mainContainer) {
     mainContainer.classList.remove('flex', 'flex-col', 'pb-[30px]', 'sm:pb-8');
     mainContainer.classList.add('block', 'w-full');
   }
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
+  onAuthStateChanged(auth, async (user) => {
+    if (user && ADMIN_WHITELIST.includes(user.email || '')) {
       if (loginTerminal) loginTerminal.classList.add('hidden');
       if (adminDashboard) adminDashboard.classList.remove('hidden');
       if (userDisplay) userDisplay.textContent = user.email;
+    } else if (user) {
+      // Unauthorized user logged in
+      console.warn("ACCESS_DENIED: Unauthorized identity detected.");
+      await signOut(auth);
+      
+      // Update terminal status to show error
+      const statusEl = document.getElementById('terminal-status');
+      const errorEl = document.getElementById('login-error');
+      if (statusEl) statusEl.textContent = 'STATUS: IDENTITY_REJECTED';
+      if (errorEl) {
+        errorEl.classList.remove('hidden');
+        errorEl.innerHTML = '<span class="font-bold">[SECURITY_BREACH]</span><br/>IDENTITY_NOT_IN_WHITELIST. ACCESS_REVOKED.';
+      }
     } else {
       if (loginTerminal) loginTerminal.classList.remove('hidden');
       if (adminDashboard) adminDashboard.classList.add('hidden');
