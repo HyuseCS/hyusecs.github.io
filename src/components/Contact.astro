@@ -2,7 +2,7 @@
 import { getSystemConfig } from '../lib/firebase/config';
 
 const config = await getSystemConfig();
-const resumeUrl = config.resumeUrl;
+const { resumeUrl, email, location, phone } = config;
 ---
 
 <section id="contact" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
@@ -31,14 +31,18 @@ const resumeUrl = config.resumeUrl;
               <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
                 <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Email:</dt>
                 <dd>
-                  <a href="mailto:legaspichristianjohn@gmail.com" class="text-white hover:text-binary-green transition-colors text-sm md:text-base break-all">
-                    legaspichristianjohn@gmail.com
+                  <a href={`mailto:${email}`} class="text-white hover:text-binary-green transition-colors text-sm md:text-base break-all">
+                    {email}
                   </a>
                 </dd>
               </div>
               <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
                 <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Location:</dt>
-                <dd class="text-text-muted text-sm md:text-base">Quezon City, Philippines</dd>
+                <dd class="text-text-muted text-sm md:text-base">{location}</dd>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Contact:</dt>
+                <dd class="text-text-muted text-sm md:text-base">{phone}</dd>
               </div>
               <div class="flex flex-col sm:flex-row sm:items-baseline gap-2">
                 <dt class="text-caution-yellow w-24 font-bold uppercase text-xs tracking-widest shrink-0">Resume:</dt>

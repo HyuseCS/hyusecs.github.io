@@ -32,7 +32,7 @@ try {
 
 <section id="projects" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
   <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
-    <div class="max-w-4xl w-full">
+    <div class="max-w-6xl w-full">
       <div class="flex gap-2 text-binary-green mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
         <span class="font-bold" aria-hidden="true">❯</span>
         <span class="text-text-muted break-all">ls -la /opt/deployed_projects</span>
@@ -40,7 +40,7 @@ try {
       
       <h2 class="sr-only">Projects</h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pl-0 sm:pl-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
         {projects.map((p) => (
           <ProjectCard 
             title={p.title}
@@ -50,7 +50,6 @@ try {
             repoUrl={p.repoUrl}
             liveUrl={p.liveUrl}
             hasLiveUrl={p.hasLiveUrl}
-            className={p.className}
             staggerClass={p.staggerClass}
           />
         ))}

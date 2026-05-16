@@ -4,7 +4,10 @@ import { doc, getDoc } from 'firebase/firestore';
 export async function getSystemConfig() {
   const defaultConfig = {
     resumeUrl: '/LEGASPI_RESUME.pdf',
-    alertMsg: 'System operational.'
+    alertMsg: 'System operational.',
+    email: 'christianjohn.legaspi@ustp.edu.ph',
+    location: 'Cagayan de Oro City, Philippines',
+    phone: '+63 968 301 3514'
   };
 
   try {
