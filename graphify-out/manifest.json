@@ -1,114 +1,167 @@
 {
   "/home/hyuse/Desktop/hyusecs.github.io/astro.config.mjs": {
     "mtime": 1770964048.4993274,
-    "hash": "11373ee4e0f6423783c20af6b6438696"
+    "ast_hash": "11373ee4e0f6423783c20af6b6438696",
+    "semantic_hash": "11373ee4e0f6423783c20af6b6438696"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/tsconfig.json": {
+    "mtime": 1770964048.5029962,
+    "ast_hash": "1d3613ac08bdda17e2b82251613dbc21",
+    "semantic_hash": "1d3613ac08bdda17e2b82251613dbc21"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/scratch.js": {
     "mtime": 1776172503.458433,
-    "hash": "9aa97d22d43c48ed120469da073aa079"
+    "ast_hash": "9aa97d22d43c48ed120469da073aa079",
+    "semantic_hash": "9aa97d22d43c48ed120469da073aa079"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/DESIGN.json": {
+    "mtime": 1778923495.3248715,
+    "ast_hash": "43bcd716b38dc64e248226e7f343eca6",
+    "semantic_hash": "43bcd716b38dc64e248226e7f343eca6"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/package.json": {
+    "mtime": 1778923779.4324174,
+    "ast_hash": "db56ce35efd61798901ac0c36228763b",
+    "semantic_hash": "db56ce35efd61798901ac0c36228763b"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/About.astro": {
-    "mtime": 1778828004.5457528,
-    "hash": "22c19fd8ca9a477459d7ef8b5a90e0c1"
+    "mtime": 1778923495.3398714,
+    "ast_hash": "22c19fd8ca9a477459d7ef8b5a90e0c1",
+    "semantic_hash": "22c19fd8ca9a477459d7ef8b5a90e0c1"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/Contact.astro": {
-    "mtime": 1778842889.917909,
-    "hash": "22c81d83ce3a7e24f9339ed7e3b21553"
+    "mtime": 1778923495.3408713,
+    "ast_hash": "0582759afc75c31822cc7d9257b027ca",
+    "semantic_hash": "0582759afc75c31822cc7d9257b027ca"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/Footer.astro": {
-    "mtime": 1778829234.060462,
-    "hash": "0a9fa3c5bcf7a0aeb1d98fdbc005b6e7"
+    "mtime": 1778923495.3408713,
+    "ast_hash": "0a9fa3c5bcf7a0aeb1d98fdbc005b6e7",
+    "semantic_hash": "0a9fa3c5bcf7a0aeb1d98fdbc005b6e7"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/Hero.astro": {
-    "mtime": 1778842859.3513947,
-    "hash": "e43bbff06e96fcc49b4227fbf8bfc45f"
+    "mtime": 1778923495.3408713,
+    "ast_hash": "512091794a338e867ebaf9704ffc0cd2",
+    "semantic_hash": "512091794a338e867ebaf9704ffc0cd2"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/Navbar.astro": {
-    "mtime": 1778842876.0811856,
-    "hash": "616392481d56c09135b0fb180d617bd6"
-  },
-  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Projects.astro": {
-    "mtime": 1778842736.470297,
-    "hash": "65299393a97a89d942f8e07817509ecf"
-  },
-  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Skills.astro": {
-    "mtime": 1778828004.5457528,
-    "hash": "55aa8d57087ce498955b9e9662ab7065"
+    "mtime": 1778923495.3408713,
+    "ast_hash": "b8707afc5e16b2f53b2b2f4e0eeb2c32",
+    "semantic_hash": "b8707afc5e16b2f53b2b2f4e0eeb2c32"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/ProjectCard.astro": {
-    "mtime": 1778827987.7759073,
-    "hash": "df4962edbb4cb3a02033c4cd1305b273"
+    "mtime": 1778923495.3408713,
+    "ast_hash": "df4962edbb4cb3a02033c4cd1305b273",
+    "semantic_hash": "df4962edbb4cb3a02033c4cd1305b273"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Projects.astro": {
+    "mtime": 1778923495.3418715,
+    "ast_hash": "f2648f89d4daa81b14ebc01417690886",
+    "semantic_hash": "f2648f89d4daa81b14ebc01417690886"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/Skills.astro": {
+    "mtime": 1778923495.3418715,
+    "ast_hash": "9fb7ddd6904b1a84c573cf0a9b186445",
+    "semantic_hash": "9fb7ddd6904b1a84c573cf0a9b186445"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/Telemetry.astro": {
-    "mtime": 1778829442.3338664,
-    "hash": "f325ac613b6bbec5f1647e9bca6d77e2"
+    "mtime": 1778923495.3428714,
+    "ast_hash": "f325ac613b6bbec5f1647e9bca6d77e2",
+    "semantic_hash": "f325ac613b6bbec5f1647e9bca6d77e2"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/admin/LoginTerminal.astro": {
-    "mtime": 1778846257.6626835,
-    "hash": "f3bd85aca670ee5bba3ea0c78f1fd79b"
+    "mtime": 1778923495.3428714,
+    "ast_hash": "f3bd85aca670ee5bba3ea0c78f1fd79b",
+    "semantic_hash": "f3bd85aca670ee5bba3ea0c78f1fd79b"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/admin/ProjectManager.astro": {
-    "mtime": 1778844935.9456234,
-    "hash": "e054517e512d273f8885ca5e3911b28f"
+    "mtime": 1778923495.3437302,
+    "ast_hash": "003789dfa88dc35f8f4e5ae534c9672d",
+    "semantic_hash": "003789dfa88dc35f8f4e5ae534c9672d"
   },
-  "/home/hyuse/Desktop/hyusecs.github.io/src/components/admin/SystemDeployControl.astro": {
-    "mtime": 1778845022.205058,
-    "hash": "fdc802bbdb1118329843d8f19f00566b"
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/admin/SkillManager.astro": {
+    "mtime": 1778923495.3440032,
+    "ast_hash": "064c0a11c3816a3e17210ec81b1b2566",
+    "semantic_hash": "064c0a11c3816a3e17210ec81b1b2566"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/components/admin/SystemConfig.astro": {
-    "mtime": 1778845068.0637493,
-    "hash": "7ff7f49256d86fbc017c10999c4dd513"
+    "mtime": 1778923495.3440032,
+    "ast_hash": "7ba3872250d7a6ab2d644a83881bd867",
+    "semantic_hash": "7ba3872250d7a6ab2d644a83881bd867"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/src/components/admin/SystemDeployControl.astro": {
+    "mtime": 1778923495.3440032,
+    "ast_hash": "fdc802bbdb1118329843d8f19f00566b",
+    "semantic_hash": "fdc802bbdb1118329843d8f19f00566b"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/layouts/Layout.astro": {
-    "mtime": 1778845223.4961057,
-    "hash": "90b4e84727e8770fc36321be186d20d0"
+    "mtime": 1778923495.3440032,
+    "ast_hash": "90b4e84727e8770fc36321be186d20d0",
+    "semantic_hash": "90b4e84727e8770fc36321be186d20d0"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/pages/index.astro": {
     "mtime": 1775097346.3987005,
-    "hash": "4f2e4b871b1e4b1d66b8145d97bf8211"
+    "ast_hash": "4f2e4b871b1e4b1d66b8145d97bf8211",
+    "semantic_hash": "4f2e4b871b1e4b1d66b8145d97bf8211"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/pages/404.astro": {
-    "mtime": 1778826735.0516753,
-    "hash": "02bfcdcfa237e051963f9e3cd60039cd"
+    "mtime": 1778923495.3453116,
+    "ast_hash": "02bfcdcfa237e051963f9e3cd60039cd",
+    "semantic_hash": "02bfcdcfa237e051963f9e3cd60039cd"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/pages/admin/index.astro": {
-    "mtime": 1778845145.1091812,
-    "hash": "cedc1f547b5ac44497290f45eb23b1e8"
+    "mtime": 1778923495.3453116,
+    "ast_hash": "8acf71303201eff4538e8f334df973be",
+    "semantic_hash": "8acf71303201eff4538e8f334df973be"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/lib/firebase/client.ts": {
-    "mtime": 1778842714.8449447,
-    "hash": "7e08342169be5a7e8c5c58c7fea6f612"
+    "mtime": 1778923495.3452332,
+    "ast_hash": "7e08342169be5a7e8c5c58c7fea6f612",
+    "semantic_hash": "7e08342169be5a7e8c5c58c7fea6f612"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/lib/firebase/config.ts": {
-    "mtime": 1778842834.7999809,
-    "hash": "202615ca0b8730ffa25d806256460a7c"
+    "mtime": 1778923495.3453116,
+    "ast_hash": "56eb0e6cc77bd36cdd3127e2f1ba30fe",
+    "semantic_hash": "56eb0e6cc77bd36cdd3127e2f1ba30fe"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/README.md": {
     "mtime": 1770964048.4993274,
-    "hash": "de76967202948d4f70d11f4b3d9e7674"
-  },
-  "/home/hyuse/Desktop/hyusecs.github.io/PRODUCT.md": {
-    "mtime": 1778772588.590824,
-    "hash": "d54a6cc848030e1bb96cb5410cef427d"
+    "ast_hash": "de76967202948d4f70d11f4b3d9e7674",
+    "semantic_hash": "de76967202948d4f70d11f4b3d9e7674"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/DESIGN.md": {
-    "mtime": 1778773304.0562325,
-    "hash": "f4003e5b0c98733c5fcda926b54a9cd8"
+    "mtime": 1778923495.3248715,
+    "ast_hash": "f4003e5b0c98733c5fcda926b54a9cd8",
+    "semantic_hash": "f4003e5b0c98733c5fcda926b54a9cd8"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/PRODUCT.md": {
+    "mtime": 1778923495.325746,
+    "ast_hash": "d54a6cc848030e1bb96cb5410cef427d",
+    "semantic_hash": "d54a6cc848030e1bb96cb5410cef427d"
+  },
+  "/home/hyuse/Desktop/hyusecs.github.io/GEMINI.md": {
+    "mtime": 1778989551.9645388,
+    "ast_hash": "dfa78ce3e511dd6603b7f09426c21173",
+    "semantic_hash": "dfa78ce3e511dd6603b7f09426c21173"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/public/LEGASPI_RESUME.pdf": {
-    "mtime": 1776172997.8094857,
-    "hash": "3715f31f67bbb9d27f3eb4dfec155bfc"
+    "mtime": 1778923495.3398714,
+    "ast_hash": "623b2d40b8994f38177b5e27cd175f10",
+    "semantic_hash": "623b2d40b8994f38177b5e27cd175f10"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/public/favicon.svg": {
     "mtime": 1770964048.5017383,
-    "hash": "8c13f40658976ea1dfb8ba37a8be0e8d"
+    "ast_hash": "8c13f40658976ea1dfb8ba37a8be0e8d",
+    "semantic_hash": "8c13f40658976ea1dfb8ba37a8be0e8d"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/assets/astro.svg": {
     "mtime": 1770964048.5019367,
-    "hash": "d26c3520f1f016bad745392df8b5fae5"
+    "ast_hash": "d26c3520f1f016bad745392df8b5fae5",
+    "semantic_hash": "d26c3520f1f016bad745392df8b5fae5"
   },
   "/home/hyuse/Desktop/hyusecs.github.io/src/assets/background.svg": {
     "mtime": 1770964048.5020998,
-    "hash": "c2eaad48507ad1ea41f586bd5c21858a"
+    "ast_hash": "c2eaad48507ad1ea41f586bd5c21858a",
+    "semantic_hash": "c2eaad48507ad1ea41f586bd5c21858a"
   }
 }

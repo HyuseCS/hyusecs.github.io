@@ -1,13 +1,2 @@
-/home/hyuse/Desktop/hyusecs.github.io/src/components/About.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Contact.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Footer.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Hero.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Navbar.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Projects.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Skills.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/ProjectCard.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/components/Telemetry.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/layouts/Layout.astro
-/home/hyuse/Desktop/hyusecs.github.io/src/pages/404.astro
-/home/hyuse/Desktop/hyusecs.github.io/PRODUCT.md
-/home/hyuse/Desktop/hyusecs.github.io/DESIGN.md
+/home/hyuse/Desktop/hyusecs.github.io/tsconfig.json
+/home/hyuse/Desktop/hyusecs.github.io/GEMINI.md

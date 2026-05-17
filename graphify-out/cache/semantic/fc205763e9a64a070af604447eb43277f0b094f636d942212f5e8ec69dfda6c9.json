@@ -1,0 +1,1 @@
+{"nodes": [{"id": "firebase_client_client", "label": "Firebase Client Initialization", "file_type": "code", "source_file": "src/lib/firebase/client.ts"}], "edges": [], "hyperedges": []}

@@ -1,22 +1,28 @@
 {
   "nodes": [
     {
-      "id": "components_about",
-      "label": "About Me Component",
+      "id": "firebase_client_client",
+      "label": "Firebase Client Initialization",
       "file_type": "code",
-      "source_file": "src/components/About.astro"
+      "source_file": "src/lib/firebase/client.ts"
+    },
+    {
+      "id": "firebase_config_config",
+      "label": "Firebase Config",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/config.ts"
+    },
+    {
+      "id": "firebase_config_getsystemconfig",
+      "label": "getSystemConfig",
+      "file_type": "code",
+      "source_file": "src/lib/firebase/config.ts"
     },
     {
       "id": "components_contact",
       "label": "Contact Component",
       "file_type": "code",
       "source_file": "src/components/Contact.astro"
-    },
-    {
-      "id": "components_footer",
-      "label": "Footer Component",
-      "file_type": "code",
-      "source_file": "src/components/Footer.astro"
     },
     {
       "id": "components_hero",
@@ -32,27 +38,51 @@
     },
     {
       "id": "components_projects",
-      "label": "Projects Section",
+      "label": "Projects Component",
       "file_type": "code",
       "source_file": "src/components/Projects.astro"
     },
     {
       "id": "components_skills",
-      "label": "Skills Section",
+      "label": "Skills Component",
       "file_type": "code",
       "source_file": "src/components/Skills.astro"
     },
     {
-      "id": "components_projectcard",
-      "label": "Project Card Component",
+      "id": "components_admin_loginterminal",
+      "label": "LoginTerminal Component",
       "file_type": "code",
-      "source_file": "src/components/ProjectCard.astro"
+      "source_file": "src/components/admin/LoginTerminal.astro"
     },
     {
-      "id": "components_telemetry",
-      "label": "Telemetry Component",
+      "id": "components_admin_projectmanager",
+      "label": "ProjectManager Component",
       "file_type": "code",
-      "source_file": "src/components/Telemetry.astro"
+      "source_file": "src/components/admin/ProjectManager.astro"
+    },
+    {
+      "id": "components_admin_skillmanager",
+      "label": "SkillManager Component",
+      "file_type": "code",
+      "source_file": "src/components/admin/SkillManager.astro"
+    },
+    {
+      "id": "components_admin_systemconfig",
+      "label": "SystemConfig Component",
+      "file_type": "code",
+      "source_file": "src/components/admin/SystemConfig.astro"
+    },
+    {
+      "id": "components_admin_systemdeploycontrol",
+      "label": "SystemDeployControl Component",
+      "file_type": "code",
+      "source_file": "src/components/admin/SystemDeployControl.astro"
+    },
+    {
+      "id": "pages_admin_index",
+      "label": "Admin Index Page",
+      "file_type": "code",
+      "source_file": "src/pages/admin/index.astro"
     },
     {
       "id": "layouts_layout",
@@ -61,206 +91,210 @@
       "source_file": "src/layouts/Layout.astro"
     },
     {
-      "id": "pages_404",
-      "label": "404 Error Page",
+      "id": "design_system_monitor",
+      "label": "Design System: The System Monitor",
+      "file_type": "concept",
+      "source_file": "DESIGN.json"
+    },
+    {
+      "id": "package_json_dependencies",
+      "label": "NPM Dependencies",
       "file_type": "code",
-      "source_file": "src/pages/404.astro"
-    },
-    {
-      "id": "hyusecs_github_io_product",
-      "label": "Product Manifesto",
-      "file_type": "document",
-      "source_file": "PRODUCT.md"
-    },
-    {
-      "id": "hyusecs_github_io_design",
-      "label": "Design System Specification",
-      "file_type": "document",
-      "source_file": "DESIGN.md"
-    },
-    {
-      "id": "concept_the_system_monitor",
-      "label": "The System Monitor",
-      "file_type": "rationale",
-      "source_file": "DESIGN.md",
-      "rationale": "A dark, tactile environment where code, status, and telemetry are primary citizens. Rejects 'AI slop' aesthetics in favor of rigid grids and terminal prompts."
-    },
-    {
-      "id": "concept_terminal_first",
-      "label": "Terminal-First Aesthetic",
-      "file_type": "rationale",
-      "source_file": "DESIGN.md",
-      "rationale": "Monospaced typography and command-line affordances drive the interface. Uses prefixes like ❯, ./, or // to indicate command intent."
-    },
-    {
-      "id": "concept_high_craft",
-      "label": "High-Craft Design",
-      "file_type": "rationale",
-      "source_file": "PRODUCT.md",
-      "rationale": "Obsessive attention to detail in animations, telemetry data, and system-level status."
-    },
-    {
-      "id": "concept_show_dont_tell",
-      "label": "Show, Don't Tell Principle",
-      "file_type": "rationale",
-      "source_file": "PRODUCT.md",
-      "rationale": "Use live telemetry and working code patterns (typewriters, terminal logs) to prove expertise rather than static claims."
-    },
-    {
-      "id": "concept_the_machine_aesthetic",
-      "label": "The Machine Aesthetic",
-      "file_type": "rationale",
-      "source_file": "PRODUCT.md",
-      "rationale": "Embrace the raw materials of computing—grids, terminal prompts, and status daemons."
-    },
-    {
-      "id": "concept_tonal_layering",
-      "label": "Tonal Layering",
-      "file_type": "rationale",
-      "source_file": "DESIGN.md",
-      "rationale": "Depth is conveyed through background shifts and border treatments instead of drop shadows. Surfaces move from Obsidian base to Layer 1 and Layer 2."
+      "source_file": "package.json"
     }
   ],
   "edges": [
     {
-      "source": "layouts_layout",
-      "target": "components_navbar",
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/layouts/Layout.astro"
+      "source": "firebase_config_getsystemconfig",
+      "target": "firebase_client_client",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
     },
     {
-      "source": "layouts_layout",
-      "target": "components_footer",
+      "source": "components_contact",
+      "target": "firebase_config_getsystemconfig",
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/layouts/Layout.astro"
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_hero",
+      "target": "firebase_config_getsystemconfig",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_hero",
+      "target": "firebase_client_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_navbar",
+      "target": "firebase_config_getsystemconfig",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
     },
     {
       "source": "components_projects",
-      "target": "components_projectcard",
+      "target": "firebase_client_client",
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/components/Projects.astro"
+      "confidence_score": 1.0
     },
     {
-      "source": "pages_404",
-      "target": "layouts_layout",
+      "source": "components_skills",
+      "target": "firebase_client_client",
       "relation": "calls",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/pages/404.astro"
+      "confidence_score": 1.0
     },
     {
-      "source": "hyusecs_github_io_design",
-      "target": "concept_the_system_monitor",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
-    },
-    {
-      "source": "concept_the_system_monitor",
+      "source": "pages_admin_index",
       "target": "layouts_layout",
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "DESIGN.md"
-    },
-    {
-      "source": "concept_terminal_first",
-      "target": "hyusecs_github_io_design",
-      "relation": "conceptually_related_to",
+      "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
+      "confidence_score": 1.0
     },
     {
-      "source": "concept_high_craft",
-      "target": "hyusecs_github_io_design",
-      "relation": "conceptually_related_to",
+      "source": "pages_admin_index",
+      "target": "components_admin_loginterminal",
+      "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
+      "confidence_score": 1.0
     },
     {
-      "source": "concept_show_dont_tell",
-      "target": "components_telemetry",
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "PRODUCT.md"
-    },
-    {
-      "source": "concept_the_machine_aesthetic",
-      "target": "hyusecs_github_io_design",
-      "relation": "conceptually_related_to",
+      "source": "pages_admin_index",
+      "target": "components_admin_projectmanager",
+      "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
+      "confidence_score": 1.0
     },
     {
-      "source": "concept_tonal_layering",
-      "target": "hyusecs_github_io_design",
-      "relation": "conceptually_related_to",
+      "source": "pages_admin_index",
+      "target": "components_admin_skillmanager",
+      "relation": "references",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
+      "confidence_score": 1.0
     },
     {
-      "source": "hyusecs_github_io_product",
-      "target": "hyusecs_github_io_design",
+      "source": "pages_admin_index",
+      "target": "components_admin_systemdeploycontrol",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "pages_admin_index",
+      "target": "components_admin_systemconfig",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "pages_admin_index",
+      "target": "firebase_client_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_admin_loginterminal",
+      "target": "firebase_client_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_admin_projectmanager",
+      "target": "firebase_client_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_admin_skillmanager",
+      "target": "firebase_client_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "components_admin_systemconfig",
+      "target": "firebase_client_client",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "layouts_layout",
+      "target": "components_navbar",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "firebase_client_client",
+      "target": "package_json_dependencies",
       "relation": "references",
       "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "PRODUCT.md"
+      "confidence_score": 0.95
     },
     {
-      "source": "components_telemetry",
-      "target": "concept_show_dont_tell",
-      "relation": "implements",
+      "source": "components_contact",
+      "target": "design_system_monitor",
+      "relation": "references",
       "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "src/components/Telemetry.astro"
+      "confidence_score": 0.85
+    },
+    {
+      "source": "components_hero",
+      "target": "design_system_monitor",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85
+    },
+    {
+      "source": "components_projects",
+      "target": "design_system_monitor",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85
+    },
+    {
+      "source": "components_skills",
+      "target": "design_system_monitor",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85
+    },
+    {
+      "source": "layouts_layout",
+      "target": "design_system_monitor",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85
     }
   ],
   "hyperedges": [
     {
-      "id": "frontend_architecture",
-      "label": "Frontend Component Architecture",
+      "id": "admin_dashboard_components",
+      "label": "Admin Dashboard Components",
       "nodes": [
-        "layouts_layout",
-        "components_navbar",
-        "components_footer",
-        "components_hero",
-        "components_about",
-        "components_skills",
-        "components_projects",
-        "components_telemetry",
-        "components_contact"
+        "components_admin_loginterminal",
+        "components_admin_projectmanager",
+        "components_admin_skillmanager",
+        "components_admin_systemconfig",
+        "components_admin_systemdeploycontrol",
+        "pages_admin_index"
       ],
       "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/layouts/Layout.astro"
-    },
-    {
-      "id": "design_language",
-      "label": "System Monitor Design Language",
-      "nodes": [
-        "concept_the_system_monitor",
-        "concept_terminal_first",
-        "concept_high_craft",
-        "concept_the_machine_aesthetic",
-        "concept_tonal_layering"
-      ],
-      "relation": "form",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "DESIGN.md"
+      "confidence": "INFERRED",
+      "confidence_score": 0.95
     }
   ],
   "input_tokens": 0,

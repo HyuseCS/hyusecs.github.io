@@ -1,120 +1,158 @@
-# Graph Report - .  (2026-05-15)
+# Graph Report - .  (2026-05-17)
 
 ## Corpus Check
-- 12 files · ~9,531 words
+- 33 files · ~12,270 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 145 nodes · 183 edges · 22 communities (11 shown, 11 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.87)
+- 221 nodes · 240 edges · 31 communities (15 shown, 16 thin omitted)
+- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 20 edges (avg confidence: 0.91)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Portfolio Layout & Sections|Portfolio Layout & Sections]]
-- [[_COMMUNITY_GitHub Telemetry & Contributions|GitHub Telemetry & Contributions]]
-- [[_COMMUNITY_Firebase Auth & Deploy Controls|Firebase Auth & Deploy Controls]]
-- [[_COMMUNITY_Firebase Firestore Data Management|Firebase Firestore Data Management]]
-- [[_COMMUNITY_Live System Daemon (Footer)|Live System Daemon (Footer)]]
-- [[_COMMUNITY_Project Record CRUD Logic|Project Record CRUD Logic]]
-- [[_COMMUNITY_Navigation & Mobile Drawer|Navigation & Mobile Drawer]]
-- [[_COMMUNITY_Contact Form Handling|Contact Form Handling]]
-- [[_COMMUNITY_Skill Proficiency Logic|Skill Proficiency Logic]]
-- [[_COMMUNITY_DOM Manipulation Utilities|DOM Manipulation Utilities]]
-- [[_COMMUNITY_System Monitor Design System|System Monitor Design System]]
-- [[_COMMUNITY_Build Configuration|Build Configuration]]
-- [[_COMMUNITY_Community 12|Community 12]]
-- [[_COMMUNITY_Community 13|Community 13]]
-- [[_COMMUNITY_Community 14|Community 14]]
-- [[_COMMUNITY_Community 15|Community 15]]
-- [[_COMMUNITY_Community 16|Community 16]]
-- [[_COMMUNITY_Community 17|Community 17]]
+- [[_COMMUNITY_Firebase Integration & Core Components|Firebase Integration & Core Components]]
+- [[_COMMUNITY_Project Design & Narrative|Project Design & Narrative]]
+- [[_COMMUNITY_Admin Dashboard & Resume|Admin Dashboard & Resume]]
+- [[_COMMUNITY_Package Configuration|Package Configuration]]
+- [[_COMMUNITY_Layout & Navigation|Layout & Navigation]]
+- [[_COMMUNITY_GitHub Telemetry|GitHub Telemetry]]
+- [[_COMMUNITY_Color Palette|Color Palette]]
+- [[_COMMUNITY_Admin Authentication & Skill Management|Admin Authentication & Skill Management]]
+- [[_COMMUNITY_Project Management Component|Project Management Component]]
+- [[_COMMUNITY_System Deployment Control|System Deployment Control]]
+- [[_COMMUNITY_Skills Component|Skills Component]]
+- [[_COMMUNITY_JSDOM Scratchpad|JSDOM Scratchpad]]
+- [[_COMMUNITY_TypeScript Configuration|TypeScript Configuration]]
+- [[_COMMUNITY_Astro Configuration|Astro Configuration]]
+- [[_COMMUNITY_Design System & Layout|Design System & Layout]]
+- [[_COMMUNITY_Astro Dependency|Astro Dependency]]
+- [[_COMMUNITY_Firebase Dependency|Firebase Dependency]]
+- [[_COMMUNITY_TailwindCSS Dependency|TailwindCSS Dependency]]
+- [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 19|Community 19]]
 - [[_COMMUNITY_Community 20|Community 20]]
 - [[_COMMUNITY_Community 21|Community 21]]
+- [[_COMMUNITY_Community 22|Community 22]]
+- [[_COMMUNITY_Community 23|Community 23]]
+- [[_COMMUNITY_Community 24|Community 24]]
+- [[_COMMUNITY_Community 25|Community 25]]
+- [[_COMMUNITY_Community 26|Community 26]]
+- [[_COMMUNITY_Community 27|Community 27]]
+- [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `../components/Telemetry.astro` - 16 edges
-2. `../layouts/Layout.astro` - 7 edges
-3. `Home Page` - 7 edges
-4. `Design System Specification` - 6 edges
-5. `../components/Contact.astro` - 5 edges
-6. `projects` - 5 edges
-7. `Main Layout` - 5 edges
-8. `../components/Skills.astro` - 4 edges
-9. `Telemetry & GitHub Activity` - 4 edges
-10. `../components/Hero.astro` - 3 edges
+2. `../../components/admin/ProjectManager.astro` - 15 edges
+3. `../components/Hero.astro` - 10 edges
+4. `../components/Skills.astro` - 10 edges
+5. `Firebase Client Initialization` - 10 edges
+6. `../components/Projects.astro` - 9 edges
+7. `../../components/admin/SkillManager.astro` - 8 edges
+8. `../../components/admin/SystemDeployControl.astro` - 8 edges
+9. `../../layouts/Layout.astro` - 8 edges
+10. `narrative` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `The System Monitor` --rationale_for--> `Main Layout`  [INFERRED]
   DESIGN.md → src/layouts/Layout.astro
-- `Matrix Selector Test` --semantically_similar_to--> `Telemetry & GitHub Activity`  [INFERRED] [semantically similar]
-  scratch.js → src/components/Telemetry.astro
-- `Telemetry Component` --implements--> `Show, Don't Tell Principle`  [INFERRED]
-  src/components/Telemetry.astro → PRODUCT.md
-- `Hero Section` --references--> `Resume PDF`  [EXTRACTED]
-  src/components/Hero.astro → public/LEGASPI_RESUME.pdf
-- `Contact Section` --references--> `Resume PDF`  [EXTRACTED]
-  src/components/Contact.astro → public/LEGASPI_RESUME.pdf
+- `Show, Don't Tell Principle` --rationale_for--> `Telemetry Component`  [INFERRED]
+  PRODUCT.md → src/components/Telemetry.astro
+- `Product Manifesto` --references--> `Design System Specification`  [INFERRED]
+  PRODUCT.md → DESIGN.md
+- `Firebase Client Initialization` --references--> `NPM Dependencies`  [INFERRED]
+  src/lib/firebase/client.ts → package.json
+- `Contact Component` --references--> `Design System: The System Monitor`  [INFERRED]
+  src/components/Contact.astro → DESIGN.json
 
-## Communities (22 total, 11 thin omitted)
+## Hyperedges (group relationships)
+- **Portfolio Section Structure** — components_hero_hero, components_about_about, components_skills_skills, components_projects_projects, components_telemetry_telemetry, components_contact_contact [EXTRACTED 1.00]
+- **Admin Dashboard** — admin_loginterminal_astro, admin_projectmanager_astro, admin_skillmanager_astro, admin_systemconfig_astro, admin_systemdeploycontrol_astro, pages_admin_index_astro [INFERRED 0.95]
+- **System Monitor Design Language** — concept_the_system_monitor, concept_terminal_first, concept_high_craft, concept_the_machine_aesthetic, concept_tonal_layering [EXTRACTED 1.00]
+- **Admin Dashboard Components** — components_admin_loginterminal, components_admin_projectmanager, components_admin_skillmanager, components_admin_systemconfig, components_admin_systemdeploycontrol, pages_admin_index [INFERRED 0.95]
 
-### Community 0 - "Portfolio Layout & Sections"
+## Communities (31 total, 16 thin omitted)
+
+### Community 0 - "Firebase Integration & Core Components"
+Cohesion: 0.08
+Nodes (24): displayName, purpose, neutral-bg, primary, secondary, displayName, purpose, extensions (+16 more)
+
+### Community 1 - "Project Design & Narrative"
+Cohesion: 0.13
+Nodes (19): firebase/auth, heroTech, POSITIONS, primarySkills, q, projects, projectsCol, projectsQuery (+11 more)
+
+### Community 2 - "Admin Dashboard & Resume"
+Cohesion: 0.15
+Nodes (8): Firebase Auth, Firestore DB, getSystemConfig, Firestore Collection: projects, Firestore Collection: skills, Firestore Document: system/config, GitHub Actions Workflow, admin/index.astro
+
+### Community 3 - "Package Configuration"
+Cohesion: 0.18
+Nodes (18): LoginTerminal Component, ProjectManager Component, SkillManager Component, SystemConfig Component, SystemDeployControl Component, Contact Component, Hero Component, Navbar Component (+10 more)
+
+### Community 4 - "Layout & Navigation"
 Cohesion: 0.12
-Nodes (23): About Section, Contact Section, Footer Component, Hero Section, Navbar Component, Project Card, projects, Skills Section (+15 more)
+Nodes (14): cpu, cpuStates, mem, memStates, closeDrawer, mobileDrawer, mobileLinks, ../styles/global.css (+6 more)
 
-### Community 1 - "GitHub Telemetry & Contributions"
-Cohesion: 0.22
+### Community 5 - "GitHub Telemetry"
+Cohesion: 0.12
+Nodes (16): dependencies, astro, firebase, firebase-tools, tailwindcss, @tailwindcss/vite, engines, node (+8 more)
+
+### Community 6 - "Color Palette"
+Cohesion: 0.12
 Nodes (16): allContributions, colorToIntensity, currentYear, curWeek, days, el, firstDay, firstValidDay (+8 more)
 
-### Community 2 - "Firebase Auth & Deploy Controls"
-Cohesion: 0.17
-Nodes (11): errorEl, githubBtn, provider, statusEl, deployBtn, errorText, saveBtn, statusText (+3 more)
-
-### Community 3 - "Firebase Firestore Data Management"
-Cohesion: 0.19
-Nodes (10): firebase/auth, ./ProjectCard.astro, projectsCol, projectsQuery, staticProjects, auth, db, firebaseConfig (+2 more)
-
-### Community 4 - "Live System Daemon (Footer)"
-Cohesion: 0.19
-Nodes (11): cpu, cpuStates, mem, memStates, ../styles/global.css, href, id, cursor (+3 more)
-
-### Community 5 - "Project Record CRUD Logic"
+### Community 7 - "Admin Authentication & Skill Management"
 Cohesion: 0.18
-Nodes (11): cardTemplate, currentProjects, data, deleteProject(), emptyEl, fetchProjects(), loadingEl, modal (+3 more)
+Nodes (11): errorEl, githubBtn, provider, statusEl, data, initialSkills, skillsCol, ../../lib/firebase/client (+3 more)
 
-### Community 6 - "Navigation & Mobile Drawer"
+### Community 8 - "Project Management Component"
+Cohesion: 0.18
+Nodes (12): cardTemplate, currentProjects, data, deleteProject(), emptyEl, fetchProjects(), loadingEl, modal (+4 more)
+
+### Community 9 - "System Deployment Control"
 Cohesion: 0.17
-Nodes (7): backdrop, closeBtn, drawer, drawerLinks, lines, mobileDrawer, mobileLinks
+Nodes (11): components, generatedAt, narrative, donts, dos, keyCharacteristics, northStar, overview (+3 more)
 
-### Community 7 - "Contact Form Handling"
-Cohesion: 0.24
-Nodes (9): form, formData, status, submitBtn, target, typingInterval, ../lib/firebase/config, ../components/Contact.astro (+1 more)
+### Community 10 - "Skills Component"
+Cohesion: 0.25
+Nodes (8): deployBtn, errorEl, errorText, saveBtn, statusEl, statusText, storedPat, ../../components/admin/SystemDeployControl.astro
 
-### Community 8 - "Skill Proficiency Logic"
-Cohesion: 0.38
-Nodes (6): backendSkills, bars, getProficiencyBar(), infraSkills, observer, ../components/Skills.astro
+### Community 11 - "JSDOM Scratchpad"
+Cohesion: 0.25
+Nodes (7): allSkills, backendSkills, frontendSkills, infraSkills, skillsCol, skillsQuery, ../components/Skills.astro
 
-### Community 9 - "DOM Manipulation Utilities"
+### Community 12 - "TypeScript Configuration"
+Cohesion: 0.33
+Nodes (6): High-Craft Design, Terminal-First Aesthetic, The Machine Aesthetic, Tonal Layering, Design System Specification, Product Manifesto
+
+### Community 13 - "Astro Configuration"
 Cohesion: 0.5
 Nodes (3): dom, els, { JSDOM }
 
+### Community 14 - "Design System & Layout"
+Cohesion: 0.5
+Nodes (3): exclude, extends, include
+
 ## Knowledge Gaps
-- **60 isolated node(s):** `isBuild`, `{ JSDOM }`, `dom`, `els`, `../components/About.astro` (+55 more)
+- **136 isolated node(s):** `isBuild`, `extends`, `include`, `exclude`, `{ JSDOM }` (+131 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **16 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `projects` connect `Portfolio Layout & Sections` to `Firebase Firestore Data Management`?**
-  _High betweenness centrality (0.223) - this node is a cross-community bridge._
-- **Why does `../components/Projects.astro` connect `Firebase Firestore Data Management` to `Portfolio Layout & Sections`, `Firebase Auth & Deploy Controls`?**
-  _High betweenness centrality (0.181) - this node is a cross-community bridge._
-- **Why does `../components/Telemetry.astro` connect `GitHub Telemetry & Contributions` to `Firebase Auth & Deploy Controls`?**
-  _High betweenness centrality (0.174) - this node is a cross-community bridge._
-- **Are the 8 inferred relationships involving `Terminal Aesthetic` (e.g. with `projects` and `Hero Section`) actually correct?**
-  _`Terminal Aesthetic` has 8 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `isBuild`, `{ JSDOM }`, `dom` to the rest of the system?**
-  _60 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Portfolio Layout & Sections` be split into smaller, more focused modules?**
-  _Cohesion score 0.12 - nodes in this community are weakly interconnected._
+- **Why does `getSystemConfig()` connect `Package Configuration` to `Project Design & Narrative`?**
+  _High betweenness centrality (0.094) - this node is a cross-community bridge._
+- **Why does `../../layouts/Layout.astro` connect `Layout & Navigation` to `Project Design & Narrative`, `Admin Authentication & Skill Management`?**
+  _High betweenness centrality (0.075) - this node is a cross-community bridge._
+- **Why does `../components/Telemetry.astro` connect `Color Palette` to `Project Design & Narrative`?**
+  _High betweenness centrality (0.070) - this node is a cross-community bridge._
+- **Are the 2 inferred relationships involving `Firebase Client Initialization` (e.g. with `getSystemConfig()` and `NPM Dependencies`) actually correct?**
+  _`Firebase Client Initialization` has 2 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `isBuild`, `extends`, `include` to the rest of the system?**
+  _136 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Firebase Integration & Core Components` be split into smaller, more focused modules?**
+  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
+- **Should `Project Design & Narrative` be split into smaller, more focused modules?**
+  _Cohesion score 0.13 - nodes in this community are weakly interconnected._
