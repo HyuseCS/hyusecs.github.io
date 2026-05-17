@@ -3,6 +3,29 @@ import { getSystemConfig } from '../lib/firebase/config';
 
 const config = await getSystemConfig();
 const resumeUrl = config.resumeUrl;
+
+// Dynamic Version Calculation (vAge.MonthsOld)
+const birthDate = new Date('2004-03-03');
+const now = new Date();
+
+let age = now.getFullYear() - birthDate.getFullYear();
+let monthsOld = now.getMonth() - birthDate.getMonth();
+
+if (monthsOld < 0 || (monthsOld === 0 && now.getDate() < birthDate.getDate())) {
+    age--;
+    monthsOld = 12 + (now.getMonth() - birthDate.getMonth());
+}
+
+// Adjust monthsOld if current day is before birth day
+if (now.getDate() < birthDate.getDate()) {
+    monthsOld--;
+}
+
+// Ensure monthsOld isn't negative from the above subtraction
+if (monthsOld < 0) monthsOld = 11;
+
+const monthsOldStr = monthsOld.toString().padStart(2, '0');
+const dynamicVersion = `v${age}.${monthsOldStr}`;
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 h-16 bg-obsidian/80 backdrop-blur-md border-b border-system-border">
@@ -14,7 +37,7 @@ const resumeUrl = config.resumeUrl;
       </div>
       <div class="flex flex-col">
         <span class="text-white font-bold text-sm tracking-tight group-hover:text-binary-green transition-colors">HyuseCS</span>
-        <span class="text-text-dim text-[10px] font-mono leading-none uppercase">v22.02</span>
+        <span class="nav-version-display text-text-dim text-[10px] font-mono leading-none uppercase">{dynamicVersion}</span>
       </div>
     </a>
 
@@ -66,7 +89,7 @@ const resumeUrl = config.resumeUrl;
     </div>
     <div class="p-8 border-t border-system-border bg-neutral-surface text-[10px] font-mono text-text-dim flex justify-between">
       <span>SECURE_CONNECTION: TRUE</span>
-      <span>v5.2.0</span>
+      <span class="nav-version-display">{dynamicVersion}</span>
     </div>
   </div>
 </nav>
@@ -90,4 +113,36 @@ const resumeUrl = config.resumeUrl;
   mobileToggle?.addEventListener('click', openMenu);
   closeDrawer?.addEventListener('click', closeMenu);
   mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // Dynamic Version Update (Client-side)
+  function updateVersion() {
+    const versionSpans = document.querySelectorAll('.nav-version-display');
+    const birthDate = new Date('2004-03-03');
+    const now = new Date();
+    
+    let age = now.getFullYear() - birthDate.getFullYear();
+    let monthsOld = now.getMonth() - birthDate.getMonth();
+
+    if (monthsOld < 0 || (monthsOld === 0 && now.getDate() < birthDate.getDate())) {
+        age--;
+        monthsOld = 12 + (now.getMonth() - birthDate.getMonth());
+    }
+
+    if (now.getDate() < birthDate.getDate()) {
+        monthsOld--;
+    }
+
+    if (monthsOld < 0) monthsOld = 11;
+
+    const monthsOldStr = monthsOld.toString().padStart(2, '0');
+    const versionString = `v${age}.${monthsOldStr}`;
+
+    versionSpans.forEach(span => {
+      span.textContent = versionString;
+    });
+  }
+
+  // Initial update and periodic check (e.g., every hour)
+  updateVersion();
+  setInterval(updateVersion, 3600000);
 </script>
