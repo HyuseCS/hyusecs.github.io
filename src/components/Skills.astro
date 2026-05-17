@@ -2,30 +2,63 @@
 import { db } from '../lib/firebase/client';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
-let frontendSkills = [];
-let backendSkills = [];
-let infraSkills = [];
+let languagesSkills = [];
+let frameworksSkills = [];
+let librariesSkills = [];
+let toolsSkills = [];
 
 try {
   if (import.meta.env.PUBLIC_FIREBASE_API_KEY) {
     const skillsCol = collection(db, 'skills');
-    const skillsQuery = query(skillsCol, orderBy('order', 'asc'));
+    const skillsQuery = query(skillsCol);
     const snapshot = await getDocs(skillsQuery);
     
     if (!snapshot.empty) {
       const allSkills = snapshot.docs.map(doc => doc.data());
-      frontendSkills = allSkills.filter(s => s.category === 'frontend');
-      backendSkills = allSkills.filter(s => s.category === 'backend');
-      infraSkills = allSkills.filter(s => s.category === 'infra');
+      
+      // Sort: Primary first, then Familiar, both alphabetical by name
+      allSkills.sort((a: any, b: any) => {
+        if (a.level === b.level) {
+          return a.name.localeCompare(b.name);
+        }
+        return a.level === 'primary' ? -1 : 1;
+      });
+
+      languagesSkills = allSkills.filter(s => s.category === 'languages');
+      frameworksSkills = allSkills.filter(s => s.category === 'frameworks');
+      librariesSkills = allSkills.filter(s => s.category === 'libraries');
+      toolsSkills = allSkills.filter(s => s.category === 'tools');
     }
   }
 } catch (error) {
   console.error("Error fetching skills from Firestore:", error);
 }
 
-function getProficiencyBar(level: string) {
-  return level === 'primary' ? '████░' : '███░░';
+function getStatusString(category: string) {
+  const statuses = {
+    languages: ['CORE_ACTIVE', 'STABLE_VERSION', 'READY'],
+    frameworks: ['STABLE_BUILD', 'RUNTIME_OK', 'ACTIVE'],
+    libraries: ['MODULE_READY', 'LOADED', 'SYNCED'],
+    tools: ['CONNECTION_SECURE', 'IO_STABLE', 'READY']
+  };
+  const list = statuses[category as keyof typeof statuses] || ['ACTIVE'];
+  return list[Math.floor(Math.random() * list.length)];
 }
+
+function getRandomProficiency(level: string) {
+  // Primary: 85-98%, Familiar: 60-75%
+  if (level === 'primary') {
+    return Math.floor(Math.random() * 13) + 85 + '%';
+  }
+  return Math.floor(Math.random() * 15) + 60 + '%';
+}
+
+const categoryIcons = {
+  languages: '󰗊',
+  frameworks: '󱔎',
+  libraries: '󱓞',
+  tools: '󱖩'
+};
 ---
 
 <section id="skills" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
@@ -38,16 +71,19 @@ function getProficiencyBar(level: string) {
 
       <h2 class="sr-only">Technical Skills</h2>
 
-      <div class="pl-0 sm:pl-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-        <!-- Frontend -->
-        {frontendSkills.length > 0 && (
+      <div class="pl-0 sm:pl-4 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-16 md:gap-y-20">
+        <!-- Languages -->
+        {languagesSkills.length > 0 && (
           <div class="space-y-6 animate-on-scroll stagger-1">
-            <div class="flex items-center justify-between border-b border-system-border pb-2">
-              <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Frontend_Core</h3>
-              <span class="text-[9px] text-text-dim font-mono">[ ACTIVE_LOAD: 98% ]</span>
+            <div class="flex items-center justify-between border-b border-system-border pb-2 group/header">
+              <div class="flex items-center gap-3">
+                <span class="text-binary-green font-mono text-lg">{categoryIcons.languages}</span>
+                <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Languages_Core</h3>
+              </div>
+              <span class="text-[9px] text-text-dim font-mono group-hover/header:text-binary-green transition-colors">[ {getStatusString('languages')} ]</span>
             </div>
             <div class="grid grid-cols-1 gap-4">
-              {frontendSkills.map(skill => (
+              {languagesSkills.map(skill => (
                 <div class="group flex flex-col gap-1.5">
                   <div class="flex justify-between items-center text-xs sm:text-sm">
                     <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
@@ -56,7 +92,7 @@ function getProficiencyBar(level: string) {
                   <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
                     <div 
                       class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
-                      data-level={skill.level === 'primary' ? '85%' : '65%'}
+                      data-level={getRandomProficiency(skill.level)}
                     ></div>
                   </div>
                 </div>
@@ -65,15 +101,18 @@ function getProficiencyBar(level: string) {
           </div>
         )}
 
-        <!-- Backend -->
-        {backendSkills.length > 0 && (
+        <!-- Frameworks -->
+        {frameworksSkills.length > 0 && (
           <div class="space-y-6 animate-on-scroll stagger-2">
-            <div class="flex items-center justify-between border-b border-system-border pb-2">
-              <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Backend_Runtime</h3>
-              <span class="text-[9px] text-text-dim font-mono">[ STABLE_BUILD ]</span>
+            <div class="flex items-center justify-between border-b border-system-border pb-2 group/header">
+              <div class="flex items-center gap-3">
+                <span class="text-binary-green font-mono text-lg">{categoryIcons.frameworks}</span>
+                <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Framework_Runtime</h3>
+              </div>
+              <span class="text-[9px] text-text-dim font-mono group-hover/header:text-binary-green transition-colors">[ {getStatusString('frameworks')} ]</span>
             </div>
             <div class="grid grid-cols-1 gap-4">
-              {backendSkills.map(skill => (
+              {frameworksSkills.map(skill => (
                 <div class="group flex flex-col gap-1.5">
                   <div class="flex justify-between items-center text-xs sm:text-sm">
                     <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
@@ -82,7 +121,7 @@ function getProficiencyBar(level: string) {
                   <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
                     <div 
                       class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
-                      data-level={skill.level === 'primary' ? '85%' : '65%'}
+                      data-level={getRandomProficiency(skill.level)}
                     ></div>
                   </div>
                 </div>
@@ -91,15 +130,18 @@ function getProficiencyBar(level: string) {
           </div>
         )}
 
-        <!-- Infra -->
-        {infraSkills.length > 0 && (
-          <div class="space-y-6 md:col-span-2 animate-on-scroll stagger-3">
-            <div class="flex items-center justify-between border-b border-system-border pb-2">
-              <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Infra_Database_Protocols</h3>
-              <span class="text-[9px] text-text-dim font-mono">[ CONNECTION_SECURE ]</span>
+        <!-- Libraries -->
+        {librariesSkills.length > 0 && (
+          <div class="space-y-6 animate-on-scroll stagger-3">
+            <div class="flex items-center justify-between border-b border-system-border pb-2 group/header">
+              <div class="flex items-center gap-3">
+                <span class="text-binary-green font-mono text-lg">{categoryIcons.libraries}</span>
+                <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Library_Modules</h3>
+              </div>
+              <span class="text-[9px] text-text-dim font-mono group-hover/header:text-binary-green transition-colors">[ {getStatusString('libraries')} ]</span>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6">
-              {infraSkills.map(skill => (
+            <div class="grid grid-cols-1 gap-4">
+              {librariesSkills.map(skill => (
                 <div class="group flex flex-col gap-1.5">
                   <div class="flex justify-between items-center text-xs sm:text-sm">
                     <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
@@ -108,7 +150,36 @@ function getProficiencyBar(level: string) {
                   <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
                     <div 
                       class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
-                      data-level={skill.level === 'primary' ? '85%' : '65%'}
+                      data-level={getRandomProficiency(skill.level)}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Tools -->
+        {toolsSkills.length > 0 && (
+          <div class="space-y-6 animate-on-scroll stagger-4">
+            <div class="flex items-center justify-between border-b border-system-border pb-2 group/header">
+              <div class="flex items-center gap-3">
+                <span class="text-binary-green font-mono text-lg">{categoryIcons.tools}</span>
+                <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Tools_And_Protocols</h3>
+              </div>
+              <span class="text-[9px] text-text-dim font-mono group-hover/header:text-binary-green transition-colors">[ {getStatusString('tools')} ]</span>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+              {toolsSkills.map(skill => (
+                <div class="group flex flex-col gap-1.5">
+                  <div class="flex justify-between items-center text-xs sm:text-sm">
+                    <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
+                    <span class={`text-[10px] uppercase font-bold ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-dim'}`}>{skill.level}</span>
+                  </div>
+                  <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
+                    <div 
+                      class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
+                      data-level={getRandomProficiency(skill.level)}
                     ></div>
                   </div>
                 </div>

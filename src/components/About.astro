@@ -1,3 +1,22 @@
+---
+const startYear = 2023;
+const now = new Date();
+const currentYear = now.getFullYear();
+// If we're before August, we're still in the second half of the previous academic year
+const academicYear = now.getMonth() < 7 ? currentYear - startYear : currentYear - startYear + 1;
+
+const yearSuffix = (y: number) => {
+  if (y === 1) return '1st';
+  if (y === 2) return '2nd';
+  if (y === 3) return '3rd';
+  return `${y}th`;
+};
+
+const currentYearDisplay = yearSuffix(academicYear);
+const educationPeriod = `2023 - Present (${currentYearDisplay} Year)`;
+const deansListRange = `1st Year - Present (${currentYearDisplay} Year)`;
+---
+
 <section id="about" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
   <div class="p-5 md:p-8 py-12 md:py-16 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-4xl w-full animate-on-scroll">
@@ -12,9 +31,9 @@
         <div class="animate-on-scroll stagger-1">
           <h3 class="text-caution-yellow font-bold mb-2 uppercase text-xs sm:text-sm tracking-widest">// Tertiary Education</h3>
           <p class="text-text-muted font-bold">University of Science and Technology of Southern Philippines</p>
-          <p class="text-text-dim text-xs sm:text-sm">Bachelor of Science in Computer Science (2023 - Present) | Cagayan de Oro City</p>
+          <p class="text-text-dim text-xs sm:text-sm">Bachelor of Science in Computer Science ({educationPeriod}) | Cagayan de Oro City</p>
           <ul class="list-disc list-inside text-text-dim mt-2 space-y-1">
-            <li>Consistent Dean's List (1st Year - Present, 3rd Year) with GPA Averages of 1.4 - 1.7</li>
+            <li>Consistent Dean's List ({deansListRange}) with GPA Averages of 1.4 - 1.7</li>
             <li>Relevant Coursework: Parallel and Distributed Computing, Algorithms & Complexities, Machine Learning, Operating Systems</li>
           </ul>
         </div>

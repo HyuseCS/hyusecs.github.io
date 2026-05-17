@@ -42,20 +42,25 @@
 
   <!-- Skill List Grouped by Category -->
   <div id="skills-container" class="hidden space-y-12">
-    <!-- Frontend -->
+    <!-- Languages -->
     <div class="space-y-4">
-      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Frontend_Modules</h4>
-      <div id="list-frontend" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Language_Modules</h4>
+      <div id="list-languages" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
     </div>
-    <!-- Backend -->
+    <!-- Frameworks -->
     <div class="space-y-4">
-      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Backend_Desktop_Modules</h4>
-      <div id="list-backend" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Framework_Modules</h4>
+      <div id="list-frameworks" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
     </div>
-    <!-- Infra -->
+    <!-- Libraries -->
     <div class="space-y-4">
-      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Infra_Database_Modules</h4>
-      <div id="list-infra" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Library_Modules</h4>
+      <div id="list-libraries" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+    </div>
+    <!-- Tools -->
+    <div class="space-y-4">
+      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Tool_And_Protocol_Modules</h4>
+      <div id="list-tools" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
     </div>
   </div>
 </div>
@@ -90,9 +95,10 @@
             <div class="space-y-2">
               <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Category</label>
               <select id="s-category" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs appearance-none">
-                <option value="frontend">Frontend</option>
-                <option value="backend">Backend & Desktop</option>
-                <option value="infra">Infra & Databases</option>
+                <option value="languages">Languages</option>
+                <option value="frameworks">Frameworks</option>
+                <option value="libraries">Libraries</option>
+                <option value="tools">Tools & Protocols</option>
               </select>
             </div>
 
@@ -103,11 +109,6 @@
                 <option value="familiar">Familiar (Mid)</option>
               </select>
             </div>
-          </div>
-
-          <div class="space-y-2">
-            <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Sequence Order</label>
-            <input type="number" id="s-order" required value="0" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs" />
           </div>
 
           <div class="pt-4 flex flex-col sm:flex-row gap-4">
@@ -151,9 +152,10 @@
   const template = document.getElementById('skill-item-template') as HTMLTemplateElement;
 
   const lists = {
-    frontend: document.getElementById('list-frontend'),
-    backend: document.getElementById('list-backend'),
-    infra: document.getElementById('list-infra')
+    languages: document.getElementById('list-languages'),
+    frameworks: document.getElementById('list-frameworks'),
+    libraries: document.getElementById('list-libraries'),
+    tools: document.getElementById('list-tools')
   };
 
   let currentSkills = [];
@@ -164,7 +166,7 @@
     if (emptyEl) emptyEl.classList.add('hidden');
 
     try {
-      const q = query(collection(db, 'skills'), orderBy('order', 'asc'));
+      const q = query(collection(db, 'skills'));
       const snapshot = await getDocs(q);
       currentSkills = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
       
@@ -186,6 +188,14 @@
       if (emptyEl) emptyEl.classList.remove('hidden');
       return;
     }
+
+    // Sort: Primary first, then Familiar, both alphabetical by name
+    currentSkills.sort((a, b) => {
+      if (a.level === b.level) {
+        return a.name.localeCompare(b.name);
+      }
+      return a.level === 'primary' ? -1 : 1;
+    });
 
     currentSkills.forEach(skill => {
       const list = lists[skill.category];
@@ -220,7 +230,6 @@
       (document.getElementById('s-name') as HTMLInputElement).value = skill.name;
       (document.getElementById('s-category') as HTMLSelectElement).value = skill.category;
       (document.getElementById('s-level') as HTMLSelectElement).value = skill.level;
-      (document.getElementById('s-order') as HTMLInputElement).value = skill.order;
     } else {
       if (titleEl) titleEl.textContent = 'Register Skill Module';
       form.reset();
@@ -244,8 +253,7 @@
     const data = {
       name: (document.getElementById('s-name') as HTMLInputElement).value,
       category: (document.getElementById('s-category') as HTMLSelectElement).value,
-      level: (document.getElementById('s-level') as HTMLSelectElement).value,
-      order: parseInt((document.getElementById('s-order') as HTMLInputElement).value)
+      level: (document.getElementById('s-level') as HTMLSelectElement).value
     };
 
     try {
@@ -270,28 +278,29 @@
     if (!confirm('This will seed the database with your original hardcoded skills. Continue?')) return;
     
     const initialSkills = [
-      // Frontend
-      { name: 'ReactTS', category: 'frontend', level: 'primary', order: 1 },
-      { name: 'NextJS', category: 'frontend', level: 'primary', order: 2 },
-      { name: 'VueJS', category: 'frontend', level: 'familiar', order: 3 },
-      { name: 'Astro', category: 'frontend', level: 'familiar', order: 4 },
-      { name: 'HTML/CSS', category: 'frontend', level: 'primary', order: 5 },
-      { name: 'JavaScript', category: 'frontend', level: 'primary', order: 6 },
-      // Backend
-      { name: 'Python', category: 'backend', level: 'primary', order: 7 },
-      { name: 'Java', category: 'backend', level: 'primary', order: 8 },
-      { name: 'C++', category: 'backend', level: 'familiar', order: 9 },
-      { name: 'JavaFX', category: 'backend', level: 'familiar', order: 10 },
-      { name: 'Tkinter/CustomTkinter', category: 'backend', level: 'familiar', order: 11 },
-      // Infra
-      { name: 'Supabase', category: 'infra', level: 'primary', order: 12 },
-      { name: 'MariaDB', category: 'infra', level: 'familiar', order: 13 },
-      { name: 'MySQL', category: 'infra', level: 'primary', order: 14 },
-      { name: 'PostgreSQL', category: 'infra', level: 'primary', order: 15 },
-      { name: 'Debian/Ubuntu Server', category: 'infra', level: 'familiar', order: 16 },
-      { name: 'Nginx', category: 'infra', level: 'familiar', order: 17 },
-      { name: 'Cloudflare', category: 'infra', level: 'familiar', order: 18 },
-      { name: 'Tailscale', category: 'infra', level: 'familiar', order: 19 },
+      // Languages
+      { name: 'HTML/CSS', category: 'languages', level: 'primary' },
+      { name: 'JavaScript', category: 'languages', level: 'primary' },
+      { name: 'Python', category: 'languages', level: 'primary' },
+      { name: 'Java', category: 'languages', level: 'primary' },
+      { name: 'C++', category: 'languages', level: 'familiar' },
+      // Frameworks
+      { name: 'NextJS', category: 'frameworks', level: 'primary' },
+      { name: 'Astro', category: 'frameworks', level: 'familiar' },
+      { name: 'JavaFX', category: 'frameworks', level: 'familiar' },
+      // Libraries
+      { name: 'ReactTS', category: 'libraries', level: 'primary' },
+      { name: 'VueJS', category: 'libraries', level: 'familiar' },
+      { name: 'Tkinter/CustomTkinter', category: 'libraries', level: 'familiar' },
+      // Tools
+      { name: 'Supabase', category: 'tools', level: 'primary' },
+      { name: 'MariaDB', category: 'tools', level: 'familiar' },
+      { name: 'MySQL', category: 'tools', level: 'primary' },
+      { name: 'PostgreSQL', category: 'tools', level: 'primary' },
+      { name: 'Debian/Ubuntu Server', category: 'tools', level: 'familiar' },
+      { name: 'Nginx', category: 'tools', level: 'familiar' },
+      { name: 'Cloudflare', category: 'tools', level: 'familiar' },
+      { name: 'Tailscale', category: 'tools', level: 'familiar' },
     ];
 
     try {
