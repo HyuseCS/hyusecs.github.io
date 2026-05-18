@@ -38,7 +38,6 @@ function getStatusString(category: string) {
   const statuses = {
     languages: ['CORE_ACTIVE', 'STABLE_VERSION', 'READY'],
     frameworks: ['STABLE_BUILD', 'RUNTIME_OK', 'ACTIVE'],
-    libraries: ['MODULE_READY', 'LOADED', 'SYNCED'],
     tools: ['CONNECTION_SECURE', 'IO_STABLE', 'READY']
   };
   const list = statuses[category as keyof typeof statuses] || ['ACTIVE'];
@@ -56,7 +55,6 @@ function getRandomProficiency(level: string) {
 const categoryIcons = {
   languages: '󰗊',
   frameworks: '󱔎',
-  libraries: '󱓞',
   tools: '󱖩'
 };
 ---
@@ -130,38 +128,9 @@ const categoryIcons = {
           </div>
         )}
 
-        <!-- Libraries -->
-        {librariesSkills.length > 0 && (
-          <div class="space-y-6 animate-on-scroll stagger-3">
-            <div class="flex items-center justify-between border-b border-system-border pb-2 group/header">
-              <div class="flex items-center gap-3">
-                <span class="text-binary-green font-mono text-lg">{categoryIcons.libraries}</span>
-                <h3 class="text-caution-yellow text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Library_Modules</h3>
-              </div>
-              <span class="text-[9px] text-text-dim font-mono group-hover/header:text-binary-green transition-colors">[ {getStatusString('libraries')} ]</span>
-            </div>
-            <div class="grid grid-cols-1 gap-4">
-              {librariesSkills.map(skill => (
-                <div class="group flex flex-col gap-1.5">
-                  <div class="flex justify-between items-center text-xs sm:text-sm">
-                    <span class="text-text-muted group-hover:text-binary-green transition-colors">{skill.name}</span>
-                    <span class={`text-[10px] uppercase font-bold ${skill.level === 'primary' ? 'text-binary-green' : 'text-text-dim'}`}>{skill.level}</span>
-                  </div>
-                  <div class="h-1 w-full bg-layer-2 border border-system-border overflow-hidden">
-                    <div 
-                      class={`h-full proficiency-bar-fill ${skill.level === 'primary' ? 'bg-binary-green' : 'bg-text-dim/50'} w-0 transition-all duration-1000 ease-out`}
-                      data-level={getRandomProficiency(skill.level)}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         <!-- Tools -->
         {toolsSkills.length > 0 && (
-          <div class="space-y-6 animate-on-scroll stagger-4">
+          <div class="space-y-6 animate-on-scroll stagger-3">
             <div class="flex items-center justify-between border-b border-system-border pb-2 group/header">
               <div class="flex items-center gap-3">
                 <span class="text-binary-green font-mono text-lg">{categoryIcons.tools}</span>

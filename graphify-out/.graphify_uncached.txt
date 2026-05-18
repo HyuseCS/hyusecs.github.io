@@ -1,2 +1,0 @@
-/home/hyuse/Desktop/hyusecs.github.io/tsconfig.json
-/home/hyuse/Desktop/hyusecs.github.io/GEMINI.md
