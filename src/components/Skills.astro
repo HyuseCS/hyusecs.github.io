@@ -4,7 +4,6 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 let languagesSkills = [];
 let frameworksSkills = [];
-let librariesSkills = [];
 let toolsSkills = [];
 
 try {
@@ -26,7 +25,6 @@ try {
 
       languagesSkills = allSkills.filter(s => s.category === 'languages');
       frameworksSkills = allSkills.filter(s => s.category === 'frameworks');
-      librariesSkills = allSkills.filter(s => s.category === 'libraries');
       toolsSkills = allSkills.filter(s => s.category === 'tools');
     }
   }

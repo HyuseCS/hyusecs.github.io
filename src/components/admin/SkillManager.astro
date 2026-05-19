@@ -52,11 +52,6 @@
       <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Framework_Modules</h4>
       <div id="list-frameworks" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
     </div>
-    <!-- Libraries -->
-    <div class="space-y-4">
-      <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Library_Modules</h4>
-      <div id="list-libraries" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-    </div>
     <!-- Tools -->
     <div class="space-y-4">
       <h4 class="text-binary-green text-[10px] font-bold uppercase tracking-[0.3em] border-b border-system-border pb-2">Tool_And_Protocol_Modules</h4>
@@ -97,7 +92,6 @@
               <select id="s-category" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs appearance-none">
                 <option value="languages">Languages</option>
                 <option value="frameworks">Frameworks</option>
-                <option value="libraries">Libraries</option>
                 <option value="tools">Tools & Protocols</option>
               </select>
             </div>
@@ -154,7 +148,6 @@
   const lists = {
     languages: document.getElementById('list-languages'),
     frameworks: document.getElementById('list-frameworks'),
-    libraries: document.getElementById('list-libraries'),
     tools: document.getElementById('list-tools')
   };
 
