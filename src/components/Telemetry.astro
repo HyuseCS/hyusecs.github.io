@@ -74,7 +74,47 @@ try {
     }
   }
 
-  // Fallback: Third-party API if no token configured or GraphQL fails
+  // Fallback 1: Built-in Scraper (Token-free, robust)
+  if (!fallbackMatrixData) {
+    try {
+      const currentYear = new Date().getFullYear();
+      const years = [];
+      const allContributions = [];
+      
+      for (let year = currentYear; year >= currentYear - 2; year--) {
+        const url = `https://github.com/users/hyuseCS/contributions?from=${year}-01-01&to=${year}-12-31`;
+        const res = await fetch(url);
+        if (res.ok) {
+          const html = await res.text();
+          // Regex extracts data-date, data-level (intensity), and tooltip text (contains count)
+          const regex = /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*data-level="(\d)"[^>]*>.*?<\/td>\s*<tool-tip[^>]*>(.*?)<\/tool-tip>/gs;
+          let match;
+          let yearTotal = 0;
+          while ((match = regex.exec(html)) !== null) {
+            const date = match[1];
+            const intensity = match[2];
+            const tooltipText = match[3];
+            const countMatch = tooltipText.match(/^(\d+)|No/);
+            const count = countMatch && countMatch[1] ? parseInt(countMatch[1], 10) : 0;
+            
+            allContributions.push({ date, intensity, count });
+            yearTotal += count;
+          }
+          if (yearTotal > 0 || year === currentYear) {
+            years.push({ year: String(year), total: yearTotal });
+          }
+        }
+      }
+      
+      if (years.length > 0) {
+        fallbackMatrixData = { years, contributions: allContributions, source: 'scraper' };
+      }
+    } catch (e) {
+      // Scraper failed, move to next fallback
+    }
+  }
+
+  // Fallback 2: Third-party API if scraper fails
   if (!fallbackMatrixData) {
     const staticRes = await fetch('https://github-contributions.vercel.app/api/v1/hyuseCS');
     if (staticRes.ok) {
@@ -265,7 +305,8 @@ try {
       
       const matrixData = fallbackMatrixData;
       
-      const hasAccurateCounts = matrixData.source === 'graphql';
+      // All sources now provide accurate counts (GraphQL, scraper, or fallback-api)
+      const hasAccurateCounts = ['graphql', 'scraper', 'fallback-api'].includes(matrixData.source);
       
       const years = matrixData.years.map(y => y.year);
       const yearFilter = document.getElementById('year-filter');
@@ -322,8 +363,11 @@ try {
                           day.intensity === "1" ? "#0e4429" :
                           day.intensity === "2" ? "#006d32" :
                           day.intensity === "3" ? "#26a641" : "#39d353";
+               
+               // Use day.count if available (it should be for all sources now)
+               const count = typeof day.count === 'number' ? day.count : (day.intensity !== '0' ? 1 : 0);
                const countTxt = hasAccurateCounts
-                 ? (day.count > 0 ? `${day.count} contribution${day.count !== 1 ? 's' : ''}` : 'No contributions')
+                 ? (count > 0 ? `${count} contribution${count !== 1 ? 's' : ''}` : 'No contributions')
                  : (day.intensity !== '0' ? 'Contributions' : 'No contributions');
                
                const isTopEdge = i < 2;
