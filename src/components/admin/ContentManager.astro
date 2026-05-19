@@ -1,0 +1,33 @@
+---
+import OngoingProject from './content/OngoingProject.astro';
+import ExperienceLog from './content/ExperienceLog.astro';
+import EducationLog from './content/EducationLog.astro';
+import ProjectLog from './content/ProjectLog.astro';
+---
+
+<div id="content-manager" class="space-y-16 animate-boot">
+  <div class="space-y-2 border-l-2 border-binary-green pl-6 py-2">
+    <h3 class="text-text-primary text-3xl font-black uppercase tracking-tighter flex items-center gap-3">
+      <span class="text-binary-green">#</span> Content_Management_System
+    </h3>
+    <p class="text-text-dim text-xs uppercase tracking-[0.3em] font-bold">Consolidated Portfolio Archive</p>
+  </div>
+
+  <div class="space-y-20">
+    <!-- Section 1: Objectives -->
+    <section class="space-y-6">
+      <OngoingProject />
+    </section>
+
+    <!-- Section 2: Timeline -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <ExperienceLog />
+      <EducationLog />
+    </section>
+
+    <!-- Section 3: Repositories -->
+    <section class="border-t border-system-border/30 pt-16">
+      <ProjectLog />
+    </section>
+  </div>
+</div>

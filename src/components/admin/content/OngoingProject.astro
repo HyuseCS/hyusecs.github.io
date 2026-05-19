@@ -1,0 +1,90 @@
+---
+---
+
+<div class="border border-system-border bg-layer-1 p-6 space-y-6">
+  <div class="flex justify-between items-center border-b border-system-border pb-4">
+    <h4 class="text-caution-yellow text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+      <span class="w-2 h-2 bg-caution-yellow"></span>
+      Current Process [Ongoing Project]
+    </h4>
+    <span class="text-[9px] text-text-dim font-mono">[ SYSTEM/CONFIG ]</span>
+  </div>
+
+  <form id="ongoing-form" class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Project Title</label>
+        <input 
+          type="text" 
+          id="ongoing-title" 
+          placeholder="e.g., Portfolio System Refactor"
+          class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+        />
+      </div>
+      <div class="space-y-2">
+        <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Status Indicator</label>
+        <input 
+          type="text" 
+          id="ongoing-status" 
+          placeholder="e.g., STABLE_BUILD"
+          class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+        />
+      </div>
+    </div>
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Description</label>
+      <textarea 
+        id="ongoing-desc" 
+        rows="3"
+        placeholder="Briefly describe the current focus..."
+        class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20 resize-y"
+      ></textarea>
+    </div>
+
+    <button 
+      type="submit"
+      class="group w-full py-3 border border-binary-green/30 text-binary-green hover:bg-binary-green hover:text-obsidian transition-all text-[10px] uppercase tracking-[0.2em] font-black flex items-center justify-center gap-2"
+    >
+      <span class="w-1.5 h-1.5 bg-binary-green group-hover:bg-obsidian transition-colors"></span>
+      Update Process
+    </button>
+  </form>
+</div>
+
+<script>
+  import { db } from '../../../lib/firebase/client';
+  import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+  const form = document.getElementById('ongoing-form') as HTMLFormElement;
+  const titleInput = document.getElementById('ongoing-title') as HTMLInputElement;
+  const statusInput = document.getElementById('ongoing-status') as HTMLInputElement;
+  const descInput = document.getElementById('ongoing-desc') as HTMLTextAreaElement;
+
+  async function load() {
+    try {
+      const docRef = doc(db, 'system', 'config');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        titleInput.value = data.ongoingProjectTitle || '';
+        statusInput.value = data.ongoingProjectStatus || '';
+        descInput.value = data.ongoingProjectDesc || '';
+      }
+    } catch (e) { console.error(e); }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, 'system', 'config'), {
+        ongoingProjectTitle: titleInput.value,
+        ongoingProjectStatus: statusInput.value,
+        ongoingProjectDesc: descInput.value,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      alert('ONGOING_PROCESS_UPDATED');
+    } catch (e) { alert('UPDATE_FAILED'); }
+  });
+
+  load();
+</script>

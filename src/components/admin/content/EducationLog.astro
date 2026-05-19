@@ -1,0 +1,145 @@
+---
+---
+
+<div class="border border-system-border bg-layer-1 p-6 space-y-6">
+  <div class="flex justify-between items-center border-b border-system-border pb-4">
+    <h4 class="text-text-muted text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+      <span class="w-2 h-2 bg-text-dim"></span>
+      Education.log
+    </h4>
+    <button id="add-edu-btn" class="text-[9px] uppercase tracking-widest border border-text-dim text-text-dim hover:bg-text-dim hover:text-obsidian px-3 py-1 transition-all">
+      + Add Entry
+    </button>
+  </div>
+  <div id="education-list" class="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+    <!-- Rendered via JS -->
+  </div>
+</div>
+
+<script>
+  import { db } from '../../../lib/firebase/client';
+  import { doc, getDocs, collection, addDoc, deleteDoc, updateDoc, query } from 'firebase/firestore';
+
+  const eduList = document.getElementById('education-list') as HTMLDivElement;
+  let educations: any[] = [];
+
+  async function load() {
+    eduList.innerHTML = '<div class="text-text-dim text-[10px] font-mono animate-pulse">QUERYING_RECORDS...</div>';
+    try {
+      const q = query(collection(db, 'projects')); // Fetch all and filter/sort in-memory
+      const snap = await getDocs(q);
+      educations = snap.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .filter((item: any) => item.type === 'education')
+        .sort((a, b) => (b.startDate || '').localeCompare(a.startDate || ''));
+      render();
+    } catch (e) {
+      console.error(e);
+      eduList.innerHTML = '<div class="text-red-500 text-[10px] font-mono">CONNECTION_ERROR</div>';
+    }
+  }
+
+  function render() {
+    if (educations.length === 0) {
+      eduList.innerHTML = '<div class="text-text-dim text-[10px] font-mono p-4 border border-dashed border-system-border text-center">NO_RECORDS_FOUND</div>';
+      return;
+    }
+    
+    eduList.innerHTML = educations.map(edu => `
+      <div class="border border-system-border p-4 bg-layer-2 space-y-4 group">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Institution</label>
+            <input type="text" value="${edu.title || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="title" />
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Degree/Program</label>
+            <input type="text" value="${edu.subtitle || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="subtitle" />
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Display Date (Label)</label>
+            <input type="text" value="${edu.dateDisplay || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="dateDisplay" placeholder="[ 2023-NOW ]"/>
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Sort Date (YYYY-MM)</label>
+            <input type="text" value="${edu.startDate || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="startDate" placeholder="2023-08"/>
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Current Status</label>
+            <input type="text" value="${edu.status || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="status" placeholder="3rd Year"/>
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Academic Rank</label>
+            <input type="text" value="${edu.rank || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="rank" placeholder="Dean's List"/>
+          </div>
+          <div class="md:col-span-2 space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Query / Subjects</label>
+            <input type="text" value="${edu.description || ''}" class="edu-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${edu.id}" data-field="description" placeholder="Parallel Computing, ML..."/>
+          </div>
+        </div>
+        <div class="flex gap-2 justify-end pt-2 border-t border-system-border/30">
+          <button class="edu-save-btn text-[9px] bg-binary-green/10 text-binary-green border border-binary-green/30 hover:bg-binary-green hover:text-obsidian px-3 py-1.5 uppercase tracking-widest transition-all" data-id="${edu.id}">Save</button>
+          <button class="edu-delete-btn text-[9px] text-red-500 border border-red-500/30 hover:bg-red-500 hover:text-white px-3 py-1.5 uppercase tracking-widest transition-all" data-id="${edu.id}">Delete</button>
+        </div>
+      </div>
+    `).join('');
+
+    bindEvents();
+  }
+
+  function bindEvents() {
+    document.querySelectorAll('.edu-save-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = (e.currentTarget as HTMLButtonElement).getAttribute('data-id');
+        if(!id) return;
+        const container = (e.currentTarget as HTMLElement).closest('.group');
+        const data = {
+          title: (container?.querySelector('[data-field="title"]') as HTMLInputElement).value,
+          subtitle: (container?.querySelector('[data-field="subtitle"]') as HTMLInputElement).value,
+          dateDisplay: (container?.querySelector('[data-field="dateDisplay"]') as HTMLInputElement).value,
+          startDate: (container?.querySelector('[data-field="startDate"]') as HTMLInputElement).value,
+          status: (container?.querySelector('[data-field="status"]') as HTMLInputElement).value,
+          rank: (container?.querySelector('[data-field="rank"]') as HTMLInputElement).value,
+          description: (container?.querySelector('[data-field="description"]') as HTMLInputElement).value,
+          updatedAt: new Date().toISOString()
+        };
+        try {
+          await updateDoc(doc(db, 'projects', id), data);
+          alert('ENTRY_UPDATED');
+          load();
+        } catch(err) { alert('UPDATE_FAILED'); }
+      });
+    });
+
+    document.querySelectorAll('.edu-delete-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        if(!confirm('PURGE_RECORD?')) return;
+        const id = (e.currentTarget as HTMLButtonElement).getAttribute('data-id');
+        if(!id) return;
+        try {
+          await deleteDoc(doc(db, 'projects', id));
+          load();
+        } catch(err) { alert('FAILED'); }
+      });
+    });
+  }
+
+  document.getElementById('add-edu-btn')?.addEventListener('click', async () => {
+    try {
+      await addDoc(collection(db, 'projects'), {
+        type: 'education',
+        title: 'New Institution',
+        subtitle: 'Degree',
+        dateDisplay: '[ DATE ]',
+        startDate: new Date().toISOString().slice(0, 7),
+        status: '',
+        rank: '',
+        description: '',
+        createdAt: new Date().toISOString()
+      });
+      load();
+    } catch(err) { alert('FAILED'); }
+  });
+
+  load();
+</script>

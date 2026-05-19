@@ -1,0 +1,133 @@
+---
+---
+
+<div class="border border-system-border bg-layer-1 p-6 space-y-6">
+  <div class="flex justify-between items-center border-b border-system-border pb-4">
+    <h4 class="text-binary-green text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+      <span class="w-2 h-2 bg-binary-green"></span>
+      Experience.log
+    </h4>
+    <button id="add-exp-btn" class="text-[9px] uppercase tracking-widest border border-binary-green text-binary-green hover:bg-binary-green hover:text-obsidian px-3 py-1 transition-all">
+      + Add Entry
+    </button>
+  </div>
+  <div id="experience-list" class="space-y-4 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+    <!-- Rendered via JS -->
+  </div>
+</div>
+
+<script>
+  import { db } from '../../../lib/firebase/client';
+  import { doc, getDocs, collection, addDoc, deleteDoc, updateDoc, query } from 'firebase/firestore';
+
+  const expList = document.getElementById('experience-list') as HTMLDivElement;
+  let experiences: any[] = [];
+
+  async function load() {
+    expList.innerHTML = '<div class="text-text-dim text-[10px] font-mono animate-pulse">QUERYING_RECORDS...</div>';
+    try {
+      const q = query(collection(db, 'projects')); // Fetch all and filter/sort in-memory
+      const snap = await getDocs(q);
+      experiences = snap.docs
+        .map(doc => ({ id: doc.id, ...doc.data() }))
+        .filter((item: any) => item.type === 'experience')
+        .sort((a, b) => (b.startDate || '').localeCompare(a.startDate || ''));
+      render();
+    } catch (e) {
+      console.error(e);
+      expList.innerHTML = '<div class="text-red-500 text-[10px] font-mono">CONNECTION_ERROR</div>';
+    }
+  }
+
+  function render() {
+    if (experiences.length === 0) {
+      expList.innerHTML = '<div class="text-text-dim text-[10px] font-mono p-4 border border-dashed border-system-border text-center">NO_RECORDS_FOUND</div>';
+      return;
+    }
+    
+    expList.innerHTML = experiences.map(exp => `
+      <div class="border border-system-border p-4 bg-layer-2 space-y-4 group">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Role Title</label>
+            <input type="text" value="${exp.title || ''}" class="exp-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${exp.id}" data-field="title" />
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Company/Subtitle</label>
+            <input type="text" value="${exp.subtitle || ''}" class="exp-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${exp.id}" data-field="subtitle" />
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Display Date (Label)</label>
+            <input type="text" value="${exp.dateDisplay || ''}" class="exp-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${exp.id}" data-field="dateDisplay" placeholder="[ SEP 2025 ]"/>
+          </div>
+          <div class="space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Sort Date (YYYY-MM)</label>
+            <input type="text" value="${exp.startDate || ''}" class="exp-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary" data-id="${exp.id}" data-field="startDate" placeholder="2025-09"/>
+          </div>
+          <div class="md:col-span-2 space-y-1">
+            <label class="text-[9px] uppercase tracking-widest text-text-dim font-bold">Bullets (One per line)</label>
+            <textarea class="exp-input w-full bg-obsidian border border-system-border p-2 text-xs font-mono text-text-primary resize-none" rows="3" data-id="${exp.id}" data-field="description">${(exp.description || '')}</textarea>
+          </div>
+        </div>
+        <div class="flex gap-2 justify-end pt-2 border-t border-system-border/30">
+          <button class="exp-save-btn text-[9px] bg-binary-green/10 text-binary-green border border-binary-green/30 hover:bg-binary-green hover:text-obsidian px-3 py-1.5 uppercase tracking-widest transition-all" data-id="${exp.id}">Save</button>
+          <button class="exp-delete-btn text-[9px] text-red-500 border border-red-500/30 hover:bg-red-500 hover:text-white px-3 py-1.5 uppercase tracking-widest transition-all" data-id="${exp.id}">Delete</button>
+        </div>
+      </div>
+    `).join('');
+
+    bindEvents();
+  }
+
+  function bindEvents() {
+    document.querySelectorAll('.exp-save-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = (e.currentTarget as HTMLButtonElement).getAttribute('data-id');
+        if(!id) return;
+        const container = (e.currentTarget as HTMLElement).closest('.group');
+        const data = {
+          title: (container?.querySelector('[data-field="title"]') as HTMLInputElement).value,
+          subtitle: (container?.querySelector('[data-field="subtitle"]') as HTMLInputElement).value,
+          dateDisplay: (container?.querySelector('[data-field="dateDisplay"]') as HTMLInputElement).value,
+          startDate: (container?.querySelector('[data-field="startDate"]') as HTMLInputElement).value,
+          description: (container?.querySelector('[data-field="description"]') as HTMLTextAreaElement).value,
+          updatedAt: new Date().toISOString()
+        };
+        try {
+          await updateDoc(doc(db, 'projects', id), data);
+          alert('ENTRY_UPDATED');
+          load();
+        } catch(err) { alert('UPDATE_FAILED'); }
+      });
+    });
+
+    document.querySelectorAll('.exp-delete-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        if(!confirm('PURGE_RECORD?')) return;
+        const id = (e.currentTarget as HTMLButtonElement).getAttribute('data-id');
+        if(!id) return;
+        try {
+          await deleteDoc(doc(db, 'projects', id));
+          load();
+        } catch(err) { alert('FAILED'); }
+      });
+    });
+  }
+
+  document.getElementById('add-exp-btn')?.addEventListener('click', async () => {
+    try {
+      await addDoc(collection(db, 'projects'), {
+        type: 'experience',
+        title: 'New Role',
+        subtitle: '@ Company',
+        dateDisplay: '[ DATE ]',
+        startDate: new Date().toISOString().slice(0, 7),
+        description: '• Bullet 1\n• Bullet 2',
+        createdAt: new Date().toISOString()
+      });
+      load();
+    } catch(err) { alert('FAILED'); }
+  });
+
+  load();
+</script>

@@ -13,10 +13,12 @@ try {
     const projectsSnapshot = await getDocs(projectsQuery);
     
     if (!projectsSnapshot.empty) {
-      projects = projectsSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+      projects = projectsSnapshot.docs
+        .map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        .filter((p: any) => p.type === 'project' || !p.type);
     } else {
       console.warn("Firestore 'projects' collection is empty.");
       projects = [];
@@ -55,6 +57,13 @@ try {
         ))}
       </div>
       
+      {projects.length === 0 && (
+        <div class="text-center py-20 border border-dashed border-system-border bg-layer-1">
+          <p class="text-text-dim font-mono text-sm uppercase tracking-[0.3em] animate-pulse">
+            [ ERROR: NO_DEPLOYED_PROJECTS_FOUND ]
+          </p>
+        </div>
+      )}
     </div>
   </div>
 </section>

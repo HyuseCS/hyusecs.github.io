@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="project-manager" class="space-y-10 animate-boot">
+<div id="project-log" class="space-y-10">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-l-2 border-binary-green pl-6 py-2">
     <div class="space-y-2">
       <h3 class="text-text-primary text-2xl font-black uppercase tracking-tighter flex items-center gap-3">
@@ -38,12 +38,9 @@
   </div>
 </div>
 
-<!-- Add/Edit Modal (System Overlay) -->
+<!-- Modal Logic remains same but scoped to projects -->
 <div id="project-modal" class="hidden fixed inset-0 z-[200] overflow-y-auto">
-  <!-- Backdrop -->
   <div class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
-  
-  <!-- Modal Content Wrapper -->
   <div class="relative min-h-screen flex items-center justify-center p-4 md:p-12">
     <div class="max-w-3xl w-full border border-system-border bg-layer-1 font-mono text-sm shadow-[0_0_100px_rgba(0,0,0,0.9)] animate-boot my-auto">
       <div class="bg-layer-2 border-b border-system-border p-4 flex justify-between items-center">
@@ -57,48 +54,39 @@
       </div>
       
       <form id="project-form" class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <input type="hidden" id="project-id" />
-
+        <input type="hidden" id="project-id" />
         <div class="space-y-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Project Title</label>
           <input type="text" id="p-title" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
         </div>
-
         <div class="space-y-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Timeline</label>
           <input type="text" id="p-date" required placeholder="Jan 2025 - Present" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
         </div>
-
         <div class="space-y-2 md:col-span-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">System Description</label>
           <textarea id="p-desc" required rows="4" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs resize-none"></textarea>
         </div>
-
         <div class="space-y-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Tech Stack (Comma Separated)</label>
           <input type="text" id="p-tags" required placeholder="Astro, Tailwind, Firebase" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
         </div>
-
         <div class="space-y-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Sequence Order</label>
           <input type="number" id="p-order" required value="0" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
         </div>
-
         <div class="space-y-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Repository Link</label>
           <input type="url" id="p-repo" required placeholder="https://github.com/..." class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
         </div>
-
         <div class="space-y-2">
           <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Deployment Link (Optional)</label>
           <input type="url" id="p-live" placeholder="https://..." class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
         </div>
-
         <div class="flex items-center gap-3 pt-2">
           <input type="checkbox" id="p-has-live" class="w-4 h-4 rounded-none border-system-border bg-layer-2 text-binary-green focus:ring-0" />
           <label for="p-has-live" class="text-text-dim text-[10px] uppercase tracking-widest font-bold cursor-pointer">Expose Live Link</label>
         </div>
-
         <div class="md:col-span-2 pt-6 flex flex-col sm:flex-row gap-4">
           <button type="submit" class="flex-grow py-4 bg-binary-green text-obsidian uppercase tracking-[0.2em] text-[10px] font-black hover:brightness-110 transition-all">Commit Changes to Cluster</button>
           <button type="button" id="cancel-modal" class="py-4 px-8 border border-system-border text-text-dim uppercase tracking-[0.2em] text-[10px] font-black hover:bg-layer-2 transition-all">Abort Transaction</button>
@@ -107,6 +95,7 @@
     </div>
   </div>
 </div>
+
 <template id="project-card-template">
   <div class="project-item border border-system-border bg-layer-1 p-6 flex justify-between items-center group hover:border-binary-green/50 transition-all duration-300">
     <div class="space-y-2">
@@ -122,22 +111,18 @@
     </div>
     <div class="flex gap-3">
       <button class="edit-btn p-3 border border-system-border text-text-dim hover:text-binary-green hover:border-binary-green/50 transition-all bg-layer-2" title="Edit Entry">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
       </button>
       <button class="delete-btn p-3 border border-system-border text-text-dim hover:text-red-500 hover:border-red-500/50 transition-all bg-layer-2" title="Purge Record">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
       </button>
     </div>
   </div>
 </template>
 
 <script>
-  import { db } from '../../lib/firebase/client';
-  import { collection, getDocs, query, orderBy, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+  import { db } from '../../../lib/firebase/client';
+  import { collection, getDocs, query, orderBy, addDoc, updateDoc, deleteDoc, doc, where } from 'firebase/firestore';
 
   const projectsList = document.getElementById('projects-list');
   const loadingEl = document.getElementById('projects-loading');
@@ -156,14 +141,13 @@
     try {
       const q = query(collection(db, 'projects'), orderBy('order', 'asc'));
       const snapshot = await getDocs(q);
-      currentProjects = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      // Client-side filter to handle legacy docs without type
+      currentProjects = snapshot.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter((p: any) => p.type === 'project' || !p.type);
       
       renderProjects();
-    } catch (error) {
-      console.error("Fetch failed", error);
-    } finally {
-      if (loadingEl) loadingEl.classList.add('hidden');
-    }
+    } catch (error) { console.error(error); } finally { if (loadingEl) loadingEl.classList.add('hidden'); }
   }
 
   function renderProjects() {
@@ -173,16 +157,13 @@
         if (emptyEl) emptyEl.classList.remove('hidden');
         return;
       }
-
       currentProjects.forEach(project => {
         const clone = cardTemplate.content.cloneNode(true) as HTMLElement;
         clone.querySelector('.project-title')!.textContent = project.title;
         clone.querySelector('.project-date')!.textContent = project.date;
         clone.querySelector('.project-tags')!.textContent = (project.tags || []).join(', ');
-        
         clone.querySelector('.edit-btn')!.addEventListener('click', () => openModal(project));
         clone.querySelector('.delete-btn')!.addEventListener('click', () => deleteProject(project.id));
-        
         projectsList.appendChild(clone);
       });
       projectsList.classList.remove('hidden');
@@ -192,7 +173,6 @@
   function openModal(project = null) {
     const titleEl = document.getElementById('modal-title');
     const idInput = document.getElementById('project-id') as HTMLInputElement;
-    
     if (project) {
       if (titleEl) titleEl.textContent = 'Edit System Record';
       idInput.value = project.id;
@@ -209,12 +189,11 @@
       projectForm.reset();
       idInput.value = '';
     }
-    
     modal?.classList.remove('hidden');
   }
 
   async function deleteProject(id) {
-    if (confirm('Are you sure you want to PURGE this record?')) {
+    if (confirm('PURGE_RECORD?')) {
       await deleteDoc(doc(db, 'projects', id));
       fetchProjects();
     }
@@ -223,8 +202,8 @@
   projectForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = (document.getElementById('project-id') as HTMLInputElement).value;
-    
     const data = {
+      type: 'project',
       title: (document.getElementById('p-title') as HTMLInputElement).value,
       date: (document.getElementById('p-date') as HTMLInputElement).value,
       description: (document.getElementById('p-desc') as HTMLTextAreaElement).value,
@@ -233,27 +212,18 @@
       repoUrl: (document.getElementById('p-repo') as HTMLInputElement).value,
       liveUrl: (document.getElementById('p-live') as HTMLInputElement).value,
       hasLiveUrl: (document.getElementById('p-has-live') as HTMLInputElement).checked,
-      staggerClass: `stagger-${currentProjects.length + 1}` // Simple logic for stagger
+      staggerClass: `stagger-${currentProjects.length + 1}`
     };
-
     try {
-      if (id) {
-        await updateDoc(doc(db, 'projects', id), data);
-      } else {
-        await addDoc(collection(db, 'projects'), data);
-      }
+      if (id) await updateDoc(doc(db, 'projects', id), data);
+      else await addDoc(collection(db, 'projects'), data);
       modal?.classList.add('hidden');
       fetchProjects();
-    } catch (error) {
-      alert('Error committing changes. Check console.');
-      console.error(error);
-    }
+    } catch (error) { alert('Error. Check console.'); console.error(error); }
   });
 
   document.getElementById('add-project-btn')?.addEventListener('click', () => openModal());
   document.getElementById('close-modal')?.addEventListener('click', () => modal?.classList.add('hidden'));
   document.getElementById('cancel-modal')?.addEventListener('click', () => modal?.classList.add('hidden'));
-
-  // Initialize
   fetchProjects();
 </script>
