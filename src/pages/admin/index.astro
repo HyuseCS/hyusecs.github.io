@@ -42,9 +42,9 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
           </div>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 animate-boot stagger-1">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 stagger-1">
           <!-- Main Content -->
-          <div class="lg:col-span-8 space-y-20">
+          <div class="lg:col-span-8 space-y-20 animate-boot">
             <ContentManager />
             <div class="border-t border-system-border/30 pt-16">
               <SkillManager />
@@ -53,7 +53,7 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
 
           <!-- Sidebar / Controls -->
           <div class="lg:col-span-4 space-y-10">
-            <div class="sticky top-24 space-y-10">
+            <div class="sticky top-24 space-y-10 z-50 animate-boot">
               <SystemDeployControl />
               <SystemConfig />
               
@@ -88,6 +88,108 @@ import SystemConfig from '../../components/admin/SystemConfig.astro';
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modals Layer (Standardized at z-[100]) -->
+    <div id="skill-modal" class="hidden fixed inset-0 z-[100] overflow-y-auto">
+      <div class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
+      <div class="relative min-h-screen flex items-center justify-center p-4 md:p-12">
+        <div class="max-w-xl w-full border border-system-border bg-layer-1 font-mono text-sm shadow-[0_0_100px_rgba(0,0,0,0.9)] animate-boot my-auto">
+          <div class="bg-layer-2 border-b border-system-border p-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+              <div class="w-1.5 h-1.5 bg-caution-yellow animate-pulse"></div>
+              <span id="s-modal-title" class="text-text-primary uppercase tracking-[0.2em] font-black text-xs">Register Skill Module</span>
+            </div>
+            <button id="close-skill-modal" class="text-text-dim hover:text-white transition-colors p-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+          <form id="skill-form" class="p-8 space-y-6">
+            <input type="hidden" id="skill-id" />
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Module Name</label>
+              <input type="text" id="s-name" required placeholder="e.g., ReactTS" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Category</label>
+                <select id="s-category" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs appearance-none">
+                  <option value="languages">Languages</option>
+                  <option value="frameworks">Frameworks</option>
+                  <option value="tools">Tools & Protocols</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Proficiency Level</label>
+                <select id="s-level" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs appearance-none">
+                  <option value="primary">Primary (High)</option>
+                  <option value="familiar">Familiar (Mid)</option>
+                </select>
+              </div>
+            </div>
+            <div class="pt-4 flex flex-col sm:flex-row gap-4">
+              <button type="submit" class="flex-grow py-4 bg-caution-yellow text-obsidian uppercase tracking-[0.2em] text-[10px] font-black hover:brightness-110 transition-all">Synchronize Module</button>
+              <button type="button" id="cancel-skill-modal" class="py-4 px-8 border border-system-border text-text-dim uppercase tracking-[0.2em] text-[10px] font-black hover:bg-layer-2 transition-all">Abort Action</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="project-modal" class="hidden fixed inset-0 z-[100] overflow-y-auto">
+      <div class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
+      <div class="relative min-h-screen flex items-center justify-center p-4 md:p-12">
+        <div class="max-w-3xl w-full border border-system-border bg-layer-1 font-mono text-sm shadow-[0_0_100px_rgba(0,0,0,0.9)] animate-boot my-auto">
+          <div class="bg-layer-2 border-b border-system-border p-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+              <div class="w-1.5 h-1.5 bg-binary-green animate-pulse"></div>
+              <span id="modal-title" class="text-text-primary uppercase tracking-[0.2em] font-black text-xs">New Record Entry</span>
+            </div>
+            <button id="close-modal" class="text-text-dim hover:text-white transition-colors p-1">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+          <form id="project-form" class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <input type="hidden" id="project-id" />
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Project Title</label>
+              <input type="text" id="p-title" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Timeline</label>
+              <input type="text" id="p-date" required placeholder="Jan 2025 - Present" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="space-y-2 md:col-span-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">System Description</label>
+              <textarea id="p-desc" required rows="4" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs resize-none"></textarea>
+            </div>
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Tech Stack (Comma Separated)</label>
+              <input type="text" id="p-tags" required placeholder="Astro, Tailwind, Firebase" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Sequence Order</label>
+              <input type="number" id="p-order" required value="0" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Repository Link</label>
+              <input type="url" id="p-repo" required placeholder="https://github.com/..." class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Deployment Link (Optional)</label>
+              <input type="url" id="p-live" placeholder="https://..." class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary transition-all text-xs" />
+            </div>
+            <div class="flex items-center gap-3 pt-2">
+              <input type="checkbox" id="p-has-live" class="w-4 h-4 rounded-none border-system-border bg-layer-2 text-binary-green focus:ring-0" />
+              <label for="p-has-live" class="text-text-dim text-[10px] uppercase tracking-widest font-bold cursor-pointer">Expose Live Link</label>
+            </div>
+            <div class="md:col-span-2 pt-6 flex flex-col sm:flex-row gap-4">
+              <button type="submit" class="flex-grow py-4 bg-binary-green text-obsidian uppercase tracking-[0.2em] text-[10px] font-black hover:brightness-110 transition-all">Commit Changes to Cluster</button>
+              <button type="button" id="cancel-modal" class="py-4 px-8 border border-system-border text-text-dim uppercase tracking-[0.2em] text-[10px] font-black hover:bg-layer-2 transition-all">Abort Transaction</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

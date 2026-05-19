@@ -1,0 +1,107 @@
+---
+---
+
+<div class="border border-system-border bg-layer-2 p-6 space-y-4 rounded-sm">
+  <div class="flex items-center justify-between border-b border-system-border pb-3">
+    <h4 class="text-text-primary text-[10px] font-bold uppercase tracking-widest">Telemetry Display</h4>
+    <div class="flex gap-1">
+      <div class="w-1 h-1 bg-binary-green/40"></div>
+      <div class="w-1 h-1 bg-binary-green/60"></div>
+      <div class="w-1 h-1 bg-binary-green"></div>
+    </div>
+  </div>
+
+  <form id="telemetry-config-form" class="space-y-6">
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">System Status</label>
+      <input 
+        type="text" 
+        id="status-state" 
+        placeholder="Online"
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Status Message</label>
+      <input 
+        type="text" 
+        id="status-msg" 
+        placeholder="System operational."
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Status Indicator Color</label>
+      <select 
+        id="status-color" 
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all appearance-none cursor-pointer"
+      >
+        <option value="green">Green (Online)</option>
+        <option value="yellow">Yellow (Busy)</option>
+        <option value="red">Red (Offline)</option>
+      </select>
+    </div>
+
+    <button 
+      type="submit"
+      class="group w-full py-2 border border-binary-green/30 text-binary-green hover:bg-binary-green hover:text-obsidian transition-all text-[10px] uppercase tracking-[0.2em] font-black flex items-center justify-center gap-2"
+    >
+      <span class="w-1.5 h-1.5 bg-binary-green group-hover:bg-obsidian transition-colors"></span>
+      Update Telemetry
+    </button>
+  </form>
+  
+  <div id="telemetry-config-status" class="hidden p-2 border border-binary-green/30 bg-binary-green/5 text-binary-green text-[9px] font-mono flex items-center gap-2">
+    <span class="font-bold">[SUCCESS]</span>
+    <span class="uppercase tracking-widest">Telemetry_Updated</span>
+  </div>
+</div>
+
+<script>
+  import { db } from '../../../lib/firebase/client';
+  import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+  const form = document.getElementById('telemetry-config-form') as HTMLFormElement;
+  const statusStateInput = document.getElementById('status-state') as HTMLInputElement;
+  const statusMsgInput = document.getElementById('status-msg') as HTMLInputElement;
+  const statusColorInput = document.getElementById('status-color') as HTMLSelectElement;
+  const statusEl = document.getElementById('telemetry-config-status');
+
+  async function loadConfig() {
+    try {
+      const docRef = doc(db, 'system', 'config');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        statusMsgInput.value = data.statusMessage || '';
+        statusStateInput.value = data.statusState || 'Online';
+        statusColorInput.value = data.statusColor || 'green';
+      }
+    } catch (error) {
+      console.error("Telemetry Config load failed", error);
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, 'system', 'config'), {
+        statusMessage: statusMsgInput.value,
+        statusState: statusStateInput.value,
+        statusColor: statusColorInput.value,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+        setTimeout(() => statusEl.classList.add('hidden'), 3000);
+      }
+    } catch (error) {
+      alert('TELEMETRY_UPDATE_FAILED');
+    }
+  });
+
+  loadConfig();
+</script>

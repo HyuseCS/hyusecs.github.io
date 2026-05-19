@@ -4,7 +4,9 @@ import { doc, getDoc } from 'firebase/firestore';
 export async function getSystemConfig() {
   const defaultConfig = {
     resumeUrl: '/LEGASPI_RESUME.pdf',
-    alertMsg: 'System operational.',
+    statusMessage: 'System operational.',
+    statusState: 'Online',
+    statusColor: 'green',
     email: 'christianjohn.legaspi@ustp.edu.ph',
     location: 'Cagayan de Oro City, Philippines',
     phone: '+63 968 301 3514'

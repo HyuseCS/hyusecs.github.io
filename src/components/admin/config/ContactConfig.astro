@@ -1,0 +1,105 @@
+---
+---
+
+<div class="border border-system-border bg-layer-2 p-6 space-y-4 rounded-sm">
+  <div class="flex items-center justify-between border-b border-system-border pb-3">
+    <h4 class="text-text-primary text-[10px] font-bold uppercase tracking-widest">Communications</h4>
+    <div class="flex gap-1">
+      <div class="w-1 h-1 bg-caution-yellow/40"></div>
+      <div class="w-1 h-1 bg-caution-yellow/60"></div>
+      <div class="w-1 h-1 bg-caution-yellow"></div>
+    </div>
+  </div>
+
+  <form id="contact-config-form" class="space-y-6">
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Contact Email</label>
+      <input 
+        type="email" 
+        id="contact-email" 
+        placeholder="your@email.com"
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Geographic Location</label>
+      <input 
+        type="text" 
+        id="contact-location" 
+        placeholder="City, Country"
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+    </div>
+
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Phone Number</label>
+      <input 
+        type="text" 
+        id="contact-phone" 
+        placeholder="+63 000 000 0000"
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+    </div>
+
+    <button 
+      type="submit"
+      class="group w-full py-2 border border-binary-green/30 text-binary-green hover:bg-binary-green hover:text-obsidian transition-all text-[10px] uppercase tracking-[0.2em] font-black flex items-center justify-center gap-2"
+    >
+      <span class="w-1.5 h-1.5 bg-binary-green group-hover:bg-obsidian transition-colors"></span>
+      Update Comms
+    </button>
+  </form>
+  
+  <div id="contact-config-status" class="hidden p-2 border border-binary-green/30 bg-binary-green/5 text-binary-green text-[9px] font-mono flex items-center gap-2">
+    <span class="font-bold">[SUCCESS]</span>
+    <span class="uppercase tracking-widest">Communications_Updated</span>
+  </div>
+</div>
+
+<script>
+  import { db } from '../../../lib/firebase/client';
+  import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+  const form = document.getElementById('contact-config-form') as HTMLFormElement;
+  const emailInput = document.getElementById('contact-email') as HTMLInputElement;
+  const locationInput = document.getElementById('contact-location') as HTMLInputElement;
+  const phoneInput = document.getElementById('contact-phone') as HTMLInputElement;
+  const statusEl = document.getElementById('contact-config-status');
+
+  async function loadConfig() {
+    try {
+      const docRef = doc(db, 'system', 'config');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        emailInput.value = data.email || '';
+        locationInput.value = data.location || '';
+        phoneInput.value = data.phone || '';
+      }
+    } catch (error) {
+      console.error("Contact Config load failed", error);
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, 'system', 'config'), {
+        email: emailInput.value,
+        location: locationInput.value,
+        phone: phoneInput.value,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+        setTimeout(() => statusEl.classList.add('hidden'), 3000);
+      }
+    } catch (error) {
+      alert('CONTACT_UPDATE_FAILED');
+    }
+  });
+
+  loadConfig();
+</script>

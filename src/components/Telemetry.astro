@@ -1,4 +1,9 @@
 ---
+import { getSystemConfig } from '../lib/firebase/config';
+
+const config = await getSystemConfig();
+const { statusMessage, statusState, statusColor } = config;
+
 let fallbackMatrixData = null;
 try {
   // Primary: GitHub GraphQL API for accurate per-day contribution counts
@@ -127,12 +132,12 @@ try {
 }
 ---
 
-<section id="activity" class="min-h-[calc(100vh-4rem-30px)] scroll-mt-14 flex flex-col justify-center border-b border-system-border bg-obsidian">
+<section id="activity" class="min-h-[calc(100vh-4rem-30px)] flex flex-col justify-center border-b border-system-border bg-obsidian">
   <div class="p-5 md:p-8 pt-4 md:pt-8 pb-32 md:pb-40 flex-grow flex flex-col justify-center items-center">
     <div class="max-w-5xl w-full">
       <div class="flex gap-2 text-binary-green mb-6 md:mb-8 text-sm sm:text-base animate-on-scroll">
         <span class="font-bold" aria-hidden="true">❯</span>
-        <span class="text-text-muted break-all">top -u hyuseCS -d 1</span>
+        <span class="text-text-muted break-all">top -u HyuseCS -d 1</span>
       </div>
       
       <h2 class="sr-only">GitHub Activity & Telemetry</h2>
@@ -180,12 +185,18 @@ try {
                 <div class="flex flex-col gap-1">
                   <div class="flex items-center gap-2">
                     <span class="relative flex h-3 w-3" aria-hidden="true">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-binary-green opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-binary-green"></span>
+                      <span class={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
+                        statusColor === 'yellow' ? 'bg-caution-yellow' : 
+                        statusColor === 'red' ? 'bg-error' : 'bg-binary-green'
+                      }`}></span>
+                      <span class={`relative inline-flex rounded-full h-3 w-3 ${
+                        statusColor === 'yellow' ? 'bg-caution-yellow' : 
+                        statusColor === 'red' ? 'bg-error' : 'bg-binary-green'
+                      }`}></span>
                     </span>
-                    <span class="text-text-muted text-xs sm:text-sm font-bold uppercase tracking-wide">Status: Online</span>
+                    <span class="text-text-muted text-xs sm:text-sm font-bold uppercase tracking-wide">Status: {statusState}</span>
                   </div>
-                  <span class="text-text-dim text-[10px] sm:text-xs font-mono pl-5">Open to opportunities</span>
+                  <span class="text-text-dim text-[10px] sm:text-xs font-mono pl-5">{statusMessage}</span>
                 </div>
               </div>
             </div>

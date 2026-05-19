@@ -13,11 +13,12 @@ const {
 	description = "Christian John Legaspi — Full Stack Developer & Computer Science student at USTP. Building robust web applications with React, Next.js, Supabase, and more."
 } = Astro.props;
 
+const isAdmin = Astro.url.pathname.startsWith('/admin');
 const siteUrl = "https://hyusecs.github.io";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class={`scroll-smooth ${isAdmin ? 'no-snap' : ''}`}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />

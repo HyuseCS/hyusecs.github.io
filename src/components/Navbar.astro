@@ -45,8 +45,9 @@ const dynamicVersion = `v${age}.${monthsOldStr}`;
     <div class="hidden md:flex items-center gap-8">
       <div class="flex items-center gap-6">
         <a href="#about" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">About</a>
-        <a href="#projects" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Projects</a>
         <a href="#skills" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Skills</a>
+        <a href="#projects" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Projects</a>
+        <a href="#activity" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Activity</a>
         <a href="#contact" class="text-text-muted hover:text-white text-xs font-mono transition-colors uppercase tracking-widest">Contact</a>
       </div>
       
@@ -66,7 +67,7 @@ const dynamicVersion = `v${age}.${monthsOldStr}`;
   </div>
 
   <!-- Mobile Drawer -->
-  <div id="mobile-drawer" class="fixed inset-0 bg-obsidian z-[60] flex flex-col translate-x-full transition-transform duration-300 md:hidden">
+  <div id="mobile-drawer" class="fixed inset-0 bg-obsidian z-[100] flex flex-col translate-x-full transition-transform duration-300 md:hidden">
     <div class="h-16 border-b border-system-border flex items-center justify-between px-4 bg-neutral-surface">
       <span class="text-binary-green font-mono text-xs uppercase tracking-widest">System Navigation</span>
       <button id="close-drawer" class="text-white p-2">
@@ -77,8 +78,9 @@ const dynamicVersion = `v${age}.${monthsOldStr}`;
     </div>
     <div class="flex-grow flex flex-col justify-center items-center gap-8 p-8">
       <a href="#about" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./About</a>
-      <a href="#projects" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Projects</a>
       <a href="#skills" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Skills</a>
+      <a href="#projects" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Projects</a>
+      <a href="#activity" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Activity</a>
       <a href="#contact" class="mobile-link text-white text-2xl font-bold uppercase tracking-tighter">./Contact</a>
       
       <div class="w-full h-px bg-system-border my-4"></div>

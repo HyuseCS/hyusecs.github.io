@@ -39,11 +39,30 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
+  html.no-snap, 
+  html.no-snap body,
+  html.no-snap section {
+    scroll-snap-type: none !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
   }
   
   body {
     @apply antialiased;
     background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0c0c0c 100%);
+  }
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-margin-top: 4rem; /* Match Navbar h-16 */
+  }
+
+  #hero {
+    scroll-margin-top: 0;
   }
 
   ::selection {

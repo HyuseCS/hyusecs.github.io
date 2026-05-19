@@ -1,7 +1,7 @@
 ---
 ---
 
-<div id="skill-manager" class="space-y-10 animate-boot">
+<div id="skill-manager" class="space-y-10">
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-l-2 border-caution-yellow pl-6 py-2">
     <div class="space-y-2">
       <h3 class="text-text-primary text-2xl font-black uppercase tracking-tighter flex items-center gap-3">
@@ -60,59 +60,6 @@
   </div>
 </div>
 
-<!-- Skill Modal -->
-<div id="skill-modal" class="hidden fixed inset-0 z-[200] overflow-y-auto">
-  <!-- Backdrop -->
-  <div class="fixed inset-0 bg-black/80 backdrop-blur-md"></div>
-  
-  <!-- Modal Content Wrapper -->
-  <div class="relative min-h-screen flex items-center justify-center p-4 md:p-12">
-    <div class="max-w-xl w-full border border-system-border bg-layer-1 font-mono text-sm shadow-[0_0_100px_rgba(0,0,0,0.9)] animate-boot my-auto">
-      <div class="bg-layer-2 border-b border-system-border p-4 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-          <div class="w-1.5 h-1.5 bg-caution-yellow animate-pulse"></div>
-          <span id="s-modal-title" class="text-text-primary uppercase tracking-[0.2em] font-black text-xs">Register Skill Module</span>
-        </div>
-        <button id="close-skill-modal" class="text-text-dim hover:text-white transition-colors p-1">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
-      </div>
-
-      <form id="skill-form" class="p-8 space-y-6">
-        <input type="hidden" id="skill-id" />
-
-          <div class="space-y-2">
-            <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Module Name</label>
-            <input type="text" id="s-name" required placeholder="e.g., ReactTS" class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs" />
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="space-y-2">
-              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Category</label>
-              <select id="s-category" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs appearance-none">
-                <option value="languages">Languages</option>
-                <option value="frameworks">Frameworks</option>
-                <option value="tools">Tools & Protocols</option>
-              </select>
-            </div>
-
-            <div class="space-y-2">
-              <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Proficiency Level</label>
-              <select id="s-level" required class="w-full bg-layer-2 border border-system-border p-3 outline-none focus:border-caution-yellow/50 text-text-primary transition-all text-xs appearance-none">
-                <option value="primary">Primary (High)</option>
-                <option value="familiar">Familiar (Mid)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="pt-4 flex flex-col sm:flex-row gap-4">
-            <button type="submit" class="flex-grow py-4 bg-caution-yellow text-obsidian uppercase tracking-[0.2em] text-[10px] font-black hover:brightness-110 transition-all">Synchronize Module</button>
-            <button type="button" id="cancel-skill-modal" class="py-4 px-8 border border-system-border text-text-dim uppercase tracking-[0.2em] text-[10px] font-black hover:bg-layer-2 transition-all">Abort Action</button>
-          </div>
-        </form>
-    </div>
-  </div>
-</div>
 <template id="skill-item-template">
   <div class="skill-item border border-system-border bg-layer-1 p-4 flex justify-between items-center group hover:border-caution-yellow/50 transition-all duration-300">
     <div class="flex items-center gap-3">

@@ -1,0 +1,80 @@
+---
+---
+
+<div class="border border-system-border bg-layer-2 p-6 space-y-4 rounded-sm">
+  <div class="flex items-center justify-between border-b border-system-border pb-3">
+    <h4 class="text-text-primary text-[10px] font-bold uppercase tracking-widest">Global Assets</h4>
+    <div class="flex gap-1">
+      <div class="w-1 h-1 bg-binary-green/40"></div>
+      <div class="w-1 h-1 bg-binary-green/60"></div>
+      <div class="w-1 h-1 bg-binary-green"></div>
+    </div>
+  </div>
+
+  <form id="asset-config-form" class="space-y-6">
+    <div class="space-y-2">
+      <label class="text-text-dim block text-[10px] uppercase tracking-widest font-bold">Resume Artifact URL</label>
+      <input 
+        type="text" 
+        id="resume-url" 
+        placeholder="/LEGASPI_RESUME.pdf"
+        class="w-full bg-layer-1 border border-system-border p-3 outline-none focus:border-binary-green/50 text-text-primary font-mono text-xs transition-all placeholder:text-text-dim/20"
+      />
+      <p class="text-[9px] text-text-dim/60 italic font-mono uppercase tracking-tighter">Direct path or external CDN URL.</p>
+    </div>
+
+    <button 
+      type="submit"
+      class="group w-full py-2 border border-binary-green/30 text-binary-green hover:bg-binary-green hover:text-obsidian transition-all text-[10px] uppercase tracking-[0.2em] font-black flex items-center justify-center gap-2"
+    >
+      <span class="w-1.5 h-1.5 bg-binary-green group-hover:bg-obsidian transition-colors"></span>
+      Update Assets
+    </button>
+  </form>
+  
+  <div id="asset-config-status" class="hidden p-2 border border-binary-green/30 bg-binary-green/5 text-binary-green text-[9px] font-mono flex items-center gap-2">
+    <span class="font-bold">[SUCCESS]</span>
+    <span class="uppercase tracking-widest">Assets_Updated</span>
+  </div>
+</div>
+
+<script>
+  import { db } from '../../../lib/firebase/client';
+  import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+  const form = document.getElementById('asset-config-form') as HTMLFormElement;
+  const resumeInput = document.getElementById('resume-url') as HTMLInputElement;
+  const statusEl = document.getElementById('asset-config-status');
+
+  async function loadConfig() {
+    try {
+      const docRef = doc(db, 'system', 'config');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        resumeInput.value = data.resumeUrl || '';
+      }
+    } catch (error) {
+      console.error("Asset Config load failed", error);
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(doc(db, 'system', 'config'), {
+        resumeUrl: resumeInput.value,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+        setTimeout(() => statusEl.classList.add('hidden'), 3000);
+      }
+    } catch (error) {
+      alert('ASSET_UPDATE_FAILED');
+    }
+  });
+
+  loadConfig();
+</script>
